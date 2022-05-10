@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom"
 const Routers = () =>{
     return(
         <Switch>
-            <Route>Teste</Route>
+            <Route>Teste certo</Route>
         </Switch>
     )
 }
