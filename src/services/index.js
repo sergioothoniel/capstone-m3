@@ -1,0 +1,7 @@
+import axios from "axios";
+
+const api = axios.create({
+    baseURL: "https://psique-capstonem3.herokuapp.com/"
+})
+
+export default api
