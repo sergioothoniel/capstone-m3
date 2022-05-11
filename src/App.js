@@ -6,15 +6,15 @@ import {
   Link,
   VStack,
   Code,
-  Grid,
-  theme,
+  Grid
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
-
+import { theme
+ } from './styles/theme';
 function App() {
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={theme} resetCSS={true}>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
