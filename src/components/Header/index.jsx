@@ -1,6 +1,6 @@
 import { Flex, Grid, GridItem } from '@chakra-ui/react';
 
-function Header({ childrenLeft, childrenMiddle, childrenRight }) {
+const Header = ({ childrenLeft, childrenMiddle, childrenRight }) => {
   return (
     <Flex
       bg="primary.100"
@@ -35,6 +35,6 @@ function Header({ childrenLeft, childrenMiddle, childrenRight }) {
       </Grid>
     </Flex>
   );
-}
+};
 
 export default Header;
