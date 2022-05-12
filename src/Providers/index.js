@@ -2,15 +2,18 @@ import { PatientsProvider } from './patients';
 import { IsLoggedInProvider } from './isLoggedIn';
 import { PsychologistsProvider } from './psychologists';
 import { UserProvider } from './user';
+import { DataUserProvider } from './dataUser';
 
 const Provider = ({ children }) => {
   return (
     <IsLoggedInProvider>
-      <UserProvider>
-        <PsychologistsProvider>
-          <PatientsProvider>{children}</PatientsProvider>
-        </PsychologistsProvider>
-      </UserProvider>
+      <DataUserProvider>
+        <UserProvider>
+          <PsychologistsProvider>
+           {children}
+          </PsychologistsProvider>
+        </UserProvider>
+      </DataUserProvider>
     </IsLoggedInProvider>
   );
 };

@@ -24,7 +24,7 @@ export const PsychologistsProvider = ({ children }) => {
           console.log(err);
         });
     }
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <PsychologistsContext.Provider value={{ psychologists }}>
