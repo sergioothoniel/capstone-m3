@@ -18,7 +18,7 @@ export const PsychologistsProvider = ({ children }) => {
           },
         })
         .then(res => {
-          setPsychologists(res);
+          setPsychologists(res.data);
         })
         .catch(err => {
           console.log(err);

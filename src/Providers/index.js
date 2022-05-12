@@ -1,16 +1,16 @@
 import { PatientsProvider } from './patients';
 import { IsLoggedInProvider } from './isLoggedIn';
 import { PsychologistsProvider } from './psychologists';
-import { UsersProvider } from './users';
+import { UserProvider } from './user';
 
 const Provider = ({ children }) => {
   return (
     <IsLoggedInProvider>
-      <UsersProvider>
+      <UserProvider>
         <PsychologistsProvider>
           <PatientsProvider>{children}</PatientsProvider>
         </PsychologistsProvider>
-      </UsersProvider>
+      </UserProvider>
     </IsLoggedInProvider>
   );
 };
