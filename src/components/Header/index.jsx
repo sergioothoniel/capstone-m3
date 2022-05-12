@@ -1,6 +1,6 @@
-import { Flex, Grid, GridItem } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
-const Header = ({ childrenLeft, childrenMiddle, childrenRight }) => {
+const Header = ({ children }) => {
   return (
     <Flex
       bg="primary.100"
@@ -11,28 +11,7 @@ const Header = ({ childrenLeft, childrenMiddle, childrenRight }) => {
       align="center"
       justify="center"
     >
-      <Grid
-        h="100%"
-        w="100%"
-        maxW="1160px"
-        templateColumns="repeat(3, 1fr)"
-        alignItems="center"
-        justify="center"
-      >
-        <GridItem
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-start"
-        >
-          {childrenLeft}
-        </GridItem>
-        <GridItem display="flex" alignItems="center" justifyContent="center">
-          {childrenMiddle}
-        </GridItem>
-        <GridItem display="flex" alignItems="center" justifyContent="center">
-          {childrenRight}
-        </GridItem>
-      </Grid>
+      {children}
     </Flex>
   );
 };
