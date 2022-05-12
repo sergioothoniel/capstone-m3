@@ -1,6 +1,6 @@
-import { Button } from '@chakra-ui/react';
+import { Button as ButtonChakra } from '@chakra-ui/react';
 
-function ButtonChakra({
+const Button = ({
   bg,
   height,
   width,
@@ -12,9 +12,10 @@ function ButtonChakra({
   hoverColor,
   hoverBorder,
   fontWeigth,
-}) {
+  children,
+}) => {
   return (
-    <Button
+    <ButtonChakra
       bg={`${bg}`}
       height={`${height}`}
       width={`${width}`}
@@ -23,6 +24,9 @@ function ButtonChakra({
       fontSize={`${fontSize}`}
       borderColor={`${borderColor}`}
       color={`${color}`}
+      variant="unstyled"
+      d="flex"
+      _focus={{}}
       _hover={{
         bg: `${hoverBg}`,
         color: `${hoverColor}`,
@@ -30,9 +34,9 @@ function ButtonChakra({
       }}
       fontWeight={`${fontWeigth}`}
     >
-      Button
-    </Button>
+      {children}
+    </ButtonChakra>
   );
-}
+};
 
-export default ButtonChakra;
+export default Button;

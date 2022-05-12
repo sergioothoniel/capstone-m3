@@ -1,7 +1,15 @@
 import { Flex } from '@chakra-ui/react';
+import Button from '../../components/Button';
+import { BiArrowBack } from 'react-icons/bi';
 
-function Login() {
-  return <Flex>Login</Flex>;
-}
+const Login = () => {
+  return (
+    <Flex>
+      <Button>
+        <BiArrowBack />
+      </Button>
+    </Flex>
+  );
+};
 
 export default Login;
