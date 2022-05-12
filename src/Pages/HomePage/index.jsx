@@ -2,7 +2,7 @@ import { Flex, Image, Text } from '@chakra-ui/react';
 import Button from '../../components/Button';
 import { useHistory } from 'react-router-dom';
 
-function HomePage() {
+const HomePage = () => {
   const history = useHistory();
 
   const vaiParaRegistroPsico = () => {
@@ -114,6 +114,6 @@ function HomePage() {
       />
     </Flex>
   );
-}
+};
 
 export default HomePage;
