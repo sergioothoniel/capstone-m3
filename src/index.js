@@ -1,18 +1,21 @@
 import { ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import Provider from './Providers';
 
 ReactDOM.render(
-  <StrictMode>
-    <Provider>
-      <ColorModeScript />
-      <App />
-    </Provider>
-  </StrictMode>,
+  <Provider>
+    <BrowserRouter>
+      <StrictMode>
+        <ColorModeScript />
+        <App />
+      </StrictMode>
+    </BrowserRouter>
+  </Provider>, 
   document.getElementById('root')
 );
 
