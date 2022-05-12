@@ -16,12 +16,12 @@ export const UserProvider = ({ children }) => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(res => {
-          const userInfo = res.data.filter(user => user.userId === dataUser.id);
-          setUser(userInfo);
+          // const userInfo = res.data.filter(user => user.userId === dataUser.id);
+          // setUser(res);
         })
         .catch(err => console.log(err));
     }
-  }, [isLoggedIn]);
+  }, []);
 
   return (
     <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>

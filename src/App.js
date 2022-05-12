@@ -12,8 +12,28 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
 import { theme } from './styles/theme';
 
+import { UserContext } from './Providers/user';
+import { IsLoggedInContext } from './Providers/isLoggedIn';
+import { useContext } from 'react';
 
 function App() {
+  const { isLoggedIn, setIsLoggedIn, token, setToken, dataUser, setDataUser } =
+    useContext(IsLoggedInContext);
+  const { user } = useContext(UserContext);
+
+  setIsLoggedIn(true);
+  setToken(
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhhbm5pYmFsQGVtYWlsLmNvbSIsImlhdCI6MTY1MjM4MTE1NSwiZXhwIjoxNjUyMzg0NzU1LCJzdWIiOiIzIn0.135vYLVZVK8x6qeO84l5JZ92_8NnHsb8knCBL_oFLaI'
+  );
+  setDataUser({
+    name: 'Matheus',
+    id: '3',
+    type: 'staff',
+    email: 'matheus@mail.com',
+    teste: 'testando usuario',
+  });
+
+  console.log(token);
   return (
     <ChakraProvider theme={theme} resetCSS={true}>
       <Box textAlign="center" fontSize="xl">
