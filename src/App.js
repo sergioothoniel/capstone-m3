@@ -6,12 +6,13 @@ import {
   Link,
   VStack,
   Code,
-  Grid
+  Grid,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
-import { theme
- } from './styles/theme';
+import { theme } from './styles/theme';
+
+
 function App() {
   return (
     <ChakraProvider theme={theme} resetCSS={true}>

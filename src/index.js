@@ -4,11 +4,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import Provider from './Providers';
 
 ReactDOM.render(
   <StrictMode>
-    <ColorModeScript />
-    <App />
+    <Provider>
+      <ColorModeScript />
+      <App />
+    </Provider>
   </StrictMode>,
   document.getElementById('root')
 );
