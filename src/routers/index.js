@@ -12,7 +12,7 @@ const Routers = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <HomePage />
+      <DashboardPaciente />
       </Route>
       <Route exact path="/login">
         <Login />
@@ -30,7 +30,7 @@ const Routers = () => {
         <CadastroPsico />
       </Route>
       <Route exact path="/dashboardpaciente">
-        <DashboardPaciente />
+        {/* <DashboardPaciente /> */}
       </Route>
       <Route exact path="/dashboardpsico">
         <DashboardPsico />
