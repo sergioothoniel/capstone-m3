@@ -4,7 +4,7 @@ import { IsLoggedInContext } from '../isLoggedIn';
 export const DataUserContext = createContext();
 
 export const DataUserProvider = ({children}) =>{
-    const [dataUser, setDataUser] = useState({id: '3', type: 'staff'})
+    const [dataUser, setDataUser] = useState({})
 
     const {isLoggedIn } = useContext(IsLoggedInContext)
 
@@ -15,7 +15,7 @@ export const DataUserProvider = ({children}) =>{
             setDataUser(localStorageData.user);
           }
         
-      }, []);   
+      }, [isLoggedIn]);   
 
 
     return(
