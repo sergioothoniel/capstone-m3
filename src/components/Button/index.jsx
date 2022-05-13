@@ -13,6 +13,7 @@ const Button = ({
   hoverBorder,
   fontWeigth,
   children,
+  onClickFunction,
 }) => {
   return (
     <ButtonChakra
@@ -33,7 +34,7 @@ const Button = ({
         borderColor: `${hoverBorder}`,
       }}
       fontWeight={`${fontWeigth}`}
-      >
+      onClick={() => onClickFunction()}
       {children}
     </ButtonChakra>
   );

@@ -9,10 +9,11 @@ const Select = ({ width, height, children, placeholder }) => {
         color="gray.700"
         border="1px solid"
         borderColor="primary.0"
-        focusBorderColor="primary.0"
+        focusBorderColor="none"
         placeholder={placeholder}
         width={width}
         height={height}
+
       >
         {children}
       </SelectChakra>
