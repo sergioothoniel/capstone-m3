@@ -1,10 +1,11 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const IsLoggedInContext = createContext();
 
 export const IsLoggedInProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
+    
 
   return (
     <IsLoggedInContext.Provider
@@ -12,12 +13,10 @@ export const IsLoggedInProvider = ({ children }) => {
         isLoggedIn,
         setIsLoggedIn,
         token,
-        setToken,
+        setToken       
       }}
     >
       {children}
     </IsLoggedInContext.Provider>
   );
 };
-
-export const useIsLoggedIn = () => useContext(IsLoggedInContext);

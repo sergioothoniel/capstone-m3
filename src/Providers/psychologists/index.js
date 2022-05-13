@@ -32,5 +32,3 @@ export const PsychologistsProvider = ({ children }) => {
     </PsychologistsContext.Provider>
   );
 };
-
-export const usePsychologists = () => useContext(PsychologistsContext);
