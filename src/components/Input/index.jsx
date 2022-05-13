@@ -18,11 +18,15 @@ const Input = ({
   backgroundColor,
   size,
   width,
+  height,
   color,
   isPassword = false,
+  borderColor,
+  ...rest
 }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
   return (
     <Flex flexDirection="column">
       <Text align="left" color={color}>
@@ -35,9 +39,17 @@ const Input = ({
             type={show ? 'text' : 'password'}
             color="gray.100"
             border={border}
+            height={height}
+            borderColor={borderColor}
             backgroundColor={backgroundColor}
             size={size}
             width={width}
+            variant="unstyled"
+            d="flex"
+            alignItems="center"
+            _focus={{}}
+            _active={{}}
+            {...rest}
           />
           <InputRightElement width="9">
             <Button
@@ -46,6 +58,7 @@ const Input = ({
               variant="unstyled"
               d="flex"
               _focus={{}}
+              _active={{}}
             >
               {show ? <Icon as={BsEye} /> : <Icon as={BsEyeSlash} />}
             </Button>
@@ -58,8 +71,16 @@ const Input = ({
           color="gray.100"
           border={border}
           backgroundColor={backgroundColor}
+          borderColor={borderColor}
+          height={height}
           size={size}
           width={width}
+          variant="unstyled"
+          d="flex"
+          alignItems="center"
+          _focus={{}}
+          _active={{}}
+          {...rest}
         />
       )}
     </Flex>

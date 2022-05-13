@@ -7,15 +7,18 @@ const Button = ({
   border,
   fontSize,
   borderColor,
+  backgroundColor,
   color,
   hoverBg,
   hoverColor,
   hoverBorder,
   fontWeigth,
   children,
+  onClick,
 }) => {
   return (
     <ButtonChakra
+      onClick={onClick}
       bg={`${bg}`}
       height={`${height}`}
       width={`${width}`}
@@ -23,6 +26,7 @@ const Button = ({
       borderRadius="8px"
       fontSize={`${fontSize}`}
       borderColor={`${borderColor}`}
+      backgroundColor={`${backgroundColor}`}
       color={`${color}`}
       variant="unstyled"
       d="flex"
