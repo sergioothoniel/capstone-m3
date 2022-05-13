@@ -6,7 +6,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
@@ -72,7 +71,6 @@ const DashboardPaciente = () => {
           justifyContent="space-around"
           alignItems="center"
         >
-          <header></header>
           <FormLabel alignSelf="flex-start" ml="10px">
             Buscar profissionais
           </FormLabel>
