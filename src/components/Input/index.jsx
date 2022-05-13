@@ -60,6 +60,7 @@ const Input = ({
           backgroundColor={backgroundColor}
           size={size}
           width={width}
+          focusBorderColor='none'
         />
       )}
     </Flex>
