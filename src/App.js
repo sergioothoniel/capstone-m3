@@ -11,13 +11,13 @@ import {
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Logo } from './Logo';
 import { theme } from './styles/theme';
-import { Header, HeaderContent } from './components/Header';
+import { Header, HeaderContentHomePage } from './components/Header';
 
 function App() {
   return (
     <ChakraProvider theme={theme} resetCSS={true}>
       <Header>
-        <HeaderContent />
+        <HeaderContentHomePage />
       </Header>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
