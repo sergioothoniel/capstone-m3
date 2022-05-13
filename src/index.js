@@ -5,15 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import Provider from './Providers';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <StrictMode>
-      <ColorModeScript />
-      <App />
-    </StrictMode>
-  </BrowserRouter>,
-  
+  <Provider>
+    <BrowserRouter>
+      <StrictMode>
+        <ColorModeScript />
+        <App />
+      </StrictMode>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
