@@ -1,9 +1,19 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
 
 const DashboardPaciente = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const approach = [
     'Psicanálise',
     'Cognitivo comportamental',
@@ -16,19 +26,56 @@ const DashboardPaciente = () => {
 
   return (
     <>
-      <Flex
-
-        direction="column"
-        justifyContent="space-around"
-        alignItems="center"
-      >
-        <header></header>
+      <Modal isOpen={isOpen} onClose={onClose} >
+        <ModalOverlay />
+        <ModalContent bg="white.300"  width='230px' height='300px'>
+          <ModalCloseButton color='secondary.0' borderColor=''/>
+          <ModalBody>
+            <Flex
+            mt='20px'
+            height='90%'
+            direction='column'
+            justifyContent='space-around'
+            alignItems='center'>
+              <Flex
+              height='50%'
+              direction='column'
+              justifyContent='space-around'
+              alignItems='center'>
+            <Button
+             width="170px"
+             height='48px'
+             bg="secondary.100"
+             color="white.100"
+             >Minhas consultas</Button> 
+            <Button 
+            width="170px"
+            height='48px'
+            bg="secondary.100"
+            color="white.100"
+            >Configurações</Button>
+            </Flex>
+            <Button 
+            width="170px"
+            height='48px'
+            bg="secondary.0"
+            color="white.100"
+            >Sair</Button>
+            </Flex>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+      <Flex height="100vh" direction="column" bg="white.300" maxWidth="100%">
         <Flex
-         height="200px"
-         direction="column"
-         justifyContent='space-around'                  
-         >
-          <label color="gray.700" >Buscar profissionais</label>
+          height="200px"
+          direction="column"
+          justifyContent="space-around"
+          alignItems="center"
+        >
+          <header></header>
+          <FormLabel alignSelf="flex-start" ml="10px">
+            Buscar profissionais
+          </FormLabel>
           <Input width="300px" />
           <Button
             width="300px"
@@ -37,24 +84,24 @@ const DashboardPaciente = () => {
             bg="secondary.100"
             color="white.100"
             fontWeigth="500"
+            onClick={onOpen}
           >
             Buscar
           </Button>
-          <Flex justifyContent="space-around">
-            <Select width="140px">
+          <Flex justifyContent="space-around" alignSelf="normal">
+            <Select placeholder="Abordagem" width="140px">
               {approach.map(item => (
-                <option>{item}</option>
+                <option key={item}>{item}</option>
               ))}
             </Select>
-            <Select width={'140px'}>
+            <Select placeholder="Valor" width={'140px'}>
               {price.map(item => (
-                <option>{item}</option>
+                <option key={item}>{item}</option>
               ))}
             </Select>
           </Flex>
         </Flex>
       </Flex>
-      <footer>@2022 psique</footer>
     </>
   );
 };
