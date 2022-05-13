@@ -8,11 +8,11 @@ const Provider = ({ children }) => {
   return (
     <IsLoggedInProvider>
       <DataUserProvider>
-        <UserProvider>
-          <PsychologistsProvider>
-           {children}
-          </PsychologistsProvider>
-        </UserProvider>
+        <PatientsProvider>
+          <UserProvider>
+            <PsychologistsProvider>{children}</PsychologistsProvider>
+          </UserProvider>
+        </PatientsProvider>
       </DataUserProvider>
     </IsLoggedInProvider>
   );
