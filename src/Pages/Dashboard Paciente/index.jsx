@@ -17,20 +17,31 @@ const DashboardPaciente = () => {
   return (
     <>
       <Flex
-        height={'100%'}
-        direction={'column'}
-        justifyContent={'space-around'}
-        alignItems={'center'}
+
+        direction="column"
+        justifyContent="space-around"
+        alignItems="center"
       >
         <header></header>
-        <Flex direction={'column'}>
-          <label>Buscar profissionais</label>
-          <Input width={'300px'} />
-          <Button  fontSize={'16px'} width={'300px'} height={'40px'}>
+        <Flex
+         height="200px"
+         direction="column"
+         justifyContent='space-around'                  
+         >
+          <label color="gray.700" >Buscar profissionais</label>
+          <Input width="300px" />
+          <Button
+            width="300px"
+            height="40px"
+            fontSize="18px"
+            bg="secondary.100"
+            color="white.100"
+            fontWeigth="500"
+          >
             Buscar
           </Button>
-          <Flex justifyContent={'space-around'}>
-            <Select width={'140px'}>
+          <Flex justifyContent="space-around">
+            <Select width="140px">
               {approach.map(item => (
                 <option>{item}</option>
               ))}
@@ -42,8 +53,8 @@ const DashboardPaciente = () => {
             </Select>
           </Flex>
         </Flex>
-        <footer>@2022 psique</footer>
       </Flex>
+      <footer>@2022 psique</footer>
     </>
   );
 };
