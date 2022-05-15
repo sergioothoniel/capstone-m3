@@ -17,15 +17,15 @@ const Button = ({
 }) => {
   return (
     <ButtonChakra
-    bg={`${bg}`}
-    height={`${height}`}
-    width={`${width}`}
-    border={`${border}`}
-    borderRadius="8px"
-    fontSize={`${fontSize}`}
-    borderColor={`${borderColor}`}
-    color={`${color}`}
-    variant="unstyled"
+      bg={`${bg}`}
+      height={`${height}`}
+      width={`${width}`}
+      border={`${border}`}
+      borderRadius="8px"
+      fontSize={`${fontSize}`}
+      borderColor={`${borderColor}`}
+      color={`${color}`}
+      variant="unstyled"
       d="flex"
       _focus={{}}
       _hover={{
@@ -35,6 +35,7 @@ const Button = ({
       }}
       fontWeight={`${fontWeigth}`}
       onClick={() => onClickFunction()}
+    >
       {children}
     </ButtonChakra>
   );
