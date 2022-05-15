@@ -6,7 +6,7 @@ import animationData from '../../lotties/emptyAnimation.json';
 function AgendaPaciente() {
   const { schedules } = useSchedules();
 
-  console.log(schedules)
+  console.log(schedules);
 
   const defaultOptions = {
     loop: true,
@@ -18,14 +18,22 @@ function AgendaPaciente() {
   };
 
   return (
-    <Flex>
-      {/* {schedules === [] ? (
-        <Lottie options={defaultOptions} height={400} width={400} />
+    <Flex
+  direction='column'
+  alignItems='center'>
+      {schedules.length === 0 ? (
+        <Flex
+        direction='column'
+        alignItems='center
+        '>
+          <h2>Você ainda não possui consultas</h2>
+          <Lottie options={defaultOptions} height={300} width={300} />
+        </Flex>
       ) : (
         <Flex>
           <h1>oie</h1>
         </Flex>
-      )} */}
+      )}
     </Flex>
   );
 }
