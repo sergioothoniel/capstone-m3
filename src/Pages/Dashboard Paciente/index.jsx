@@ -9,6 +9,9 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
+import Lottie from 'react-lottie';
+import animationData from '../../lotties/emptyAnimation.json'
+
 
 const DashboardPaciente = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
