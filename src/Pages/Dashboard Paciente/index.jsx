@@ -9,11 +9,12 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import Lottie from 'react-lottie';
-import animationData from '../../lotties/emptyAnimation.json'
 
+import { useHistory } from 'react-router-dom';
 
 const DashboardPaciente = () => {
+  const history = useHistory();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const approach = [
@@ -28,41 +29,50 @@ const DashboardPaciente = () => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} >
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg="white.300"  width='230px' height='300px'>
-          <ModalCloseButton color='secondary.0' borderColor=''/>
+        <ModalContent bg="white.300" width="230px" height="300px">
+          <ModalCloseButton color="secondary.0" borderColor="" />
           <ModalBody>
             <Flex
-            mt='20px'
-            height='90%'
-            direction='column'
-            justifyContent='space-around'
-            alignItems='center'>
+              mt="20px"
+              height="90%"
+              direction="column"
+              justifyContent="space-around"
+              alignItems="center"
+            >
               <Flex
-              height='50%'
-              direction='column'
-              justifyContent='space-around'
-              alignItems='center'>
-            <Button
-             width="170px"
-             height='48px'
-             bg="secondary.100"
-             color="white.100"
-             >Minhas consultas</Button> 
-            <Button 
-            width="170px"
-            height='48px'
-            bg="secondary.100"
-            color="white.100"
-            >Configurações</Button>
-            </Flex>
-            <Button 
-            width="170px"
-            height='48px'
-            bg="secondary.0"
-            color="white.100"
-            >Sair</Button>
+                height="50%"
+                direction="column"
+                justifyContent="space-around"
+                alignItems="center"
+              >
+                <Button
+                  width="170px"
+                  height="48px"
+                  bg="secondary.100"
+                  color="white.100"
+                  onClickFunction={() => history.push('/agendapaciente')}
+                >
+                  Minhas consultas
+                </Button>
+                <Button
+                  width="170px"
+                  height="48px"
+                  bg="secondary.100"
+                  color="white.100"
+                >
+                  Configurações
+                </Button>
+              </Flex>
+              <Button
+                width="170px"
+                height="48px"
+                bg="secondary.0"
+                color="white.100"
+              >
+                Sair
+              </Button>
             </Flex>
           </ModalBody>
         </ModalContent>
@@ -85,7 +95,7 @@ const DashboardPaciente = () => {
             bg="secondary.100"
             color="white.100"
             fontWeigth="500"
-            onClick={onOpen}
+            onClickFunction={onOpen}
           >
             Buscar
           </Button>
