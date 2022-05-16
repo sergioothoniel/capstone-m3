@@ -18,14 +18,18 @@ const Input = ({
   backgroundColor,
   size,
   width,
+  minWidth,
+  maxWidth,
   color,
+  borderColor,
+  fontWeight,
   isPassword = false,
 }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
     <Flex flexDirection="column">
-      <Text align="left" color={color}>
+      <Text align="left" color={color} fontWeight={fontWeight}>
         {text}
       </Text>
       {isPassword ? (
@@ -35,10 +39,12 @@ const Input = ({
             type={show ? 'text' : 'password'}
             color="gray.100"
             border={border}
+            borderColor={borderColor}
             backgroundColor={backgroundColor}
             size={size}
             width={width}
-          />
+            minWidth={minWidth}    
+            maxWidth={maxWidth}      />
           <InputRightElement width="9">
             <Button
               onClick={handleClick}
@@ -57,10 +63,14 @@ const Input = ({
           type={type}
           color="gray.100"
           border={border}
+          borderColor={borderColor}
           backgroundColor={backgroundColor}
           size={size}
           width={width}
+          minWidth={minWidth}    
+          maxWidth={maxWidth} 
           focusBorderColor='none'
+
         />
       )}
     </Flex>

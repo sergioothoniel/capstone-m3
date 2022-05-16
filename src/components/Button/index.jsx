@@ -13,6 +13,8 @@ const Button = ({
   hoverBorder,
   fontWeigth,
   children,
+  minWidth,
+  maxWidth
 }) => {
   return (
     <ButtonChakra
@@ -33,6 +35,8 @@ const Button = ({
         borderColor: `${hoverBorder}`,
       }}
       fontWeight={`${fontWeigth}`}
+      minWidth={minWidth}
+      maxWidth={maxWidth}
     >
       {children}
     </ButtonChakra>
