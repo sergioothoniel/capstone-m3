@@ -1,4 +1,5 @@
 import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
@@ -10,7 +11,6 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 
-import { useHistory } from 'react-router-dom';
 
 const DashboardPaciente = () => {
   const history = useHistory();
@@ -32,11 +32,15 @@ const DashboardPaciente = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent bg='white.300' width='230px' height='300px'>
-          <ModalCloseButton color='secondary.0' borderColor='lavender' />
+          <ModalCloseButton
+            color='secondary.0'
+            outline='none'
+            borderStyle='none'
+          />
           <ModalBody>
             <Flex
-              mt='20px'
               height='90%'
+              mt='20px'
               direction='column'
               justifyContent='space-around'
               alignItems='center'
@@ -48,8 +52,8 @@ const DashboardPaciente = () => {
                 alignItems='center'
               >
                 <Button
-                  width='170px'
                   height='48px'
+                  width='170px'
                   bg='secondary.100'
                   color='white.100'
                   onClickFunction={() => history.push('/agendapaciente')}
@@ -57,8 +61,8 @@ const DashboardPaciente = () => {
                   Minhas consultas
                 </Button>
                 <Button
-                  width='170px'
                   height='48px'
+                  width='170px'
                   bg='secondary.100'
                   color='white.100'
                 >
@@ -66,10 +70,11 @@ const DashboardPaciente = () => {
                 </Button>
               </Flex>
               <Button
-                width='170px'
                 height='48px'
+                width='170px'
                 bg='secondary.0'
                 color='white.100'
+                onClickFunction={() => history.push('/')}
               >
                 Sair
               </Button>
@@ -89,11 +94,11 @@ const DashboardPaciente = () => {
           </FormLabel>
           <Input width='300px' />
           <Button
-            width='300px'
             height='40px'
-            fontSize='18px'
+            width='300px'
             bg='secondary.100'
             color='white.100'
+            fontSize='18px'
             fontWeigth='500'
             onClickFunction={onOpen}
           >
