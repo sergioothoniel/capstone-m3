@@ -1,9 +1,120 @@
-import { Flex, Image } from '@chakra-ui/react';
+import { Flex, Image, Text } from '@chakra-ui/react';
 import Button from '../Button';
 import { useHistory } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from '@chakra-ui/react';
 
-//criar os outros componentes children dos diversos tipos de header que existem no figma
+export const ModalSanduiche = () => {
+  const history = useHistory();
+
+  const vaiParaLogin = () => {
+    history.push('/login');
+  };
+
+  const vaiParaCadastro = () => {
+    history.push('/cadastropaciente');
+  };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <>
+      <Image
+        src={require('../../Img/MenuHamburguer.svg').default}
+        alt="Menu Hamburguer"
+        h={['35px', '35px', '45px']}
+        display={['block', 'block', 'block', 'none']}
+        onClick={onOpen}
+        cursor="pointer"
+      />
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent
+          h={['310px', '448px']}
+          w={['310px', '448px']}
+          bg="secondary.0"
+          borderRadius="1000px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Text
+            fontSize="16px"
+            fontWeight="400"
+            lineHeight="24px"
+            color="gray.300"
+            borderBottom="2px"
+            borderColor="gray.300"
+            w="187px"
+            textAlign="center"
+            paddingBottom="8px"
+            cursor="pointer"
+          >
+            Buscar especialistas
+          </Text>
+          <Text
+            fontSize="16px"
+            fontWeight="400"
+            lineHeight="24px"
+            color="gray.300"
+            borderBottom="2px"
+            borderColor="gray.300"
+            w="187px"
+            textAlign="center"
+            paddingBottom="8px"
+            paddingTop={['30px', '50px']}
+            cursor="pointer"
+          >
+            Quem somos nós?
+          </Text>
+          <Flex
+            justifyContent="space-between"
+            direction="column"
+            h="106px"
+            w="max-content"
+            marginTop={['15px', '70px']}
+          >
+            <Button
+              border="2px"
+              borderColor="white.200"
+              height="48px"
+              width="187px"
+              fontSize="18px"
+              fontWeigth="400"
+              color="gray.300"
+              bg="white.200"
+              onClickFunction={vaiParaLogin}
+            >
+              Login
+            </Button>
+            <Button
+              border="2px"
+              borderColor="secondary.100"
+              height="48px"
+              width="187px"
+              fontSize="18px"
+              fontWeigth="400"
+              color="white.0"
+              bg="secondary.100"
+              onClickFunction={vaiParaCadastro}
+            >
+              Cadastrar
+            </Button>
+          </Flex>
+        </ModalContent>
+      </Modal>
+    </>
+  );
+};
 
 export const HeaderContentHomePage = () => {
   const history = useHistory();
@@ -30,12 +141,7 @@ export const HeaderContentHomePage = () => {
         onClick={vaiParaHome}
       />
       <Flex w="max-content" height="max-content">
-        <Image
-          src={require('../../Img/MenuHamburguer.svg').default}
-          alt="Menu Hamburguer"
-          h={['35px', '35px', '45px']}
-          display={['block', 'block', 'block', 'none']}
-        />
+        <ModalSanduiche />
         <Flex w="500px" display={['none', 'none', 'none', 'flex']}>
           <Flex w="max-content" pr="40px">
             <Button
@@ -52,14 +158,14 @@ export const HeaderContentHomePage = () => {
           <Flex w="48%" justify="space-between">
             <Button
               border="2px"
-              borderColor="white.200"
-              hoverBorder="secondary.0"
+              borderColor="secondary.0"
+              hoverBorder="secondary.100"
               height="42px"
               width="110px"
               fontWeigth="600"
               fontSize="16px"
-              bg="white.200"
-              color="gray.200"
+              bg="secondary.0"
+              color="white.0"
               onClickFunction={vaiParaLogin}
             >
               Login
@@ -226,13 +332,16 @@ export const HeaderDashboardPaciente = () => {
 export const Header = ({ children }) => {
   return (
     <Flex
-      bg="primary.100"
-      w="100vw"
+      bg="white.300"
+      w="100%"
+      min-width="100vw"
+      max-width="100vw"
       h={['106px', '106px', '127px']}
       as="header"
       px={['40px', '40px', '54px']}
       align="center"
       justify="center"
+      boxShadow="rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px"
     >
       {children}
     </Flex>
