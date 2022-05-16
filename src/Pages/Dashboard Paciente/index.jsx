@@ -11,7 +11,6 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 
-
 const DashboardPaciente = () => {
   const history = useHistory();
 
@@ -31,49 +30,49 @@ const DashboardPaciente = () => {
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg='white.300' width='230px' height='300px'>
+        <ModalContent bg="white.300" width="230px" height="300px">
           <ModalCloseButton
-            color='secondary.0'
-            outline='none'
-            borderStyle='none'
+            color="secondary.0"
+            outline="none"
+            borderStyle="none"
           />
           <ModalBody>
             <Flex
-              height='90%'
-              mt='20px'
-              direction='column'
-              justifyContent='space-around'
-              alignItems='center'
+              height="90%"
+              mt="20px"
+              direction="column"
+              justifyContent="space-around"
+              alignItems="center"
             >
               <Flex
-                height='50%'
-                direction='column'
-                justifyContent='space-around'
-                alignItems='center'
+                height="50%"
+                direction="column"
+                justifyContent="space-around"
+                alignItems="center"
               >
                 <Button
-                  height='48px'
-                  width='170px'
-                  bg='secondary.100'
-                  color='white.100'
+                  height="48px"
+                  width="170px"
+                  bg="secondary.100"
+                  color="white.100"
                   onClickFunction={() => history.push('/agendapaciente')}
                 >
                   Minhas consultas
                 </Button>
                 <Button
-                  height='48px'
-                  width='170px'
-                  bg='secondary.100'
-                  color='white.100'
+                  height="48px"
+                  width="170px"
+                  bg="secondary.100"
+                  color="white.100"
                 >
                   Configurações
                 </Button>
               </Flex>
               <Button
-                height='48px'
-                width='170px'
-                bg='secondary.0'
-                color='white.100'
+                height="48px"
+                width="170px"
+                bg="secondary.0"
+                color="white.100"
                 onClickFunction={() => history.push('/')}
               >
                 Sair
@@ -82,37 +81,37 @@ const DashboardPaciente = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Flex height='100vh' direction='column' bg='white.300' maxWidth='100%'>
+      <Flex height="100vh" direction="column" bg="white.300" maxWidth="100%">
         <Flex
-          height='200px'
-          direction='column'
-          justifyContent='space-around'
-          alignItems='center'
+          height="200px"
+          direction="column"
+          justifyContent="space-around"
+          alignItems="center"
         >
-          <FormLabel alignSelf='flex-start' ml='10px'>
+          <FormLabel alignSelf="flex-start" ml="10px">
             Buscar profissionais
           </FormLabel>
-          <Input width='300px' />
+          <Input width="300px" />
           <Button
-            height='40px'
-            width='300px'
-            bg='secondary.100'
-            color='white.100'
-            fontSize='18px'
-            fontWeigth='500'
+            height="40px"
+            width="300px"
+            bg="secondary.100"
+            color="white.100"
+            fontSize="18px"
+            fontWeigth="500"
             onClickFunction={onOpen}
           >
             Buscar
           </Button>
-          <Flex justifyContent='space-around' alignSelf='normal'>
-            <Select placeholder='Abordagem' width='140px'>
+          <Flex justifyContent="space-around" alignSelf="normal">
+            <Select placeholder="Abordagem" width="140px">
               {approach.map(item => (
                 <option key={item}>{item}</option>
               ))}
             </Select>
-            <Select placeholder='Valor' width={'140px'}>
+            <Select placeholder="Valor" width={'140px'}>
               {price.map(item => (
-                <option key={item}>{item}</option>
+                <option value={item} key={item}>{item}</option>
               ))}
             </Select>
           </Flex>
