@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Redirect, useHistory } from 'react-router-dom';
-
+import { Container } from './styles';
 import {
   Box,
   Flex,
@@ -10,14 +10,13 @@ import {
   Text,
   Spacer,
   FormControl,
-  FormLabel,
   FormErrorMessage,
-  FormHelperText,
 } from '@chakra-ui/react';
-import Button from '../../components/Button';
+import Button from '../Button';
 import { BiArrowBack } from 'react-icons/bi';
 import Logo from '../../assets/Logo/logopsique.svg';
-import Input from '../../components/Input';
+import Input from '../Input';
+import api from '../../services';
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -27,10 +26,29 @@ const Login = () => {
       .min(6, 'mínimo 6 digitos')
       .required('Campo obrigatório'),
   });
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    api
+      .post('/login', data)
+
+      .then(response => {
+        const user = response.data.user;
+        console.log(user);
+        if (user.cpf) {
+          return history.push('/dashboardpaciente');
+        }
+        return history.push('/dashboardpsico');
+      })
+      .catch(error => {
+        console.log(error.response.data);
+      });
+  };
 
   const history = useHistory();
   const handleHome = () => {
@@ -42,20 +60,20 @@ const Login = () => {
   console.log(errors);
 
   return (
-    <Flex direction="column" padding="13px" alignItems="center">
-      <Box>
+    <Flex direction="column" padding="3px" alignItems="center">
+      <Box justifyContent="flex-start">
         <Flex direction="row">
           <Button height="25px" onClick={handleHome}>
             <BiArrowBack size={30} />
           </Button>
           <Box>
-            <Image boxSize="210px" objectFit="cover" src={Logo} alt="Psique" />
+            <Image boxSize="230px" objectFit="cover" src={Logo} alt="Psique" />
           </Box>
         </Flex>
       </Box>
 
-      <Box w="330">
-        <form>
+      <Box alignItems="center">
+        <Container>
           <FormControl
             isInvalid={!!errors?.email?.message}
             errortext={errors?.email?.message}
@@ -63,18 +81,16 @@ const Login = () => {
             isRequired
           >
             <Input
-              // text="Email"
-              // name="email"
-              // color="primary.0"
+              text="Email"
+              color="primary.0"
               placeholder="ex:name@gmail.com"
               {...register('email')}
               error={errors?.email}
               type="email"
-              // border="1px solid"
-              // borderColor="primary.0"
-              // backgroundColor="white.200"
-              // width="280px"
-              // height="50px"
+              border="1px solid"
+              borderColor="primary.0"
+              backgroundColor="white.200"
+              height="50px"
             />
             <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -86,18 +102,15 @@ const Login = () => {
             isRequired
           >
             <Input
-              // text="Senha"
-              // name="password"
-              // color="primary.0"
-              // // isPassword
-              placeholder="Senha"
+              text="Senha"
+              color="primary.0"
+              isPassword
+              placeholder="senha"
               {...register('password')}
-              // ref={register}
-              // border="1px solid"
-              // borderColor="primary.0"
-              // backgroundColor="white.200"
-              // width="280px"
-              // height="50px"
+              border="1px solid"
+              borderColor="primary.0"
+              backgroundColor="white.200"
+              height="50px"
             />
             <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
           </FormControl>
@@ -111,18 +124,17 @@ const Login = () => {
             backgroundColor="secondary.100"
             color="white"
           />
-        </form>
-
-        <Box>
-          <Flex direction="row">
-            <Text>Novo na plataforma?</Text>
-            <Button
-              children="Cadastre-se"
-              color="secondary.0"
-              onClick={handleCadastro}
-            />
-          </Flex>
-        </Box>
+          <Box marginTop="20px">
+            <Flex diyarection="row">
+              <Text>Novo na plataforma?</Text>
+              <Button
+                children="Cadastre-se"
+                color="secondary.0"
+                onClick={handleCadastro}
+              />
+            </Flex>
+          </Box>
+        </Container>
       </Box>
     </Flex>
   );

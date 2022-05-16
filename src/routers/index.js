@@ -3,7 +3,7 @@ import AgendaPaciente from '../Pages/Agenda Paciente';
 import AgendaPsico from '../Pages/Agenda Psico';
 import CadastroPaciente from '../Pages/CadastroPaciente';
 import HomePage from '../Pages/HomePage';
-import Login from '../Pages/Login';
+import LoginPage from '../Pages/LoginPage';
 import CadastroPsico from '../Pages/CadastroPsico';
 import DashboardPaciente from '../Pages/Dashboard Paciente';
 import DashboardPsico from '../Pages/Dashboard Psico';
@@ -15,7 +15,7 @@ const Routers = () => {
         <HomePage />
       </Route>
       <Route exact path="/login">
-        <Login />
+        <LoginPage />
       </Route>
       <Route exact path="/agendapaciente">
         <AgendaPaciente />
