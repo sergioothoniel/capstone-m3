@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from 'react';
 
-export const SchedulesContext = createContext();
+export const SchedulesContext = createContext([]);
 
 export const SchedulesProvider = ({ children }) => {
   const [schedules, setSchedules] = useState([]);

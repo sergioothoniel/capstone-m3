@@ -12,7 +12,9 @@ import {
 import { theme } from './styles/theme';
 import Routers from './routers';
 
+
 function App() {
+
   return (
     <ChakraProvider theme={theme} resetCSS={true}>
       <Routers />
