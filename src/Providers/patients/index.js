@@ -1,11 +1,10 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import api from '../../services';
 
 export const PatientsContext = createContext();
 
 export const PatientsProvider = ({ children }) => {
   const [patients, setPatients] = useState([]);
-  
 
   const getPatients = () => {};
 
@@ -15,3 +14,5 @@ export const PatientsProvider = ({ children }) => {
     </PatientsContext.Provider>
   );
 };
+
+export const usePatients = () => useContext(PatientsContext);
