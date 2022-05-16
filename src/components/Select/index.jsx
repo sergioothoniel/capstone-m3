@@ -13,7 +13,6 @@ const Select = ({ width, height, children, placeholder }) => {
         placeholder={placeholder}
         width={width}
         height={height}
-
       >
         {children}
       </SelectChakra>

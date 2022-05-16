@@ -14,7 +14,8 @@ const Button = ({
   fontWeigth,
   children,
   minWidth,
-  maxWidth
+  maxWidth,
+  onClickFunction,
 }) => {
   return (
     <ButtonChakra
@@ -37,6 +38,7 @@ const Button = ({
       fontWeight={`${fontWeigth}`}
       minWidth={minWidth}
       maxWidth={maxWidth}
+      onClick={() => onClickFunction()}
     >
       {children}
     </ButtonChakra>
