@@ -92,7 +92,7 @@ const Login = () => {
               height="50px"
               width="85vw"
               minWidth="250px"
-              maxWidth="380px"
+              maxWidth="505px"
             />
             <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -115,7 +115,7 @@ const Login = () => {
               height="50px"
               width="85vw"
               minWidth="250px"
-              maxWidth="380px"
+              maxWidth="505px"
             />
             <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
           </FormControl>
@@ -127,7 +127,7 @@ const Login = () => {
               height="48px"
               width="85vw"
               minWidth="280px"
-              maxWidth="380px"
+              maxWidth="505px"
               borderColor="secondary.100"
               backgroundColor="secondary.100"
               color="white"
