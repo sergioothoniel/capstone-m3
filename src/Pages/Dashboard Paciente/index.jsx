@@ -1,15 +1,12 @@
-import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
+import { Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import { HeaderDashboardPaciente, Header } from '../../components/Header';
 
-
 const DashboardPaciente = () => {
   const history = useHistory();
-
-
 
   const approach = [
     'Psicanálise',
@@ -23,7 +20,6 @@ const DashboardPaciente = () => {
 
   return (
     <>
-    
       <Flex height="100vh" direction="column" bg="white.300" maxWidth="100%">
         <Header>
           <HeaderDashboardPaciente />
@@ -35,13 +31,16 @@ const DashboardPaciente = () => {
           alignItems="center"
           mt="20--px"
         >
-          <FormLabel alignSelf="flex-start" ml="10px">
-            Buscar profissionais
-          </FormLabel>
-          <Input width="300px" />
+          <Input
+            width="85vw"
+            color="gray.200"
+            text="Buscar profissionais"
+            border="1px solid"
+            borderColor="primary.0"
+          />
           <Button
             height="40px"
-            width="300px"
+            width="90%"
             border="2px"
             borderColor="secondary.100"
             hoverBorder="secondary.0"
@@ -49,11 +48,10 @@ const DashboardPaciente = () => {
             color="white.100"
             fontSize="18px"
             fontWeigth="500"
-
           >
             Buscar
           </Button>
-          <Flex justifyContent="space-around" alignSelf="normal">
+          <Flex width="90%" justifyContent="space-between" alignSelf="center">
             <Select placeholder="Abordagem" width="140px">
               {approach.map(item => (
                 <option key={item}>{item}</option>

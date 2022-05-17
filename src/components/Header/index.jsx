@@ -312,7 +312,7 @@ export const HeaderDashboardPaciente = () => {
                     width="170px"
                     bg="secondary.100"
                     color="white.100"
-                    onClickFunction={() => history.push('/agendapaciente')}
+                    onClick={() => history.push('/agendapaciente')}
                   >
                     Minhas consultas
                   </Button>
@@ -330,7 +330,7 @@ export const HeaderDashboardPaciente = () => {
                   width="170px"
                   bg="secondary.0"
                   color="white.100"
-                  onClickFunction={() => history.push('/')}
+                  onClick={() => history.push('/')}
                 >
                   Sair
                 </Button>
