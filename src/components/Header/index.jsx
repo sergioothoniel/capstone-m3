@@ -198,7 +198,7 @@ export const HeaderLoginECadastro = () => {
     history.push('/');
   };
   return (
-    <Flex w="100%" h="100%" align="center">
+    <Flex w="100%" h="127px" align="center">
       <Flex justify="flex-start" w="33%">
         <BiArrowBack fontSize="50px" cursor="pointer" />
       </Flex>
@@ -206,7 +206,8 @@ export const HeaderLoginECadastro = () => {
         <Image
           src={require('../../Img/LogoPsique.svg').default}
           alt="Logo escrito psiqué"
-          w={['105px', '105px', '160px']}
+          w={['105px', '105px', '105px', '160px']}
+          h="35px"
           cursor="pointer"
           onClick={vaiParaHome}
         />

@@ -22,6 +22,8 @@ const InputBase = (
     width,
     height,
     color,
+    maxWidth,
+    minWidth,
     isPassword = false,
     borderColor,
     ...rest
@@ -33,7 +35,7 @@ const InputBase = (
 
   return (
     <Flex flexDirection="column">
-      <Text align="left" color={color}>
+      <Text align="left" marginBottom="5px" color={color}>
         {text}
       </Text>
       {isPassword ? (
@@ -48,7 +50,9 @@ const InputBase = (
               borderColor={borderColor}
               backgroundColor={backgroundColor}
               size="md"
-              width={['280px', '504px']}
+              width={width}
+              maxWidth={maxWidth}
+              minWidth={minWidth}
               variant="unstyled"
               d="flex"
               padding="10px"
@@ -83,7 +87,9 @@ const InputBase = (
           padding="10px"
           height={height}
           size="md"
-          width={['280px', '504px']}
+          width={width}
+          maxWidth={maxWidth}
+          minWidth={minWidth}
           variant="unstyled"
           d="flex"
           _focus={{}}

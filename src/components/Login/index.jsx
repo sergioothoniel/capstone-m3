@@ -17,6 +17,8 @@ import { BiArrowBack } from 'react-icons/bi';
 import Logo from '../../assets/Logo/logopsique.svg';
 import Input from '../Input';
 import api from '../../services';
+import { useIsLoggedIn } from '../../Providers/isLoggedIn/index';
+import { useDataUser } from '../../Providers/dataUser/index';
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -33,17 +35,23 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const { dataUser } = useDataUser();
+  const { isLoggedIn, setIsLoggedIn, token, setToken } = useIsLoggedIn();
   const onSubmit = data => {
+    console.log(data);
     api
       .post('/login', data)
-
       .then(response => {
         const user = response.data.user;
-        console.log(user);
-        if (user.cpf) {
+
+        localStorage.setItem('@psique/token', JSON.stringify(response.data));
+        setToken(response.data.accessToken);
+        setIsLoggedIn(true);
+        if (user.type === 'staff') {
+          return history.push('/dashboardpsico');
+        } else {
           return history.push('/dashboardpaciente');
         }
-        return history.push('/dashboardpsico');
       })
       .catch(error => {
         console.log(error.response.data);
@@ -51,9 +59,9 @@ const Login = () => {
   };
 
   const history = useHistory();
-  const handleHome = () => {
-    history.push('/');
-  };
+  // const handleHome = () => {
+  //   history.push('/');
+  // };
   const handleCadastro = () => {
     history.push('/cadastropaciente');
   };
@@ -61,17 +69,7 @@ const Login = () => {
 
   return (
     <Flex direction="column" padding="3px" alignItems="center">
-      <Box justifyContent="flex-start">
-        <Flex direction="row">
-          <Button height="25px" onClick={handleHome}>
-            <BiArrowBack size={30} />
-          </Button>
-          <Box>
-            <Image boxSize="230px" objectFit="cover" src={Logo} alt="Psique" />
-          </Box>
-        </Flex>
-      </Box>
-
+      {/* <Box marginTop={['', '', '60px', '']} w={['', '', '', '380px']}> */}
       <Box alignItems="center">
         <Container>
           <FormControl
@@ -91,6 +89,9 @@ const Login = () => {
               borderColor="primary.0"
               backgroundColor="white.200"
               height="50px"
+              width="85vw"
+              minWidth="250px"
+              maxWidth="505px"
             />
             <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -111,22 +112,30 @@ const Login = () => {
               borderColor="primary.0"
               backgroundColor="white.200"
               height="50px"
+              width="85vw"
+              minWidth="250px"
+              maxWidth="505px"
             />
             <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
           </FormControl>
           <Spacer />
-          <Button
-            onClick={handleSubmit(onSubmit)}
-            children="Login"
-            height="48px"
-            width="280px"
-            borderColor="secondary.100"
-            backgroundColor="secondary.100"
-            color="white"
-          />
-          <Box marginTop="20px">
+          <Box marginTop="50px">
+            <Button
+              onClick={handleSubmit(onSubmit)}
+              children="Login"
+              height="48px"
+              width="85vw"
+              minWidth="280px"
+              maxWidth="505px"
+              borderColor="secondary.100"
+              backgroundColor="secondary.100"
+              color="white"
+            />
+          </Box>
+
+          <Box marginTop="15px">
             <Flex diyarection="row">
-              <Text>Novo na plataforma?</Text>
+              <Text marginRight="5px">Novo na plataforma?</Text>
               <Button
                 children="Cadastre-se"
                 color="secondary.0"
@@ -136,6 +145,7 @@ const Login = () => {
           </Box>
         </Container>
       </Box>
+      {/* </Box> */}
     </Flex>
   );
 };

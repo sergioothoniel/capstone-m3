@@ -10,6 +10,8 @@ const Button = ({
   backgroundColor,
   color,
   hoverBg,
+  maxWidth,
+  minWidth,
   hoverColor,
   hoverBorder,
   fontWeigth,
@@ -22,6 +24,8 @@ const Button = ({
       bg={`${bg}`}
       height={`${height}`}
       width={`${width}`}
+      maxWidth={maxWidth}
+      minWidth={minWidth}
       border={`${border}`}
       borderRadius="8px"
       fontSize={`${fontSize}`}
