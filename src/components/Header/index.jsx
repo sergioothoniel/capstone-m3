@@ -223,7 +223,7 @@ export const HeaderDashboardPsicologo = () => {
   };
 
   return (
-    <Flex w="100%" h="100%" align="center" justify="space-between">
+    <Flex w="100%" h="100px" align="center" justify="space-between">
       <Flex justify="flex-start">
         <Image
           src={require('../../Img/LogoPsique.svg').default}
@@ -279,53 +279,111 @@ export const HeaderDashboardPaciente = () => {
     history.push('/agendapaciente');
   };
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Flex w="100%" h="100%" align="center" justify="space-between">
-      <Flex justify="flex-start">
-        <Image
-          src={require('../../Img/LogoPsique.svg').default}
-          alt="Logo escrito psiqué"
-          w={['105px', '105px', '160px']}
-          cursor="pointer"
-        />
-      </Flex>
-      <Flex
-        justify="space-between"
-        w={['max-content', 'max-content', 'max-content', '280px']}
-        minWidth="max-content"
-        h="100%"
-        align="center"
-      >
-        <Flex
-          w="max-content"
-          height="max-content"
-          display={['none', 'none', 'none', 'flex']}
-        >
-          <Button
-            border="2px"
-            borderColor="secondary.100"
-            hoverBorder="secondary.0"
-            height="48px"
-            width="190px"
-            fontWeigth="400"
-            fontSize="18px"
-            bg="secondary.100"
-            color="white.200"
-            onClickFunction={vaiParaMinhasConsultas}
-          >
-            Minhas consultas
-          </Button>
+    <>
+      <Flex w="100%" h="105px" align="center" justify="space-between">
+        <Modal isOpen={isOpen} onClose={onClose} >
+          <ModalOverlay  />
+          <ModalContent  bg="white.300" width="230px" height="300px">
+            <ModalCloseButton
+              color="secondary.0"
+              outline="none"
+              borderStyle="none"
+            />
+            <ModalBody>
+              <Flex
+                height="90%"
+                mt="20px"
+                direction="column"
+                justifyContent="space-around"
+                alignItems="center"
+              >
+                <Flex
+                  height="50%"
+                  direction="column"
+                  justifyContent="space-around"
+                  alignItems="center"
+                >
+                  <Button
+                    height="48px"
+                    width="170px"
+                    bg="secondary.100"
+                    color="white.100"
+                    onClickFunction={() => history.push('/agendapaciente')}
+                  >
+                    Minhas consultas
+                  </Button>
+                  <Button
+                    height="48px"
+                    width="170px"
+                    bg="secondary.100"
+                    color="white.100"
+                  >
+                    Configurações
+                  </Button>
+                </Flex>
+                <Button
+                  height="48px"
+                  width="170px"
+                  bg="secondary.0"
+                  color="white.100"
+                  onClickFunction={() => history.push('/')}
+                >
+                  Sair
+                </Button>
+              </Flex>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+        <Flex justify="flex-start">
+          <Image
+            src={require('../../Img/LogoPsique.svg').default}
+            alt="Logo escrito psiqué"
+            w={['105px', '105px', '160px']}
+            cursor="pointer"
+          />
         </Flex>
-        <Image
-          src={require('../../Img/Avatar.svg').default}
-          alt="Logo escrito psiqué"
-          w="64px"
-          h="64px"
-          cursor="pointer"
-          borderRadius="50px"
-        />
+        <Flex
+          justify="space-between"
+          w={['max-content', 'max-content', 'max-content', '280px']}
+          minWidth="max-content"
+          h="100%"
+          align="center"
+        >
+          <Flex
+            w="max-content"
+            height="max-content"
+            display={['none', 'none', 'none', 'flex']}
+          >
+            <Button
+              border="2px"
+              borderColor="secondary.100"
+              hoverBorder="secondary.0"
+              height="48px"
+              width="190px"
+              fontWeigth="400"
+              fontSize="18px"
+              bg="secondary.100"
+              color="white.200"
+              onClickFunction={vaiParaMinhasConsultas}
+            >
+              Minhas consultas
+            </Button>
+          </Flex>
+          <Image
+            src={require('../../Img/Avatar.svg').default}
+            alt="Logo escrito psiqué"
+            w="64px"
+            h="64px"
+            cursor="pointer"
+            borderRadius="50px"
+            onClick={() => onOpen()}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 };
 
