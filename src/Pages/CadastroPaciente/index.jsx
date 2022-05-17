@@ -34,7 +34,7 @@ function CadastroPaciente() {
     email: yup.string().required('Email obrigatorio!').email('Email inválido'),
     cpf: yup.string().required("CPF obrigatório!").min(8, "Mínimo 8 dígitos"),
     age: yup.number().required('Idade obrigatória!').min(18, "A idade mínima é 18 anos!"),
-    password: yup.string().required('Senha obrigatória!'),
+    password: yup.string().required('Senha obrigatória!').min(6, "Mínimo 6 dígitos"),
     confirmpassword: yup
       .string()
       .oneOf([yup.ref('password'), null], 'Senhas não combinam!'),
@@ -100,7 +100,6 @@ function CadastroPaciente() {
     .catch((err) => {
       toast({
         title: 'Email já cadastrado.',
-        // description: "Redirecionando você para a pa´gina de .",
         position:  'top-right',
         status: 'error',
         duration: 6000,
@@ -205,6 +204,7 @@ function CadastroPaciente() {
                   fontWeight="500"
                   backgroundColor={'white.100'}
                   {...register('email')}
+                  error={errors.email?.message}
                 ></Input>
               </Flex>{' '}
               <Flex
@@ -223,6 +223,7 @@ function CadastroPaciente() {
                   fontWeight="500"
                   backgroundColor={'white.100'}
                   {...register('cpf')}
+                  error={errors.cpf?.message}
                 ></Input>
               </Flex>{' '}
               <Flex justifyContent="center" paddingBottom="15px">
@@ -236,6 +237,7 @@ function CadastroPaciente() {
                   fontWeight="500"
                   backgroundColor={'white.100'}
                   {...register('age')}
+                  error={errors.age?.message}
                 ></Input>
               </Flex>{' '}
               <Flex
@@ -255,6 +257,7 @@ function CadastroPaciente() {
                   backgroundColor={'white.100'}
                   isPassword={true}
                   {...register('password')}
+                  error={errors.password?.message}
                 ></Input>
               </Flex>{' '}
               <Flex justifyContent="center" paddingBottom="15px">
@@ -269,6 +272,7 @@ function CadastroPaciente() {
                   backgroundColor={'white.100'}
                   isPassword={true}
                   {...register('confirmpassword')}
+                  error={errors.confirmpassword?.message}
                 ></Input>
               </Flex>
               <Flex
@@ -287,7 +291,7 @@ function CadastroPaciente() {
                   paddingTop="5px"
                   paddingBottom="20px"
                 >
-                  <Checkbox></Checkbox>
+                  <Checkbox required></Checkbox>
                   <Text
                     paddingLeft="20px"
                     width="200px"

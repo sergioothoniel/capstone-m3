@@ -31,7 +31,7 @@ function CadastroPsicologo() {
   const formSchema = yup.object().shape({
     name: yup.string().required('Nome obrigatório!'),
     email: yup.string().required('Email obrigatorio!').email('Email inválido'),
-    password: yup.string().required('Senha obrigatória!').min(6),
+    password: yup.string().required('Senha obrigatória!').min(6, "Mínimo 6 dígitos"),
     crp: yup.string().required('CRP obrigatório!').min(8, "Mínimo 8 dígitos"),
     specializations: yup.string(),
     confirmpassword: yup
@@ -206,6 +206,7 @@ function CadastroPsicologo() {
                      maxWidth="405px"
                      bgColor={'white.100'}
                     {...register('specializations')}
+                    
                 >
                 <option value="Psicanálise">Psicanálise</option>
                 <option value="Cognitivo comportamental">Cognitivo comportamental</option>
@@ -231,6 +232,7 @@ function CadastroPsicologo() {
                   fontWeight="500"
                   backgroundColor={'white.100'}
                   {...register('email')}
+                  error={errors.email?.message}
                 ></Input>
               </Flex>{' '}
         
@@ -245,6 +247,7 @@ function CadastroPsicologo() {
                   fontWeight="500"
                   backgroundColor={'white.100'}
                   {...register('crp')}
+                  error={errors.crp?.message}
                 ></Input>
               </Flex>{' '}
               <Flex
@@ -264,6 +267,7 @@ function CadastroPsicologo() {
                   backgroundColor={'white.100'}
                   isPassword={true}
                   {...register('password')}
+                  error={errors.password?.message}
                 ></Input>
               </Flex>{' '}
               <Flex justifyContent="center" paddingBottom="15px">
@@ -278,6 +282,7 @@ function CadastroPsicologo() {
                   backgroundColor={'white.100'}
                   isPassword={true}
                   {...register('confirmpassword')}
+                  error={errors.confirmpassword?.message}
                 ></Input>
               </Flex>
               <Flex

@@ -23,6 +23,7 @@ const InputBase = ({
   color,
   borderColor,
   fontWeight,
+  error,
   isPassword = false,
   ...rest
 },ref) => {
@@ -30,9 +31,15 @@ const InputBase = ({
   const handleClick = () => setShow(!show);
   return (
     <Flex flexDirection="column">
+      <Flex flexDir="row">
       <Text align="left" color={color} fontWeight={fontWeight}>
         {text}
       </Text>
+      {!!error && <Text color="red.400">  &nbsp; - {error} </Text>}
+      <Text>
+
+      </Text>
+      </Flex>
       {isPassword ? (
         <InputGroup size="md">
           <ChakraInput
@@ -46,6 +53,7 @@ const InputBase = ({
             width={width}
             minWidth={minWidth}    
             maxWidth={maxWidth} 
+
             {...rest}
             ref={ref}
             />
