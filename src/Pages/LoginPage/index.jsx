@@ -3,7 +3,7 @@ import Login from '../../components/Login';
 import Button from '../../components/Button';
 import { BiArrowBack } from 'react-icons/bi';
 import { Redirect, useHistory } from 'react-router-dom';
-import Logo from '../../assets/Logo/logopsique.svg';
+import Logo from '../../assets/logo/logopsique.svg';
 import Clouds from '../../assets/imagens/clouds.png';
 // import { ReactComponent as WomanDraw } from '../../assets/Animacao/womanDraw.svg';
 // import { DrawSvg } from '../../components/DrawSvg';

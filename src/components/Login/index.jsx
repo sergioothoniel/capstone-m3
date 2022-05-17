@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import Button from '../Button';
 import { BiArrowBack } from 'react-icons/bi';
-import Logo from '../../assets/Logo/logopsique.svg';
+import Logo from '../../assets/logo/logopsique.svg';
 import Input from '../Input';
 import api from '../../services';
 import { useIsLoggedIn } from '../../Providers/isLoggedIn/index';
@@ -37,6 +37,7 @@ const Login = () => {
   });
   const { dataUser } = useDataUser();
   const { isLoggedIn, setIsLoggedIn, token, setToken } = useIsLoggedIn();
+
   const onSubmit = data => {
     console.log(data);
     api
@@ -65,7 +66,7 @@ const Login = () => {
   const handleCadastro = () => {
     history.push('/cadastropaciente');
   };
-  console.log(errors);
+  
 
   return (
     <Flex direction="column" padding="3px" alignItems="center">
@@ -91,7 +92,7 @@ const Login = () => {
               height="50px"
               width="85vw"
               minWidth="250px"
-              maxWidth="505px"
+              maxWidth="380px"
             />
             <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -114,7 +115,7 @@ const Login = () => {
               height="50px"
               width="85vw"
               minWidth="250px"
-              maxWidth="505px"
+              maxWidth="380px"
             />
             <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
           </FormControl>
@@ -126,7 +127,7 @@ const Login = () => {
               height="48px"
               width="85vw"
               minWidth="280px"
-              maxWidth="505px"
+              maxWidth="380px"
               borderColor="secondary.100"
               backgroundColor="secondary.100"
               color="white"
