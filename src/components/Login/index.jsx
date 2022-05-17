@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Redirect, useHistory } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
 import { Container } from './styles';
 import {
   Box,
@@ -21,6 +22,7 @@ import { useIsLoggedIn } from '../../Providers/isLoggedIn/index';
 import { useDataUser } from '../../Providers/dataUser/index';
 
 const Login = () => {
+  const toast = useToast();
   const schema = yup.object().shape({
     email: yup.string().email('Email inválido').required('Campo obrigatório'),
     password: yup
@@ -48,13 +50,36 @@ const Login = () => {
         setToken(response.data.accessToken);
         setIsLoggedIn(true);
         if (user.type === 'staff') {
+          toast({
+            title: 'Login realizado com sucesso!',
+            // description: "Redirecionando você para a pa´gina de .",
+            position: 'top-right',
+            status: 'success',
+            duration: 6000,
+            isClosable: true,
+          });
+          toast({
+            title: 'Login realizado com sucesso!',
+            // description: "Redirecionando você para a pa´gina de .",
+            position: 'top-right',
+            status: 'success',
+            duration: 6000,
+            isClosable: true,
+          });
           return history.push('/dashboardpsico');
         } else {
           return history.push('/dashboardpaciente');
         }
       })
       .catch(error => {
-        console.log(error.response.data);
+        toast({
+          title: 'Login falhou, tente novamente!',
+          // description: "Redirecionando você para a pa´gina de .",
+          position: 'top-right',
+          status: 'warning',
+          duration: 6000,
+          isClosable: true,
+        });
       });
   };
 
@@ -68,9 +93,13 @@ const Login = () => {
   console.log(errors);
 
   return (
-    <Flex direction="column" padding="3px" alignItems="center">
-      {/* <Box marginTop={['', '', '60px', '']} w={['', '', '', '380px']}> */}
-      <Box alignItems="center">
+    <Flex
+      direction="column"
+      padding="3px"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Box alignItems="center" maxWidth={['', '90%', '550px', '380px']}>
         <Container>
           <FormControl
             isInvalid={!!errors?.email?.message}
@@ -89,9 +118,9 @@ const Login = () => {
               borderColor="primary.0"
               backgroundColor="white.200"
               height="50px"
-              width="85vw"
-              minWidth="250px"
-              maxWidth="505px"
+              width={['280px', '400px', '505px', '315px']}
+              // minWidth="250px"
+              // maxWidth="505px"
             />
             <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -112,9 +141,9 @@ const Login = () => {
               borderColor="primary.0"
               backgroundColor="white.200"
               height="50px"
-              width="85vw"
-              minWidth="250px"
-              maxWidth="505px"
+              width={['280px', '400px', '505px', '315px']}
+              // minWidth="280px"
+              // maxWidth="505px"
             />
             <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
           </FormControl>
@@ -124,7 +153,7 @@ const Login = () => {
               onClick={handleSubmit(onSubmit)}
               children="Login"
               height="48px"
-              width="85vw"
+              width={['280px', '400px', '505px', '315px']}
               minWidth="280px"
               maxWidth="505px"
               borderColor="secondary.100"

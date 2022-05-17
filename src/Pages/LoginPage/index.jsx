@@ -32,31 +32,37 @@ const LoginPage = () => {
       {/* nuvens */}
       <Box
         width="100vw"
-        height="100vh"
+        height="100%"
         position="absolute"
         bgImage={['', '', Clouds, '']}
-        backgroundPosition="150px"
+        // backgroundPosition="150px"
         opacity="62%"
         zIndex="0"
         backgroundSize="cover"
       ></Box>
       {/* parte da animação  */}
-      <Flex direction={['row', 'column', 'column', 'row']}>
+      <Flex
+        direction={['row', 'column', 'column', 'row']}
+        justifyContent="center"
+      >
         <Box
           d={['none', 'none', 'none', 'block']}
-          bg={['', '', '', 'red']}
           h="700px"
           w="675px"
           flex="1 1 50%"
+          flexDirection="center"
         >
           <Box
             marginLeft={'30px'}
-            marginTop={'60px'}
+            marginTop={'25px'}
             bgColor="primary.100"
-            h="600px"
-            w="600px"
+            h="620px"
+            w="620px"
             borderRadius="50%"
-          ></Box>
+          >
+            <Text> Frase legal!</Text>
+            {/* <DrawSvg svg={WomanDraw} /> */}
+          </Box>
         </Box>
 
         {/* imagem do form  */}
@@ -65,14 +71,18 @@ const LoginPage = () => {
           alignItems="center"
           justify-content="center"
         >
-          <Box d={['block', 'block', 'none', 'block']}>
+          <Box
+            d={['block', 'block', 'none', 'block']}
+            alignItems="center"
+            justifyContent="center"
+          >
             <Image boxSize="230px" objectFit="cover" src={Logo} alt="Psique" />
           </Box>
           {/* form  */}
 
           <Login zIndex="0" />
           <Box d={['none', 'none', 'block', 'none']}>
-            <Text marginTop="450px" marginLeft="500px">
+            <Text marginTop="150px" marginLeft="500px">
               @2022 psique
             </Text>
           </Box>

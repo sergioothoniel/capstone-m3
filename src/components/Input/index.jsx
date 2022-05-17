@@ -35,12 +35,12 @@ const InputBase = (
 
   return (
     <Flex flexDirection="column">
-      <Text align="left" marginBottom="5px" color={color}>
+      <Text align="left" marginBottom="5px" color={color} fontWeight="600">
         {text}
       </Text>
       {isPassword ? (
         <Box display="flex">
-          <InputGroup size="md">
+          <InputGroup>
             <ChakraInput
               placeholder={placeholder}
               type={show ? 'text' : 'password'}
@@ -49,8 +49,7 @@ const InputBase = (
               height={height}
               borderColor={borderColor}
               backgroundColor={backgroundColor}
-              size="md"
-              width={width}
+              // size="md"
               maxWidth={maxWidth}
               minWidth={minWidth}
               variant="unstyled"
@@ -61,7 +60,7 @@ const InputBase = (
               {...rest}
               ref={ref}
             />
-            <InputRightElement width="9">
+            <InputRightElement>
               <Button
                 onClick={handleClick}
                 backgroundColor="transparent"
@@ -87,7 +86,7 @@ const InputBase = (
           padding="10px"
           height={height}
           size="md"
-          width={width}
+          // width={width}
           maxWidth={maxWidth}
           minWidth={minWidth}
           variant="unstyled"

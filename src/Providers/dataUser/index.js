@@ -9,12 +9,12 @@ export const DataUserProvider = ({ children }) => {
   const { isLoggedIn } = useContext(IsLoggedInContext);
 
   useEffect(() => {
-    // if (isLoggedIn) {
-    //   const localStorageData = JSON.parse(
-    //     localStorage.getItem('@psique/token')
-    //   );
-    //   setDataUser(localStorageData.user);
-    // }
+    if (isLoggedIn) {
+      const localStorageData = JSON.parse(
+        localStorage.getItem('@psique/token')
+      );
+      setDataUser(localStorageData.user);
+    }
   }, [isLoggedIn]);
 
   return (

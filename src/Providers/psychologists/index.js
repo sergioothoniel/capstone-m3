@@ -7,7 +7,7 @@ export const PsychologistsContext = createContext();
 export const PsychologistsProvider = ({ children }) => {
   const [psychologists, setPsychologists] = useState([]);
 
-  const { isLoggedIn, token } = useContext(IsLoggedInContext);
+  const { isLoggedIn, setIsLoggedIn, token } = useContext(IsLoggedInContext);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -22,6 +22,8 @@ export const PsychologistsProvider = ({ children }) => {
         })
         .catch(err => {
           console.log(err);
+          localStorage.clear();
+          setIsLoggedIn(false);
         });
     }
   }, [isLoggedIn]);
