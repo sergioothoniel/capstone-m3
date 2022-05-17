@@ -1,6 +1,7 @@
 import { Flex, Image, Text } from '@chakra-ui/react';
 import Button from '../../components/Button';
 import { useHistory } from 'react-router-dom';
+import { Header, HeaderContentHomePage } from '../../components/Header';
 
 const HomePage = () => {
   const history = useHistory();
@@ -19,6 +20,9 @@ const HomePage = () => {
       align="center"
       justify="center"
     >
+      <Header>
+        <HeaderContentHomePage />
+      </Header>
       <Text
         fontWeight="500"
         fontSize={['22px', '28px', '34px', '40px']}
