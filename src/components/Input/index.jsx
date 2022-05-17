@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import {
   Input as ChakraInput,
   InputGroup,
@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
-const Input = ({
+const InputBase = ({
   text,
   placeholder,
   type,
@@ -24,7 +24,8 @@ const Input = ({
   borderColor,
   fontWeight,
   isPassword = false,
-}) => {
+  ...rest
+},ref) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
@@ -44,7 +45,10 @@ const Input = ({
             size={size}
             width={width}
             minWidth={minWidth}    
-            maxWidth={maxWidth}      />
+            maxWidth={maxWidth} 
+            {...rest}
+            ref={ref}
+            />
           <InputRightElement width="9">
             <Button
               onClick={handleClick}
@@ -70,10 +74,12 @@ const Input = ({
           minWidth={minWidth}    
           maxWidth={maxWidth} 
           focusBorderColor='none'
-
+          {...rest}
+          ref={ref}
         />
       )}
     </Flex>
   );
 };
+const Input = forwardRef(InputBase);
 export default Input;
