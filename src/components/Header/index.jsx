@@ -347,6 +347,7 @@ export const HeaderDashboardPaciente = () => {
             alt="Logo escrito psiqué"
             w={['105px', '105px', '160px']}
             cursor="pointer"
+            onClick={goToHome}
           />
         </Flex>
         <Flex
