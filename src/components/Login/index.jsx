@@ -12,6 +12,7 @@ import {
   Spacer,
   FormControl,
   FormErrorMessage,
+  Button as ButtonChakra,
 } from '@chakra-ui/react';
 import Button from '../Button';
 import { BiArrowBack } from 'react-icons/bi';
@@ -95,11 +96,11 @@ const Login = () => {
   return (
     <Flex
       direction="column"
-      padding="3px"
+      padding={['3px', '3px', '3px', '40px']}
       alignItems="center"
       justifyContent="center"
     >
-      <Box alignItems="center" maxWidth={['', '90%', '550px', '380px']}>
+      <Box alignItems="center" maxWidth={['', '100%', '800px', '580px']}>
         <Container>
           <FormControl
             isInvalid={!!errors?.email?.message}
@@ -118,9 +119,9 @@ const Login = () => {
               borderColor="primary.0"
               backgroundColor="white.200"
               height="50px"
-              width={['280px', '400px', '505px', '315px']}
-              // minWidth="250px"
-              // maxWidth="505px"
+              // width={['400px', '500px', '505px', '315px']}
+              minWidth="280px"
+              maxWidth="605px"
             />
             <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
@@ -142,25 +143,25 @@ const Login = () => {
               backgroundColor="white.200"
               height="50px"
               width={['280px', '400px', '505px', '315px']}
-              // minWidth="280px"
-              // maxWidth="505px"
+              minWidth="280px"
+              maxWidth="605px"
             />
             <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
           </FormControl>
           <Spacer />
-          <Box marginTop="50px">
-            <Button
+          <Flex marginTop="50px">
+            <ButtonChakra
               onClick={handleSubmit(onSubmit)}
               children="Login"
               height="48px"
               width={['280px', '400px', '505px', '315px']}
-              minWidth="280px"
-              maxWidth="505px"
+              // minWidth="200px"
+              // maxWidth="505px"
               borderColor="secondary.100"
               backgroundColor="secondary.100"
               color="white"
             />
-          </Box>
+          </Flex>
 
           <Box marginTop="15px">
             <Flex diyarection="row">
