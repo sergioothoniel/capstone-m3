@@ -15,9 +15,7 @@ const Button = ({
   hoverColor,
   hoverBorder,
   fontWeigth,
-  children,
-  minWidth,
-  maxWidth,
+  children,  
   onClick = false,
   type
 }) => {
@@ -43,10 +41,7 @@ const Button = ({
         color: `${hoverColor}`,
         borderColor: `${hoverBorder}`,
       }}
-      fontWeight={`${fontWeigth}`}
-
-      minWidth={minWidth}
-      maxWidth={maxWidth}
+      fontWeight={`${fontWeigth}`}     
       onClick={() => onClick()}
 
     >
