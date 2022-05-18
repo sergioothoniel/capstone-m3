@@ -7,8 +7,10 @@ import {
   Flex,
   Text,
   Icon,
+  Box,
 } from '@chakra-ui/react';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
+
 
 const InputBase = ({
   text,
@@ -27,12 +29,16 @@ const InputBase = ({
   isPassword = false,
   ...rest
 },ref) => {
+
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
   return (
     <Flex flexDirection="column">
+
       <Flex flexDir="row">
       <Text align="left" color={color} fontWeight={fontWeight}>
+
         {text}
       </Text>
       {!!error && <Text color="red.400">  &nbsp; - {error} </Text>}
@@ -41,6 +47,7 @@ const InputBase = ({
       </Text>
       </Flex>
       {isPassword ? (
+
         <InputGroup size="md">
           <ChakraInput
             placeholder={placeholder}
@@ -61,14 +68,30 @@ const InputBase = ({
             <Button
               onClick={handleClick}
               backgroundColor="transparent"
+
               variant="unstyled"
               d="flex"
+              padding="10px"
               _focus={{}}
-            >
-              {show ? <Icon as={BsEye} /> : <Icon as={BsEyeSlash} />}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+              _active={{}}
+              {...rest}
+              ref={ref}
+            />
+            <InputRightElement>
+              <Button
+                onClick={handleClick}
+                backgroundColor="transparent"
+                marginTop="10px"
+                variant="unstyled"
+                d="flex"
+                _focus={{}}
+                _active={{}}
+              >
+                {show ? <Icon as={BsEye} /> : <Icon as={BsEyeSlash} />}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+        </Box>
       ) : (
         <ChakraInput
           placeholder={placeholder}
@@ -77,11 +100,20 @@ const InputBase = ({
           border={border}
           borderColor={borderColor}
           backgroundColor={backgroundColor}
+
           size={size}
           width={width}
           minWidth={minWidth}    
           maxWidth={maxWidth} 
           focusBorderColor='none'
+
+          borderColor={borderColor}
+          padding="10px"
+          height={height}        
+          variant="unstyled"
+          d="flex"          
+          _active={{}}
+
           {...rest}
           ref={ref}
         />
@@ -89,5 +121,7 @@ const InputBase = ({
     </Flex>
   );
 };
+
 const Input = forwardRef(InputBase);
+
 export default Input;
