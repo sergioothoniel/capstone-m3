@@ -36,7 +36,7 @@ const InputBase = (
   const handleClick = () => setShow(!show);
 
   return (
-    <Flex flexDirection="column" width="100%">
+    <Flex flexDirection="column">
       <Flex flexDir="row">
         <Text align="left" color={color} fontWeight={fontWeight}>
           {text}
@@ -66,7 +66,7 @@ const InputBase = (
               {...rest}
               ref={ref}
             />
-            */}
+
             <InputRightElement>
               <Button
                 onClick={handleClick}
@@ -89,6 +89,7 @@ const InputBase = (
           color="gray.100"
           border={border}
           borderColor={borderColor}
+          backgroundColor={backgroundColor}
           padding="10px"
           height={height}
           size="md"
