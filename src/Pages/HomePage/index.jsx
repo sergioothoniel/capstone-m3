@@ -53,7 +53,7 @@ const HomePage = () => {
         descubra-se através da terapia!
       </Text>
       <Image
-        src={require('../../sources/ImageHome1.svg').default}
+        src={require('../../assets/sources/ImageHome1.svg').default}
         alt="Mulher sentada meditando"
       />
       <Text
@@ -70,7 +70,7 @@ const HomePage = () => {
         maneira acessível, para todo o Brasil.
       </Text>
       <Image
-        src={require('../../sources/ImageHome2.svg').default}
+        src={require('../../assets/sources/ImageHome2.svg').default}
         alt="Pessoas conversando no telefone"
       />
       <Text
@@ -112,7 +112,7 @@ const HomePage = () => {
         para atendimento. Basta cadastrar-se, e agendar sua consulta.
       </Text>
       <Image
-        src={require('../../sources/ImageHome3.svg').default}
+        src={require('../../assets/sources/ImageHome3.svg').default}
         alt="Pessoas conversando no telefone"
         marginBottom="100px"
       />
