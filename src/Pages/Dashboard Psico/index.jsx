@@ -1,7 +1,8 @@
 import { Container } from './styles';
 import { HeaderDashboardPsicologo } from '../../components/Header';
-import Celendar from 'react-calendar';
+//import Celendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Calendar from '../../components/Calendar';
 
 function DashboardPsico() {
   return (
@@ -11,7 +12,7 @@ function DashboardPsico() {
         <h1>Agenda de consultas</h1>
       </div>
       <div className='calendario'>
-        <Celendar />
+        <Calendar/>
       </div>
     </Container>
   );
