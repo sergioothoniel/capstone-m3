@@ -1,12 +1,10 @@
-import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
-import { List, ListItem, ListIcon, UnorderedList } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+import { Flex } from '@chakra-ui/react';
 import { usePsychologists } from '../../Providers/psychologists';
+import { useState } from 'react';
+import { HeaderDashboardPaciente, Header } from '../../components/Header';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
-import { HeaderDashboardPaciente, Header } from '../../components/Header';
-import { useState } from 'react';
 
 const DashboardPaciente = () => {
   const { psychologists } = usePsychologists();
@@ -15,7 +13,15 @@ const DashboardPaciente = () => {
 
   const [inputValue, setInputValue] = useState('');
 
-  const handleChange = event => setInputValue(event.target.value);
+  const [approachValue, setApproachValue] = useState('');
+
+  const [priceValue, setPriceValue] = useState('');
+
+  const handleChangeInput = event => setInputValue(event.target.value);
+
+  const handleChangeApproach = event => setApproachValue(event.target.value);
+
+  const handleChangePrice = event => setPriceValue(event.target.value);
 
   const findPsychologist = () => {
     const filterInput = psychologists.filter(({ name }) =>
@@ -69,7 +75,7 @@ const DashboardPaciente = () => {
               placeholder="Buscar profissionais pelo nome"
               alignSelf="center"
               value={inputValue}
-              onChange={handleChange}
+              onChange={handleChangeInput}
             />
             <Button
               height="50px"
@@ -98,6 +104,7 @@ const DashboardPaciente = () => {
               width={['140px', '400px', '300px']}
               maxWidth="600px"
               placeholder="Abordagem"
+              onChange={handleChangeApproach}
             >
               {approach.map(item => (
                 <option key={item}>{item}</option>
@@ -108,6 +115,7 @@ const DashboardPaciente = () => {
               width={['140px', '400px', '300px']}
               maxWidth="600px"
               placeholder="Valor"
+              onChange={handleChangePrice}
             >
               {price.map(item => (
                 <option value={item} key={item}>
@@ -117,13 +125,6 @@ const DashboardPaciente = () => {
             </Select>
           </Flex>
         </Flex>
-        {/* <UnorderedList>
-          {
-            psychologists.map((item) => (
-
-            ))
-          }
-        </UnorderedList> */}
       </Flex>
     </>
   );
