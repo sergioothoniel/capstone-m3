@@ -199,7 +199,7 @@ export const HeaderLoginECadastro = () => {
   };
   return (
     <Flex w="100%" h="100%" align="center">
-      <Flex justify="flex-start" w="33%">
+      <Flex justify="flex-start" w="33%" onClick={vaiParaHome}>
         <BiArrowBack fontSize="50px" cursor="pointer" />
       </Flex>
       <Flex justify="center" w="33%" minWidth="max-content">

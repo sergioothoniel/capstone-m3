@@ -1,7 +1,6 @@
 import { TableContainer } from "./styles"
 import { useSchedules } from "../../Providers/schedules"
 import { useDataUser } from "../../Providers/dataUser"
-import { useState, useEffect } from "react"
 
 const Calendar = () =>{
     

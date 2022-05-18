@@ -1,5 +1,4 @@
 import { Button as ButtonChakra } from '@chakra-ui/react';
-
 const Button = ({
   bg,
   height,
@@ -7,15 +6,14 @@ const Button = ({
   border,
   fontSize,
   borderColor,
-  backgroundColor,
   color,
   hoverBg,
-  maxWidth,
-  minWidth,
   hoverColor,
   hoverBorder,
   fontWeigth,
-  children,  
+  children,
+  minWidth,
+  maxWidth,
   onClick = false,
   type
 }) => {
@@ -25,13 +23,10 @@ const Button = ({
       bg={`${bg}`}
       height={`${height}`}
       width={`${width}`}
-      maxWidth={`${maxWidth}`}
-      minWidth={`${minWidth}`}
       border={`${border}`}
       borderRadius="8px"
       fontSize={`${fontSize}`}
       borderColor={`${borderColor}`}
-      backgroundColor={`${backgroundColor}`}
       color={`${color}`}
       variant="unstyled"
       d="flex"
@@ -41,13 +36,23 @@ const Button = ({
         color: `${hoverColor}`,
         borderColor: `${hoverBorder}`,
       }}
-      fontWeight={`${fontWeigth}`}     
+      fontWeight={`${fontWeigth}`}
+      minWidth={minWidth}
+      maxWidth={maxWidth}
       onClick={() => onClick()}
-
     >
       {children}
     </ButtonChakra>
   );
 };
-
 export default Button;
+
+
+
+
+
+
+
+
+
+

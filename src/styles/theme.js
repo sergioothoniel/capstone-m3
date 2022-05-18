@@ -26,6 +26,6 @@ export const theme = extendTheme({
   },
   fonts: {
     heading: 'inter',
-    body: 'inter',
+    //body: 'inter',
   },
 });
