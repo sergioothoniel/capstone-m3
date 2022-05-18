@@ -29,7 +29,7 @@ export const ModalSanduiche = () => {
   return (
     <>
       <Image
-        src={require('../../Img/MenuHamburguer.svg').default}
+        src={require('../../assets/imagens/MenuHamburguer.svg').default}
         alt="Menu Hamburguer"
         h={['35px', '35px', '45px']}
         display={['block', 'block', 'block', 'none']}
@@ -92,7 +92,7 @@ export const ModalSanduiche = () => {
               fontWeigth="400"
               color="gray.300"
               bg="white.200"
-              onClickFunction={vaiParaLogin}
+              onClick={vaiParaLogin}
             >
               Login
             </Button>
@@ -105,7 +105,7 @@ export const ModalSanduiche = () => {
               fontWeigth="400"
               color="white.0"
               bg="secondary.100"
-              onClickFunction={vaiParaCadastro}
+              onClick={vaiParaCadastro}
             >
               Cadastrar
             </Button>
@@ -134,7 +134,7 @@ export const HeaderContentHomePage = () => {
   return (
     <Flex w="100%" h="100%" align="center" justify="space-between">
       <Image
-        src={require('../../Img/LogoPsique.svg').default}
+        src={require('../../assets/imagens/LogoPsique.svg').default}
         alt="Logo escrito psiqué"
         w={['105px', '105px', '160px']}
         cursor="pointer"
@@ -166,7 +166,7 @@ export const HeaderContentHomePage = () => {
               fontSize="16px"
               bg="secondary.0"
               color="white.0"
-              onClickFunction={vaiParaLogin}
+              onClick={vaiParaLogin}
             >
               Login
             </Button>
@@ -180,7 +180,7 @@ export const HeaderContentHomePage = () => {
               fontSize="16px"
               bg="secondary.100"
               color="white.200"
-              onClickFunction={vaiParaRegistroPaciente}
+              onClick={vaiParaRegistroPaciente}
             >
               Cadastrar
             </Button>
@@ -204,7 +204,7 @@ export const HeaderLoginECadastro = () => {
       </Flex>
       <Flex justify="center" w="33%" minWidth="max-content">
         <Image
-          src={require('../../Img/LogoPsique.svg').default}
+          src={require('../../assets/imagens/LogoPsique.svg').default}
           alt="Logo escrito psiqué"
           w={['105px', '105px', '160px']}
           cursor="pointer"
@@ -223,10 +223,10 @@ export const HeaderDashboardPsicologo = () => {
   };
 
   return (
-    <Flex w="100%" h="100%" align="center" justify="space-between">
+    <Flex w="100%" h="100px" align="center" justify="space-between">
       <Flex justify="flex-start">
         <Image
-          src={require('../../Img/LogoPsique.svg').default}
+          src={require('../../assets/imagens/LogoPsique.svg').default}
           alt="Logo escrito psiqué"
           w={['105px', '105px', '160px']}
           cursor="pointer"
@@ -254,13 +254,13 @@ export const HeaderDashboardPsicologo = () => {
             fontSize="18px"
             bg="secondary.100"
             color="white.200"
-            onClickFunction={vaiParaAtendimentos}
+            onClick={vaiParaAtendimentos}
           >
             Atendimentos
           </Button>
         </Flex>
         <Image
-          src={require('../../Img/Avatar.svg').default}
+          src={require('../../assets/imagens/Avatar.svg').default}
           alt="Logo escrito psiqué"
           w="64px"
           h="64px"
@@ -279,53 +279,116 @@ export const HeaderDashboardPaciente = () => {
     history.push('/agendapaciente');
   };
 
+  const goToHome = () => {
+    history.push('/');
+  };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
-    <Flex w="100%" h="100%" align="center" justify="space-between">
-      <Flex justify="flex-start">
-        <Image
-          src={require('../../Img/LogoPsique.svg').default}
-          alt="Logo escrito psiqué"
-          w={['105px', '105px', '160px']}
-          cursor="pointer"
-        />
-      </Flex>
-      <Flex
-        justify="space-between"
-        w={['max-content', 'max-content', 'max-content', '280px']}
-        minWidth="max-content"
-        h="100%"
-        align="center"
-      >
-        <Flex
-          w="max-content"
-          height="max-content"
-          display={['none', 'none', 'none', 'flex']}
-        >
-          <Button
-            border="2px"
-            borderColor="secondary.100"
-            hoverBorder="secondary.0"
-            height="48px"
-            width="190px"
-            fontWeigth="400"
-            fontSize="18px"
-            bg="secondary.100"
-            color="white.200"
-            onClickFunction={vaiParaMinhasConsultas}
-          >
-            Minhas consultas
-          </Button>
+    <>
+      <Flex w="100%" h="105px" align="center" justify="space-between">
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent bg="white.300" width="230px" height="300px">
+            <ModalCloseButton
+              color="secondary.0"
+              outline="none"
+              borderStyle="none"
+            />
+            <ModalBody>
+              <Flex
+                height="90%"
+                mt="20px"
+                direction="column"
+                justifyContent="space-around"
+                alignItems="center"
+              >
+                <Flex
+                  height="50%"
+                  direction="column"
+                  justifyContent="space-around"
+                  alignItems="center"
+                >
+                  <Button
+                    height="48px"
+                    width="170px"
+                    bg="secondary.100"
+                    color="white.100"
+                    onClick={vaiParaMinhasConsultas}
+                  >
+                    Minhas consultas
+                  </Button>
+                  <Button
+                    height="48px"
+                    width="170px"
+                    bg="secondary.100"
+                    color="white.100"
+                  >
+                    Configurações
+                  </Button>
+                </Flex>
+                <Button
+                  height="48px"
+                  width="170px"
+                  bg="secondary.0"
+                  color="white.100"
+                  onClick={goToHome}
+                >
+                  Sair
+                </Button>
+              </Flex>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+        <Flex justify="flex-start">
+          <Image
+            src={require('../../assets/imagens/LogoPsique.svg').default}
+            alt="Logo escrito psiqué"
+            w={['105px', '105px', '160px']}
+            cursor="pointer"
+            onClick={goToHome}
+          />
         </Flex>
-        <Image
-          src={require('../../Img/Avatar.svg').default}
-          alt="Logo escrito psiqué"
-          w="64px"
-          h="64px"
-          cursor="pointer"
-          borderRadius="50px"
-        />
+        <Flex
+          justify="space-between"
+          w={['max-content', 'max-content', 'max-content', '280px']}
+          minWidth="max-content"
+          h="100%"
+          align="center"
+        >
+          <Flex
+            w="max-content"
+            height="max-content"
+            display={['none', 'none', 'none', 'flex']}
+          >
+            <Button
+              border="2px"
+              borderColor="secondary.100"
+              hoverBorder="secondary.0"
+              height="48px"
+              width="190px"
+              fontWeigth="400"
+              fontSize="18px"
+              bg="secondary.100"
+              color="white.200"
+              onClick={vaiParaMinhasConsultas}
+            >
+              Minhas consultas
+            </Button>
+          </Flex>
+          <Image
+            src={require('../../assets/imagens/Avatar.svg').default}
+            alt="Logo escrito psiqué"
+            w="64px"
+            h="64px"
+            cursor="pointer"
+            borderRadius="50px"
+            onClick={() => onOpen()}
+          />
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 };
 
