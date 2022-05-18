@@ -1,17 +1,28 @@
 import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
+import { List, ListItem, ListIcon, UnorderedList } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { usePsychologists } from '../../Providers/psychologists';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import { HeaderDashboardPaciente, Header } from '../../components/Header';
-import api from '../../services';
+import { useState } from 'react';
 
 const DashboardPaciente = () => {
-  const history = useHistory();
-
   const { psychologists } = usePsychologists();
-  console.log(psychologists)
+
+  const [filteredPsychologist, setFilteredPsychologist] = useState([]);
+
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = event => setInputValue(event.target.value);
+
+  const findPsychologist = () => {
+    const filterInput = psychologists.filter(({ name }) =>
+      name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setFilteredPsychologist(filterInput);
+  };
 
   const approach = [
     'Psicanálise',
@@ -55,8 +66,10 @@ const DashboardPaciente = () => {
               width="90%"
               border="1px"
               borderColor="primary.0"
-              placeholder="Buscar profissionais"
+              placeholder="Buscar profissionais pelo nome"
               alignSelf="center"
+              value={inputValue}
+              onChange={handleChange}
             />
             <Button
               height="50px"
@@ -69,6 +82,7 @@ const DashboardPaciente = () => {
               color="white.100"
               fontSize="18px"
               fontWeigth="500"
+              onClick={findPsychologist}
             >
               Buscar
             </Button>
@@ -97,12 +111,19 @@ const DashboardPaciente = () => {
             >
               {price.map(item => (
                 <option value={item} key={item}>
-                  {item}
+                  {item.username}
                 </option>
               ))}
             </Select>
           </Flex>
         </Flex>
+        {/* <UnorderedList>
+          {
+            psychologists.map((item) => (
+
+            ))
+          }
+        </UnorderedList> */}
       </Flex>
     </>
   );
