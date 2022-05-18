@@ -23,14 +23,107 @@ export const CardPsicologo = () => {
       borderColor="primary.0"
       px={['15px', '15px', '35px']}
     >
-      {/* falta concluir estilização e conteúdo do modal */}
       <Modal onClose={onClose} size="full" isOpen={isOpen}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Setinha</ModalHeader>
-          <ModalCloseButton />
+        <ModalContent borderRadius="0px" bg="white.300">
+          <ModalHeader display="flex" align="center">
+            <ModalCloseButton w="max-content" position="relative" top="0px">
+              <Image
+                src={require('../../Img/Arrow.svg').default}
+                alt="Ícone de seta apontado para esquerda"
+                cursor="pointer"
+                w={['30px', '30px', '50px']}
+              />
+            </ModalCloseButton>
+          </ModalHeader>
           <ModalBody>
-            <Text>Oi</Text>
+            <Flex
+              direction="column"
+              align="center"
+              justify="space-between"
+              h="600px"
+            >
+              <Image
+                src={require('../../Img/Avatar.svg').default}
+                alt="Logo escrito psiqué"
+                cursor="pointer"
+                borderRadius="100px"
+                w={['93px', '93px', '120px']}
+                h={['93px', '93px', '120px']}
+              />
+              <Text
+                fontWeight="500"
+                fontSize={['15px', '15px', '20px']}
+                color="gray.300"
+              >
+                Dr. José Ferreira
+              </Text>
+              <Flex direction="column" maxHeight="100px">
+                <Text
+                  fontWeight="400"
+                  fontSize={['12px', '12px', '16px']}
+                  color="gray.300"
+                >
+                  Abordagens aqui
+                </Text>
+                <Text
+                  fontWeight="400"
+                  fontSize={['12px', '12px', '16px']}
+                  color="gray.300"
+                >
+                  Abordagens aqui
+                </Text>
+                <Text
+                  fontWeight="400"
+                  fontSize={['12px', '12px', '16px']}
+                  color="gray.300"
+                >
+                  Abordagens aqui
+                </Text>
+              </Flex>
+              <Flex direction="row">
+                <AiFillStar fontSize="16px" color="#FFCE31" />
+                <AiFillStar fontSize="16px" color="#FFCE31" />
+                <AiFillStar fontSize="16px" color="#FFCE31" />
+                <AiFillStar fontSize="16px" color="#FFCE31" />
+                <AiOutlineStar fontSize="16px" color="#FFCE31" />
+              </Flex>
+              <Text fontWeight="400" fontSize="16px" color="gray.300">
+                R$150,00
+              </Text>
+              <Flex direction="column" align="center">
+                <Text fontWeight="300" fontSize="14px" color="gray.300">
+                  Histórico/formação acadêmica
+                </Text>
+                <Text fontWeight="300" fontSize="14px" color="gray.300">
+                  Histórico/formação acadêmica
+                </Text>
+                <Text fontWeight="300" fontSize="14px" color="gray.300">
+                  Histórico/formação acadêmica
+                </Text>
+              </Flex>
+              <Flex maxWidth="600px">
+                <Text fontWeight="300" fontSize="15px" color="gray.300">
+                  Possui mais de 15 anos de experiência atendendo pacientes em
+                  um consultório em Sorocaba-SP, especializado no atendimento de
+                  pacientes com depressão e/ou ansiedade.
+                </Text>
+              </Flex>
+              <Flex>{/* Calendário/tabela aqui */}</Flex>
+              <Button
+                bg="secondary.0"
+                height="35px"
+                width="252px"
+                border="2px"
+                borderColor="secondary.0"
+                fontSize="14px"
+                color="white.0"
+                fontWeigth="500"
+                hoverBorder="secondary.100"
+              >
+                Confirmar consulta
+              </Button>
+            </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -128,7 +221,7 @@ export const CardPsicologo = () => {
                 hoverBorder="secondary.100"
                 color="white.0"
                 fontSize="13px"
-                onClick={() => onOpen()}
+                onClickFunction={() => onOpen()}
               >
                 Marcar consulta
               </Button>
