@@ -34,11 +34,11 @@ const InputBase = ({
   const handleClick = () => setShow(!show);
 
   return (
+
     <Flex flexDirection="column">
 
       <Flex flexDir="row">
       <Text align="left" color={color} fontWeight={fontWeight}>
-
         {text}
       </Text>
       {!!error && <Text color="red.400">  &nbsp; - {error} </Text>}
@@ -106,8 +106,8 @@ const InputBase = ({
           minWidth={minWidth}    
           maxWidth={maxWidth} 
           focusBorderColor='none'          
-          padding="10px"
-             
+          padding="10px"             
+
           variant="unstyled"
           d="flex"          
           _active={{}}
