@@ -11,7 +11,7 @@ import {
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { BiArrowBack } from 'react-icons/bi';
-import Background from '../../assets/background.png';
+import Background from '../../assets/imagens/background.png';
 import { Link } from 'react-router-dom';
 import { HeaderLoginECadastro } from '../../components/Header';
 import * as yup from 'yup';

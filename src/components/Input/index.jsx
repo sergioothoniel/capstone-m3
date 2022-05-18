@@ -47,7 +47,7 @@ const InputBase = ({
       </Text>
       </Flex>
       {isPassword ? (
-
+        <Box>
         <InputGroup size="md">
           <ChakraInput
             placeholder={placeholder}
@@ -64,7 +64,7 @@ const InputBase = ({
             {...rest}
             ref={ref}
             />
-          <InputRightElement width="9">
+          {/*<InputRightElement width="9">
             <Button
               onClick={handleClick}
               backgroundColor="transparent"
@@ -76,7 +76,7 @@ const InputBase = ({
               _active={{}}
               {...rest}
               ref={ref}
-            />
+      />*/}
             <InputRightElement>
               <Button
                 onClick={handleClick}
@@ -105,11 +105,9 @@ const InputBase = ({
           width={width}
           minWidth={minWidth}    
           maxWidth={maxWidth} 
-          focusBorderColor='none'
-
-          borderColor={borderColor}
+          focusBorderColor='none'          
           padding="10px"
-          height={height}        
+             
           variant="unstyled"
           d="flex"          
           _active={{}}

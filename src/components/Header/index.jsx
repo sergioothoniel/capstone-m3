@@ -29,7 +29,7 @@ export const ModalSanduiche = () => {
   return (
     <>
       <Image
-        src={require('../../Img/MenuHamburguer.svg').default}
+        src={require('../../assets/imagens/MenuHamburguer.svg').default}
         alt="Menu Hamburguer"
         h={['35px', '35px', '45px']}
         display={['block', 'block', 'block', 'none']}
@@ -134,7 +134,7 @@ export const HeaderContentHomePage = () => {
   return (
     <Flex w="100%" h="100%" align="center" justify="space-between">
       <Image
-        src={require('../../Img/LogoPsique.svg').default}
+        src={require('../../assets/imagens/LogoPsique.svg').default}
         alt="Logo escrito psiqué"
         w={['105px', '105px', '160px']}
         cursor="pointer"
@@ -204,7 +204,7 @@ export const HeaderLoginECadastro = () => {
       </Flex>
       <Flex justify="center" w="33%" minWidth="max-content">
         <Image
-          src={require('../../Img/LogoPsique.svg').default}
+          src={require('../../assets/imagens/LogoPsique.svg').default}
           alt="Logo escrito psiqué"
           w={['105px', '105px', '105px', '160px']}
           h="35px"
@@ -227,7 +227,7 @@ export const HeaderDashboardPsicologo = () => {
     <Flex w="100%" h="100px" align="center" justify="space-between">
       <Flex justify="flex-start">
         <Image
-          src={require('../../Img/LogoPsique.svg').default}
+          src={require('../../assets/imagens/LogoPsique.svg').default}
           alt="Logo escrito psiqué"
           w={['105px', '105px', '160px']}
           cursor="pointer"
@@ -261,7 +261,7 @@ export const HeaderDashboardPsicologo = () => {
           </Button>
         </Flex>
         <Image
-          src={require('../../Img/Avatar.svg').default}
+          src={require('../../assets/imagens/Avatar.svg').default}
           alt="Logo escrito psiqué"
           w="64px"
           h="64px"
@@ -340,7 +340,7 @@ export const HeaderDashboardPaciente = () => {
         </Modal>
         <Flex justify="flex-start">
           <Image
-            src={require('../../Img/LogoPsique.svg').default}
+            src={require('../../assets/imagens/LogoPsique.svg').default}
             alt="Logo escrito psiqué"
             w={['105px', '105px', '160px']}
             cursor="pointer"
@@ -374,7 +374,7 @@ export const HeaderDashboardPaciente = () => {
             </Button>
           </Flex>
           <Image
-            src={require('../../Img/Avatar.svg').default}
+            src={require('../../assets/imagens/Avatar.svg').default}
             alt="Logo escrito psiqué"
             w="64px"
             h="64px"
