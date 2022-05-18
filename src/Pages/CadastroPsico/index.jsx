@@ -22,7 +22,7 @@ import api from '../../services/index'
 import Select from '../../components/Select';
 import { useToast } from '@chakra-ui/react'
 
-function CadastroPsicologo() {
+const CadastroPsicologo = () => {
 
   const history = useHistory();
 
@@ -247,6 +247,7 @@ function CadastroPsicologo() {
                   fontWeight="500"
                   backgroundColor={'white.100'}
                   {...register('crp')}
+                  type="number"
                   error={errors.crp?.message}
                 ></Input>
               </Flex>{' '}

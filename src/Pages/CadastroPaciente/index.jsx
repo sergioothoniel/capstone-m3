@@ -23,7 +23,7 @@ import { useToast } from '@chakra-ui/react'
 
 
 
-function CadastroPaciente() {
+const CadastroPaciente = () => {
 
   const history = useHistory();
 
@@ -33,7 +33,7 @@ function CadastroPaciente() {
     name: yup.string().required('Nome obrigatório!'),
     email: yup.string().required('Email obrigatorio!').email('Email inválido'),
     cpf: yup.string().required("CPF obrigatório!").min(8, "Mínimo 8 dígitos"),
-    age: yup.number().required('Idade obrigatória!').min(18, "A idade mínima é 18 anos!"),
+    age: yup.string().required('Idade obrigatória!').min(18, "A idade mínima é 18 anos!"),
     password: yup.string().required('Senha obrigatória!').min(6, "Mínimo 6 dígitos"),
     confirmpassword: yup
       .string()
@@ -224,6 +224,7 @@ function CadastroPaciente() {
                   backgroundColor={'white.100'}
                   {...register('cpf')}
                   error={errors.cpf?.message}
+                  type="number"
                 ></Input>
               </Flex>{' '}
               <Flex justifyContent="center" paddingBottom="15px">
@@ -236,6 +237,7 @@ function CadastroPaciente() {
                   borderColor={'primary.0'}
                   fontWeight="500"
                   backgroundColor={'white.100'}
+                  type="number"
                   {...register('age')}
                   error={errors.age?.message}
                 ></Input>
