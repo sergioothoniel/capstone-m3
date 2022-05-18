@@ -21,11 +21,13 @@ const InputBase = (
     size,
     width,
     height,
-    color,
-    maxWidth,
     minWidth,
-    isPassword = false,
+    maxWidth,
+    color,
     borderColor,
+    fontWeight,
+    error,
+    isPassword = false,
     ...rest
   },
   ref
@@ -34,10 +36,14 @@ const InputBase = (
   const handleClick = () => setShow(!show);
 
   return (
-    <Flex flexDirection="column">
-      <Text align="left" marginBottom="5px" color={color} fontWeight="600">
-        {text}
-      </Text>
+    <Flex flexDirection="column" width="100%">
+      <Flex flexDir="row">
+        <Text align="left" color={color} fontWeight={fontWeight}>
+          {text}
+        </Text>
+        {!!error && <Text color="red.400"> &nbsp; - {error} </Text>}
+        <Text></Text>
+      </Flex>
       {isPassword ? (
         <Box display="flex">
           <InputGroup width={width}>
@@ -60,6 +66,7 @@ const InputBase = (
               {...rest}
               ref={ref}
             />
+            */}
             <InputRightElement>
               <Button
                 onClick={handleClick}
@@ -81,7 +88,6 @@ const InputBase = (
           type={type}
           color="gray.100"
           border={border}
-          backgroundColor={backgroundColor}
           borderColor={borderColor}
           padding="10px"
           height={height}
@@ -91,7 +97,6 @@ const InputBase = (
           minWidth={minWidth}
           variant="unstyled"
           d="flex"
-          _focus={{}}
           _active={{}}
           {...rest}
           ref={ref}
