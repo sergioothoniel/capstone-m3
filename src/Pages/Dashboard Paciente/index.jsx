@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
+import { CardPsicologo } from '../../components/CardPsicologo';
 
 const DashboardPaciente = () => {
   const history = useHistory();
@@ -111,12 +112,15 @@ const DashboardPaciente = () => {
             </Select>
             <Select placeholder="Valor" width={'140px'}>
               {price.map(item => (
-                <option value={item} key={item}>{item}</option>
+                <option value={item} key={item}>
+                  {item}
+                </option>
               ))}
             </Select>
           </Flex>
         </Flex>
       </Flex>
+      <CardPsicologo />
     </>
   );
 };
