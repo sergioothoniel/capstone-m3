@@ -1,20 +1,17 @@
 import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
+import { usePsychologists } from '../../Providers/psychologists';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
-  ModalCloseButton,
-} from '@chakra-ui/react';
+import { HeaderDashboardPaciente, Header } from '../../components/Header';
+import api from '../../services';
 
 const DashboardPaciente = () => {
   const history = useHistory();
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { psychologists } = usePsychologists();
+  console.log(psychologists)
 
   const approach = [
     'Psicanálise',
@@ -28,90 +25,80 @@ const DashboardPaciente = () => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent bg="white.300" width="230px" height="300px">
-          <ModalCloseButton
-            color="secondary.0"
-            outline="none"
-            borderStyle="none"
-          />
-          <ModalBody>
-            <Flex
-              height="90%"
-              mt="20px"
-              direction="column"
-              justifyContent="space-around"
-              alignItems="center"
-            >
-              <Flex
-                height="50%"
-                direction="column"
-                justifyContent="space-around"
-                alignItems="center"
-              >
-                <Button
-                  height="48px"
-                  width="170px"
-                  bg="secondary.100"
-                  color="white.100"
-                  onClickFunction={() => history.push('/agendapaciente')}
-                >
-                  Minhas consultas
-                </Button>
-                <Button
-                  height="48px"
-                  width="170px"
-                  bg="secondary.100"
-                  color="white.100"
-                >
-                  Configurações
-                </Button>
-              </Flex>
-              <Button
-                height="48px"
-                width="170px"
-                bg="secondary.0"
-                color="white.100"
-                onClickFunction={() => history.push('/')}
-              >
-                Sair
-              </Button>
-            </Flex>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-      <Flex height="100vh" direction="column" bg="white.300" maxWidth="100%">
+      <Flex
+        height="100vh"
+        width="100vw"
+        direction="column"
+        bg="white.300"
+        maxWidth="100%"
+      >
+        <Header>
+          <HeaderDashboardPaciente />
+        </Header>
         <Flex
           height="200px"
           direction="column"
           justifyContent="space-around"
           alignItems="center"
+          mt="20px"
         >
-          <FormLabel alignSelf="flex-start" ml="10px">
-            Buscar profissionais
-          </FormLabel>
-          <Input width="300px" />
-          <Button
-            height="40px"
-            width="300px"
-            bg="secondary.100"
-            color="white.100"
-            fontSize="18px"
-            fontWeigth="500"
-            onClickFunction={onOpen}
+          <Flex
+            width="100%"
+            height="130px"
+            direction="column"
+            justifyContent="space-around"
+            alignItems="center"
           >
-            Buscar
-          </Button>
-          <Flex justifyContent="space-around" alignSelf="normal">
-            <Select placeholder="Abordagem" width="140px">
+            <Input
+              height="50px"
+              maxWidth="700px"
+              width="90%"
+              border="1px"
+              borderColor="primary.0"
+              placeholder="Buscar profissionais"
+              alignSelf="center"
+            />
+            <Button
+              height="50px"
+              maxWidth="700px"
+              width="90%"
+              border="2px"
+              borderColor="secondary.100"
+              hoverBorder="secondary.0"
+              bg="secondary.100"
+              color="white.100"
+              fontSize="18px"
+              fontWeigth="500"
+            >
+              Buscar
+            </Button>
+          </Flex>
+          <Flex
+            maxWidth="700px"
+            width="90%"
+            justifyContent="space-between"
+            alignSelf="center"
+          >
+            <Select
+              height="50px"
+              width={['140px', '400px', '300px']}
+              maxWidth="600px"
+              placeholder="Abordagem"
+            >
               {approach.map(item => (
                 <option key={item}>{item}</option>
               ))}
             </Select>
-            <Select placeholder="Valor" width={'140px'}>
+            <Select
+              height="50px"
+              width={['140px', '400px', '300px']}
+              maxWidth="600px"
+              placeholder="Valor"
+            >
               {price.map(item => (
-                <option value={item} key={item}>{item}</option>
+                <option value={item} key={item}>
+                  {item}
+                </option>
               ))}
             </Select>
           </Flex>

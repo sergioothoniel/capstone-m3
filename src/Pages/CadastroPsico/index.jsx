@@ -11,28 +11,30 @@ import {
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { BiArrowBack } from 'react-icons/bi';
-import Background from '../../assets/background.png';
+import Background from '../../assets/imagens/background.png';
 import { Link } from 'react-router-dom';
 import { HeaderLoginECadastro } from '../../components/Header';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router-dom';
-import api from '../../services/index'
+import api from '../../services/index';
 import Select from '../../components/Select';
-import { useToast } from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react';
 
 const CadastroPsicologo = () => {
-
   const history = useHistory();
 
-  const toast = useToast()
+  const toast = useToast();
 
   const formSchema = yup.object().shape({
     name: yup.string().required('Nome obrigatório!'),
     email: yup.string().required('Email obrigatorio!').email('Email inválido'),
-    password: yup.string().required('Senha obrigatória!').min(6, "Mínimo 6 dígitos"),
-    crp: yup.string().required('CRP obrigatório!').min(8, "Mínimo 8 dígitos"),
+    password: yup
+      .string()
+      .required('Senha obrigatória!')
+      .min(6, 'Mínimo 6 dígitos'),
+    crp: yup.string().required('CRP obrigatório!').min(8, 'Mínimo 8 dígitos'),
     specializations: yup.string(),
     confirmpassword: yup
       .string()
@@ -47,75 +49,71 @@ const CadastroPsicologo = () => {
     resolver: yupResolver(formSchema),
   });
 
-
-  console.log(errors)
-  const onSubmitFunction = ({name, email, password, crp, specializations}) => {
+  console.log(errors);
+  const onSubmitFunction = ({
+    name,
+    email,
+    password,
+    crp,
+    specializations,
+  }) => {
     const user = {
       name,
       email,
       password,
       crp,
       specializations,
-      type: "staff"
-    }
-    console.log(user)
+      type: 'staff',
+    };
+    console.log(user);
 
     const staff = {
       name,
       email,
       password,
       crp,
-      specializations
-    }
-    
+      specializations,
+    };
 
-    api.post("/users", user).then((response)=>{
-      console.log(response.data.user.id);
-      const userId = response.data.user.id
-      const token = response.data.accessToken
-      const config = {
-        headers: { Authorization: `Bearer ${token}`}
-      }
+    api
+      .post('/users', user)
+      .then(response => {
+        console.log(response.data.user.id);
+        const userId = response.data.user.id;
+        const token = response.data.accessToken;
+        const config = {
+          headers: { Authorization: `Bearer ${token}` },
+        };
 
-      api.post("/staff",{...staff, userId},config)
-      .then((response)=>{
+        api
+          .post('/staff', { ...staff, userId }, config)
+          .then(response => {
+            console.log(response.data);
+            toast({
+              title: 'Conta criada com sucesso!',
 
-        console.log(response.data)
+              position: 'top-right',
+              status: 'success',
+              duration: 6000,
+              isClosable: true,
+            });
+            return history.push("/login")
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+      .catch(err => {
         toast({
-          title: 'Conta criada com sucesso!',
-
-          position:  'top-right',
-          status: 'success',
+          title: 'Email já cadastrado.',
+          position: 'top-right',
+          status: 'error',
           duration: 6000,
           isClosable: true,
-        })
-        return history.push("/login")
+        })        
 
       })
-      .catch((err) => {
-        console.log(err)
-  
-     
-      })
-
-    })
-    .catch((err) => {
-      toast({
-        title: 'Email já cadastrado.',
-        position:  'top-right',
-        status: 'error',
-        duration: 6000,
-        isClosable: true,
-      })
-      console.log(err);
-    
-    });
-
-
-
-
-
-
+      
   };
 
   return (
@@ -195,29 +193,28 @@ const CadastroPsicologo = () => {
               <Flex
                 justifyContent="center"
                 paddingBottom="15px"
-             
-            
                 paddingTop={['0px', '0px', '0px', '0px']}
               >
-                <Select  text={"Abordagens"}
-                height="45px"
-                     minWidth="200px"
-                     width={['70vw', '70vw', '70vw', '250px']}
-                     maxWidth="405px"
-                     bgColor={'white.100'}
-                    {...register('specializations')}
-                    
+                <Select
+                  text={'Abordagens'}
+                  height="45px"
+                  minWidth="200px"
+                  width={['70vw', '70vw', '70vw', '250px']}
+                  maxWidth="405px"
+                  bgColor={'white.100'}
+                  {...register('specializations')}
                 >
-                <option value="Psicanálise">Psicanálise</option>
-                <option value="Cognitivo comportamental">Cognitivo comportamental</option>
-                <option value="Fenomenologia">Fenomenologia</option>
-                <option value="Junguiana">Junguiana</option>
-                <option value="Evolucionista">Evolucionista</option>
+                  <option value="Psicanálise">Psicanálise</option>
+                  <option value="Cognitivo comportamental">
+                    Cognitivo comportamental
+                  </option>
+                  <option value="Fenomenologia">Fenomenologia</option>
+                  <option value="Junguiana">Junguiana</option>
+                  <option value="Evolucionista">Evolucionista</option>
                 </Select>
-
               </Flex>{' '}
-              <Flex 
-               justifyContent="center"
+              <Flex
+                justifyContent="center"
                 paddingBottom="15px"
                 paddingLeft={['0px', '0px', '0px', '40px']}
                 paddingRight={['0px', '0px', '0px', '90px']}
@@ -235,7 +232,6 @@ const CadastroPsicologo = () => {
                   error={errors.email?.message}
                 ></Input>
               </Flex>{' '}
-        
               <Flex justifyContent="center" paddingBottom="15px">
                 <Input
                   placeholder="CRP"
@@ -330,9 +326,6 @@ const CadastroPsicologo = () => {
                 >
                   Cadastrar
                 </Button>
-
-         
-                
               </Flex>
             </Flex>
           </Flex>
@@ -340,6 +333,6 @@ const CadastroPsicologo = () => {
       </Flex>
     </>
   );
-}
+};
 
 export default CadastroPsicologo;
