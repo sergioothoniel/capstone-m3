@@ -92,7 +92,7 @@ export const ModalSanduiche = () => {
               fontWeigth="400"
               color="gray.300"
               bg="white.200"
-              onClickFunction={vaiParaLogin}
+              onClick={vaiParaLogin}
             >
               Login
             </Button>
@@ -105,7 +105,7 @@ export const ModalSanduiche = () => {
               fontWeigth="400"
               color="white.0"
               bg="secondary.100"
-              onClickFunction={vaiParaCadastro}
+              onClick={vaiParaCadastro}
             >
               Cadastrar
             </Button>
@@ -166,7 +166,7 @@ export const HeaderContentHomePage = () => {
               fontSize="16px"
               bg="secondary.0"
               color="white.0"
-              onClickFunction={vaiParaLogin}
+              onClick={vaiParaLogin}
             >
               Login
             </Button>
@@ -180,7 +180,7 @@ export const HeaderContentHomePage = () => {
               fontSize="16px"
               bg="secondary.100"
               color="white.200"
-              onClickFunction={vaiParaRegistroPaciente}
+              onClick={vaiParaRegistroPaciente}
             >
               Cadastrar
             </Button>
@@ -254,7 +254,7 @@ export const HeaderDashboardPsicologo = () => {
             fontSize="18px"
             bg="secondary.100"
             color="white.200"
-            onClickFunction={vaiParaAtendimentos}
+            onClick={vaiParaAtendimentos}
           >
             Atendimentos
           </Button>
