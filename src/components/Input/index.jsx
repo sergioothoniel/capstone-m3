@@ -35,7 +35,7 @@ const InputBase = ({
 
   return (
 
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" width='100%'>
 
       <Flex flexDir="row">
       <Text align="left" color={color} fontWeight={fontWeight}>
