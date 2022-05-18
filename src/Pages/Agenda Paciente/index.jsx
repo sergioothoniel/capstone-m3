@@ -24,7 +24,7 @@ function AgendaPaciente() {
       {schedules.length === 0 ? (
         <Flex direction="column" height="100vh">
           <BiArrowBack
-            size='30px'
+            size="30px"
             onClick={() => history.push('/dashboardPaciente')}
           />
           <Flex
@@ -49,14 +49,14 @@ function AgendaPaciente() {
             alignItems="center"
             alignSelf="center"
           >
-            <Text fontSize="16px">Você ainda não possui nenhuma consulta</Text>
+            <span>Você ainda não possui nenhuma consulta</span>
             <Lottie options={defaultOptions} height={260} width={300} />
           </Flex>
         </Flex>
       ) : (
         <Flex direction="column">
           <BiArrowBack
-            size='30px'
+            size="30px"
             onClick={() => history.push('/dashboardPaciente')}
           />
           <Flex

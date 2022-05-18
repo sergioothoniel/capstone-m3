@@ -34,7 +34,7 @@ const InputBase = (
   const handleClick = () => setShow(!show);
 
   return (
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" width='100%'>
       <Text align="left" marginBottom="5px" color={color} fontWeight="600">
         {text}
       </Text>
@@ -86,7 +86,7 @@ const InputBase = (
           padding="10px"
           height={height}
           size="md"
-          // width={width}
+          width={width}
           maxWidth={maxWidth}
           minWidth={minWidth}
           variant="unstyled"
