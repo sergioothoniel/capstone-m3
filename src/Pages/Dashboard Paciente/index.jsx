@@ -10,7 +10,6 @@ import api from '../../services';
 const DashboardPaciente = () => {
   const history = useHistory();
 
-  
   const approach = [
     'Psicanálise',
     'Cognitivo comportamental',
