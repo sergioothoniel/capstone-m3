@@ -40,7 +40,7 @@ const InputBase = (
       </Text>
       {isPassword ? (
         <Box display="flex">
-          <InputGroup>
+          <InputGroup width={width}>
             <ChakraInput
               placeholder={placeholder}
               type={show ? 'text' : 'password'}
@@ -86,7 +86,7 @@ const InputBase = (
           padding="10px"
           height={height}
           size="md"
-          // width={width}
+          width={width}
           maxWidth={maxWidth}
           minWidth={minWidth}
           variant="unstyled"
