@@ -198,7 +198,7 @@ export const HeaderLoginECadastro = () => {
     history.push('/');
   };
   return (
-    <Flex w="100%" h="127px" align="center">
+    <Flex w="100%" h="100%" align="center">
       <Flex justify="flex-start" w="33%">
         <BiArrowBack fontSize="50px" cursor="pointer" />
       </Flex>
@@ -206,8 +206,7 @@ export const HeaderLoginECadastro = () => {
         <Image
           src={require('../../Img/LogoPsique.svg').default}
           alt="Logo escrito psiqué"
-          w={['105px', '105px', '105px', '160px']}
-          h="35px"
+          w={['105px', '105px', '160px']}
           cursor="pointer"
           onClick={vaiParaHome}
         />
@@ -280,6 +279,10 @@ export const HeaderDashboardPaciente = () => {
     history.push('/agendapaciente');
   };
 
+  const goToHome = () => {
+    history.push('/');
+  };
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -312,7 +315,7 @@ export const HeaderDashboardPaciente = () => {
                     width="170px"
                     bg="secondary.100"
                     color="white.100"
-                    onClick={() => history.push('/agendapaciente')}
+                    onClick={vaiParaMinhasConsultas}
                   >
                     Minhas consultas
                   </Button>
@@ -330,7 +333,7 @@ export const HeaderDashboardPaciente = () => {
                   width="170px"
                   bg="secondary.0"
                   color="white.100"
-                  onClick={() => history.push('/')}
+                  onClick={goToHome}
                 >
                   Sair
                 </Button>
@@ -368,7 +371,7 @@ export const HeaderDashboardPaciente = () => {
               fontSize="18px"
               bg="secondary.100"
               color="white.200"
-              onClickFunction={vaiParaMinhasConsultas}
+              onClick={vaiParaMinhasConsultas}
             >
               Minhas consultas
             </Button>

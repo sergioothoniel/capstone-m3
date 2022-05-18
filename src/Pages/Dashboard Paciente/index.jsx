@@ -1,17 +1,16 @@
 import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { usePsychologists } from '../../Providers/psychologists';
-
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import { HeaderDashboardPaciente, Header } from '../../components/Header';
+import api from '../../services';
 
 const DashboardPaciente = () => {
   const history = useHistory();
 
-  const { psychologists } = usePsychologists();
-
+  
   const approach = [
     'Psicanálise',
     'Cognitivo comportamental',
@@ -101,11 +100,6 @@ const DashboardPaciente = () => {
               ))}
             </Select>
           </Flex>
-          <ul>
-            {psychologists.map(item => (
-              <li>{item}</li>
-            ))}
-          </ul>
         </Flex>
       </Flex>
     </>
