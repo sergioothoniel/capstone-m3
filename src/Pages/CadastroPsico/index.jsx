@@ -97,7 +97,7 @@ const CadastroPsicologo = () => {
               duration: 6000,
               isClosable: true,
             });
-            // history.push > login <<<<<<<<<<<<<<<<<<<<<<<<<<<
+            return history.push("/login")
           })
           .catch(err => {
             console.log(err);
@@ -110,9 +110,10 @@ const CadastroPsicologo = () => {
           status: 'error',
           duration: 6000,
           isClosable: true,
-        });
-        console.log(err);
-      });
+        })        
+
+      })
+      
   };
 
   return (

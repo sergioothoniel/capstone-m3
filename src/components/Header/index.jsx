@@ -92,7 +92,7 @@ export const ModalSanduiche = () => {
               fontWeigth="400"
               color="gray.300"
               bg="white.200"
-              onClickFunction={vaiParaLogin}
+              onClick={vaiParaLogin}
             >
               Login
             </Button>
@@ -105,7 +105,7 @@ export const ModalSanduiche = () => {
               fontWeigth="400"
               color="white.0"
               bg="secondary.100"
-              onClickFunction={vaiParaCadastro}
+              onClick={vaiParaCadastro}
             >
               Cadastrar
             </Button>
@@ -166,7 +166,7 @@ export const HeaderContentHomePage = () => {
               fontSize="16px"
               bg="secondary.0"
               color="white.0"
-              onClickFunction={vaiParaLogin}
+              onClick={vaiParaLogin}
             >
               Login
             </Button>
@@ -180,7 +180,7 @@ export const HeaderContentHomePage = () => {
               fontSize="16px"
               bg="secondary.100"
               color="white.200"
-              onClickFunction={vaiParaRegistroPaciente}
+              onClick={vaiParaRegistroPaciente}
             >
               Cadastrar
             </Button>
@@ -199,7 +199,7 @@ export const HeaderLoginECadastro = () => {
   };
   return (
     <Flex w="100%" h="100%" align="center">
-      <Flex justify="flex-start" w="33%">
+      <Flex justify="flex-start" w="33%" onClick={vaiParaHome}>
         <BiArrowBack fontSize="50px" cursor="pointer" />
       </Flex>
       <Flex justify="center" w="33%" minWidth="max-content">
@@ -329,11 +329,13 @@ export const HeaderDashboardPaciente = () => {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent bg="white.300" width="230px" height="300px">
+
             <ModalCloseButton
               color="secondary.0"
               outline="none"
               borderStyle="none"
             />
+p
             <ModalBody>
               <Flex
                 height="90%"
@@ -385,6 +387,7 @@ export const HeaderDashboardPaciente = () => {
             alt="Logo escrito psiqué"
             w={['105px', '105px', '160px']}
             cursor="pointer"
+            onClick={goToHome}
           />
         </Flex>
         <Flex
