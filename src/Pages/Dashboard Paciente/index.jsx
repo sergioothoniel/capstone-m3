@@ -68,8 +68,9 @@ const DashboardPaciente = () => {
           >
             <Input
               height="50px"
+              minWidth="290px"
               maxWidth="700px"
-              width="90%"
+              width="90vw"
               border="1px"
               borderColor="primary.0"
               placeholder="Buscar profissionais pelo nome"
@@ -103,7 +104,9 @@ const DashboardPaciente = () => {
               height="50px"
               width={['140px', '400px', '300px']}
               maxWidth="600px"
-              placeholder="Abordagem"
+              text="Abordagem"
+              cursor='pointer'
+              fontWeigth='500'
               onChange={handleChangeApproach}
             >
               {approach.map(item => (
@@ -114,7 +117,9 @@ const DashboardPaciente = () => {
               height="50px"
               width={['140px', '400px', '300px']}
               maxWidth="600px"
-              placeholder="Valor"
+              text="Valor"
+              cursor='pointer'
+              fontWeigth='500'
               onChange={handleChangePrice}
             >
               {price.map(item => (

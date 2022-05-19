@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { Container } from './styles';
 import {
@@ -20,7 +20,6 @@ import Logo from '../../assets/Logo/logopsique.svg';
 import Input from '../Input';
 import api from '../../services';
 import { useIsLoggedIn } from '../../Providers/isLoggedIn/index';
-import { useDataUser } from '../../Providers/dataUser/index';
 
 const Login = () => {
   const toast = useToast();
@@ -38,10 +37,13 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { dataUser } = useDataUser();
-  const { isLoggedIn, setIsLoggedIn, token, setToken } = useIsLoggedIn();
+  
+  const { setIsLoggedIn, setToken } = useIsLoggedIn();
   const onSubmit = data => {
-    console.log(data);
+
+    setIsLoggedIn(false)
+    localStorage.clear()  
+
     api
       .post('/login', data)
       .then(response => {
@@ -91,7 +93,7 @@ const Login = () => {
   const handleCadastro = () => {
     history.push('/cadastropaciente');
   };
-  console.log(errors);
+  
 
   return (
     <Flex
