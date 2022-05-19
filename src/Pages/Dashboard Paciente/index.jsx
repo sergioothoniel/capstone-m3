@@ -1,17 +1,34 @@
-import { Flex, FormLabel, useDisclosure } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+import { Flex } from '@chakra-ui/react';
 import { usePsychologists } from '../../Providers/psychologists';
+import { useState } from 'react';
+import { HeaderDashboardPaciente, Header } from '../../components/Header';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
-import { HeaderDashboardPaciente, Header } from '../../components/Header';
-import api from '../../services';
 
 const DashboardPaciente = () => {
-  const history = useHistory();
-
   const { psychologists } = usePsychologists();
-  console.log(psychologists)
+
+  const [filteredPsychologist, setFilteredPsychologist] = useState([]);
+
+  const [inputValue, setInputValue] = useState('');
+
+  const [approachValue, setApproachValue] = useState('');
+
+  const [priceValue, setPriceValue] = useState('');
+
+  const handleChangeInput = event => setInputValue(event.target.value);
+
+  const handleChangeApproach = event => setApproachValue(event.target.value);
+
+  const handleChangePrice = event => setPriceValue(event.target.value);
+
+  const findPsychologist = () => {
+    const filterInput = psychologists.filter(({ name }) =>
+      name.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setFilteredPsychologist(filterInput);
+  };
 
   const approach = [
     'Psicanálise',
@@ -34,7 +51,7 @@ const DashboardPaciente = () => {
       >
         <Header>
           <HeaderDashboardPaciente />
-        </Header>
+        </Header>      
         <Flex
           height="200px"
           direction="column"
@@ -55,8 +72,10 @@ const DashboardPaciente = () => {
               width="90%"
               border="1px"
               borderColor="primary.0"
-              placeholder="Buscar profissionais"
+              placeholder="Buscar profissionais pelo nome"
               alignSelf="center"
+              value={inputValue}
+              onChange={handleChangeInput}
             />
             <Button
               height="50px"
@@ -69,6 +88,7 @@ const DashboardPaciente = () => {
               color="white.100"
               fontSize="18px"
               fontWeigth="500"
+              onClick={findPsychologist}
             >
               Buscar
             </Button>
@@ -84,6 +104,7 @@ const DashboardPaciente = () => {
               width={['140px', '400px', '300px']}
               maxWidth="600px"
               placeholder="Abordagem"
+              onChange={handleChangeApproach}
             >
               {approach.map(item => (
                 <option key={item}>{item}</option>
@@ -94,6 +115,7 @@ const DashboardPaciente = () => {
               width={['140px', '400px', '300px']}
               maxWidth="600px"
               placeholder="Valor"
+              onChange={handleChangePrice}
             >
               {price.map(item => (
                 <option value={item} key={item}>
