@@ -1,10 +1,11 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { usePsychologists } from '../../Providers/psychologists';
 import { useState } from 'react';
 import { HeaderDashboardPaciente, Header } from '../../components/Header';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
+
 
 const DashboardPaciente = () => {
   const { psychologists } = usePsychologists();
@@ -51,7 +52,7 @@ const DashboardPaciente = () => {
       >
         <Header>
           <HeaderDashboardPaciente />
-        </Header>
+        </Header>      
         <Flex
           height="200px"
           direction="column"
