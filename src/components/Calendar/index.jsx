@@ -18,14 +18,14 @@ const Calendar = ({idPsico, isPatient = false}) =>{
       
        
     const currentWeek = (week = 0)=>{
-        let arr = []
+        const arrWeek = []
         const firstDay = day+7*week
 
         for(let i = firstDay; i<firstDay+7; i++){
             const newDate = new Date(2022, today.getMonth(), i)
-            arr.push(newDate)
+            arrWeek.push(newDate)
         }
-        return arr
+        return arrWeek
     }
     
     useEffect(()=>{
