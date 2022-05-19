@@ -5,11 +5,13 @@ export const theme = extendTheme({
     primary: {
       0: '#3D5A80',
       100: '#98C1D9',
+      200: '#E0E9ED',
     },
     secondary: {
       0: '#EE6C4D',
       100: '#293241',
       200: '#BC4124',
+      300: '#F2D8D1',
     },
     white: {
       0: '#FFFFFF',
