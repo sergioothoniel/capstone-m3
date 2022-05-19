@@ -335,7 +335,7 @@ export const HeaderDashboardPaciente = () => {
               outline="none"
               borderStyle="none"
             />
-p
+
             <ModalBody>
               <Flex
                 height="90%"
