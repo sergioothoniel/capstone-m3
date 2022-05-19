@@ -254,11 +254,49 @@ export const HeaderDashboardPsicologo = () => {
             fontSize="18px"
             bg="secondary.100"
             color="white.200"
-            onClickFunction={vaiParaAtendimentos}
+            onClick={vaiParaAtendimentos}
           >
             Atendimentos
           </Button>
         </Flex>
+        <Image
+          src={require('../../assets/imagens/Avatar.svg').default}
+          alt="Logo escrito psiqué"
+          w="64px"
+          h="64px"
+          cursor="pointer"
+          borderRadius="50px"
+        />
+      </Flex>
+    </Flex>
+  );
+};
+
+export const HeaderAgendaPsicologo = () => {
+  const history = useHistory();
+
+  return (
+    <Flex w="100%" h="100px" align="center" justify="space-between">
+      <Flex justify="flex-start">
+        <Image
+          src={require('../../assets/imagens/LogoPsique.svg').default}
+          alt="Logo escrito psiqué"
+          w={['105px', '105px', '160px']}
+          cursor="pointer"
+        />
+      </Flex>
+      <Flex
+        justify="space-between"
+        w={['max-content', 'max-content', 'max-content', '280px']}
+        minWidth="max-content"
+        h="100%"
+        align="center"
+      >
+        <Flex
+          w="max-content"
+          height="max-content"
+          display={['none', 'none', 'none', 'flex']}
+        ></Flex>
         <Image
           src={require('../../assets/imagens/Avatar.svg').default}
           alt="Logo escrito psiqué"
@@ -288,9 +326,9 @@ export const HeaderDashboardPaciente = () => {
   return (
     <>
       <Flex w="100%" h="105px" align="center" justify="space-between">
-        <Modal isOpen={isOpen} onClose={onClose} >
-          <ModalOverlay  />
-          <ModalContent  bg="white.300" width="230px" height="300px">
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent bg="white.300" width="230px" height="300px">
             <ModalCloseButton
               color="secondary.0"
               outline="none"
