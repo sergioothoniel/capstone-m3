@@ -5,6 +5,7 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
+  Image,
   Spacer,
   Text,
 } from '@chakra-ui/react';
@@ -20,7 +21,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router-dom';
 import api from '../../services/index'
 import { useToast } from '@chakra-ui/react'
-
+import Buddies from "../../assets/imagens/Buddies.svg"
 
 
 const CadastroPaciente = () => {
@@ -33,7 +34,7 @@ const CadastroPaciente = () => {
     name: yup.string().required('Nome obrigatório!'),
     email: yup.string().required('Email obrigatorio!').email('Email inválido'),
     cpf: yup.string().required("CPF obrigatório!").min(8, "Mínimo 8 dígitos"),
-    age: yup.number().required('Idade obrigatória!').min(18, "A idade mínima é 18 anos!"),
+    age: yup.string().required('Idade obrigatória!').matches(/1[8-9]|[2-9]\d+|\d{3,}/ , "A idade mínima é 18 anos!"),
     password: yup.string().required('Senha obrigatória!').min(6, "Mínimo 6 dígitos"),
     confirmpassword: yup
       .string()
@@ -162,7 +163,9 @@ const CadastroPaciente = () => {
             paddingTop={['20px', '20px', '70px', '100px']}
             zIndex="1"
           >
-            <Spacer display={['none', 'none', 'none', 'block']}></Spacer>
+            <Spacer display={['none', 'none', 'none', 'block']}>
+              <Image display={['none', 'none', 'none', 'none', 'block']} src={Buddies} height="600px" paddingBottom="50px" paddingLeft="130px"></Image>
+            </Spacer>
 
             <Flex
               as="form"
