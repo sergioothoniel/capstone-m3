@@ -5,7 +5,6 @@ export const DataUserContext = createContext();
 
 export const DataUserProvider = ({ children }) => {
   const [dataUser, setDataUser] = useState({});
-
   const { isLoggedIn } = useContext(IsLoggedInContext);
 
   useEffect(() => {

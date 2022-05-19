@@ -17,7 +17,6 @@ import Button from '../Button';
 import Input from '../Input';
 import api from '../../services';
 import { useIsLoggedIn } from '../../Providers/isLoggedIn/index';
-import { useDataUser } from '../../Providers/dataUser/index';
 
 const Login = () => {
   const toast = useToast();
@@ -35,10 +34,12 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { dataUser } = useDataUser();
-  const { isLoggedIn, setIsLoggedIn, token, setToken } = useIsLoggedIn();
+
+  const { setIsLoggedIn, setToken } = useIsLoggedIn();
   const onSubmit = data => {
-    console.log(data);
+    setIsLoggedIn(false);
+    localStorage.clear();
+
     api
       .post('/login', data)
       .then(response => {
