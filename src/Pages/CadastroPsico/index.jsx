@@ -7,6 +7,7 @@ import {
   Heading,
   Spacer,
   Text,
+  Image
 } from '@chakra-ui/react';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -21,7 +22,7 @@ import { useHistory } from 'react-router-dom';
 import api from '../../services/index';
 import Select from '../../components/Select';
 import { useToast } from '@chakra-ui/react';
-
+import Resume from "../../assets/imagens/Resume.svg"
 const CadastroPsicologo = () => {
   const history = useHistory();
 
@@ -163,7 +164,9 @@ const CadastroPsicologo = () => {
             paddingTop={['20px', '20px', '70px', '100px']}
             zIndex="1"
           >
-            <Spacer display={['none', 'none', 'none', 'block']}></Spacer>
+            <Spacer display={['none', 'none', 'none', 'block']}>
+            <Image display={['none', 'none', 'none', 'none', 'block']} src={Resume} height="600px" paddingBottom="50px" paddingLeft="130px"></Image>
+            </Spacer>
 
             <Flex
               as="form"

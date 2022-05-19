@@ -5,6 +5,7 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
+  Image,
   Spacer,
   Text,
 } from '@chakra-ui/react';
@@ -20,7 +21,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router-dom';
 import api from '../../services/index'
 import { useToast } from '@chakra-ui/react'
-
+import Buddies from "../../assets/imagens/Buddies.svg"
 
 
 const CadastroPaciente = () => {
@@ -162,7 +163,9 @@ const CadastroPaciente = () => {
             paddingTop={['20px', '20px', '70px', '100px']}
             zIndex="1"
           >
-            <Spacer display={['none', 'none', 'none', 'block']}></Spacer>
+            <Spacer display={['none', 'none', 'none', 'block']}>
+              <Image display={['none', 'none', 'none', 'none', 'block']} src={Buddies} height="600px" paddingBottom="50px" paddingLeft="130px"></Image>
+            </Spacer>
 
             <Flex
               as="form"
