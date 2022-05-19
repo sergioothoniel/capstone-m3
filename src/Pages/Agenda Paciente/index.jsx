@@ -4,12 +4,32 @@ import { useSchedules } from '../../Providers/schedules';
 import { BiArrowBack } from 'react-icons/bi';
 import Lottie from 'react-lottie';
 import animationData from '../../lotties/emptyAnimation.json';
+import { useCallback, useEffect, useState } from 'react';
 
 const AgendaPaciente = () => {
-  const history = useHistory();
-
   const { schedules } = useSchedules();
 
+  const localStorageInfo = JSON.parse(localStorage.getItem('@psique/token'));
+
+  const id = localStorageInfo.user.id;
+
+  const history = useHistory();
+
+  const [userSchedules, setUserSchedules] = useState([]);
+
+  const getUserSchedules = useCallback(() => {
+    const getSchedules = schedules.filter(
+      ({ userId }) => userId === id.toString()
+    );
+
+    setUserSchedules(getSchedules);
+  }, [id, schedules]);
+
+  useEffect(() => {
+    getUserSchedules();
+  }, [getUserSchedules]);
+
+  console.log(userSchedules);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -21,14 +41,14 @@ const AgendaPaciente = () => {
 
   return (
     <Flex direction="column" alignItems="center">
-      {schedules.length === 0 ? (
-        <Flex direction="column" height="100vh" pt='15px'>
-          <Flex  marginLeft='15px'>
-          <BiArrowBack
-            size="30px"           
-            cursor='pointer'
-            onClick={() => history.push('/dashboardPaciente')}            
-          />
+      {userSchedules.length === 0 ? (
+        <Flex direction="column" height="100vh" pt="15px">
+          <Flex marginLeft="15px" cursor="pointer">
+            <BiArrowBack
+              size="30px"
+              cursor="pointer"
+              onClick={() => history.push('/dashboardPaciente')}
+            />
           </Flex>
           <Flex
             height="70px"
@@ -52,7 +72,9 @@ const AgendaPaciente = () => {
             alignItems="center"
             alignSelf="center"
           >
-            <Text fontSize={["16px", "22px"]}>Você ainda não possui nenhuma consulta</Text>
+            <Text fontSize={['16px', '22px']}>
+              Você ainda não possui nenhuma consulta
+            </Text>
             <Lottie options={defaultOptions} height={260} width={300} />
           </Flex>
         </Flex>
@@ -81,6 +103,6 @@ const AgendaPaciente = () => {
       )}
     </Flex>
   );
-}
+};
 
 export default AgendaPaciente;
