@@ -5,7 +5,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import Lottie from 'react-lottie';
 import animationData from '../../lotties/emptyAnimation.json';
 
-function AgendaPaciente() {
+const AgendaPaciente = () => {
   const history = useHistory();
 
   const { schedules } = useSchedules();
