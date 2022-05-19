@@ -1,9 +1,13 @@
 import { TableContainer } from "./styles"
 import { useSchedules } from "../../Providers/schedules"
+import { useEffect, useState } from "react"
+import { cookieStorageManager } from "@chakra-ui/react"
 
 const Calendar = ({idPsico, isPatient = false}) =>{
     
-    const {schedules} = useSchedules()    
+    const {schedules} = useSchedules()
+    
+    const [week, setWeek] = useState([])
 
     //const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
     const schedulesDefeault= ['09:00', '10:00', '11:00','13:00','14:00', '15:00', '16:00']
@@ -23,15 +27,19 @@ const Calendar = ({idPsico, isPatient = false}) =>{
         }
         return arr
     }
-           
     
+    useEffect(()=>{
+        const newWeek = currentWeek()        
+        setWeek(newWeek)
+    }, [idPsico])
+           
 
     return(
        <TableContainer>
            
            <h1>2022</h1>
            <div className="table">
-               {currentWeek().map(date=>{
+               {week.map(date=>{
                    const dateFormated = date.toLocaleDateString('pt-BR')
                    const appointmentsToday = schedules.filter(appointment => appointment.date === dateFormated).filter(appointment => appointment.staffId === idPsico.toString())
                    const currentDay = dateFormated.slice(0, -5)
