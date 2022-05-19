@@ -9,11 +9,33 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import { FaCalendarCheck } from 'react-icons/fa';
 import Button from '../Button';
 
-export const CardPsicologo = () => {
+export const CardPsicologo = ({
+  nome,
+  abordagens,
+  review,
+  preco,
+  formacao,
+  descricao,
+  CRP,
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const reviewCard = () => {
+    const arr = [];
+
+    for (let i = 0; i < 5; i++) {
+      if (i < review) {
+        arr.push(1);
+      } else {
+        arr.push(0);
+      }
+    }
+    console.log(arr);
+    return arr;
+  };
+
   return (
     <Flex
       w={['318px', '318px', '740px']}
@@ -56,57 +78,58 @@ export const CardPsicologo = () => {
                 fontSize={['15px', '15px', '20px']}
                 color="gray.300"
               >
-                Dr. José Ferreira
+                Dr(a).{nome}
               </Text>
               <Flex direction="column" maxHeight="100px">
-                <Text
-                  fontWeight="400"
-                  fontSize={['12px', '12px', '16px']}
-                  color="gray.300"
-                >
-                  Abordagens aqui
-                </Text>
-                <Text
-                  fontWeight="400"
-                  fontSize={['12px', '12px', '16px']}
-                  color="gray.300"
-                >
-                  Abordagens aqui
-                </Text>
-                <Text
-                  fontWeight="400"
-                  fontSize={['12px', '12px', '16px']}
-                  color="gray.300"
-                >
-                  Abordagens aqui
-                </Text>
+                {abordagens.map((item, index) => {
+                  return (
+                    <Text
+                      fontWeight="400"
+                      fontSize={['12px', '12px', '16px']}
+                      color="gray.300"
+                      key={index}
+                    >
+                      {item}
+                    </Text>
+                  );
+                })}
               </Flex>
               <Flex direction="row">
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiOutlineStar fontSize="16px" color="#FFCE31" />
+                {reviewCard().map((item, index) => {
+                  return item === 1 ? (
+                    <AiFillStar fontSize="16px" color="#FFCE31" key={index} />
+                  ) : (
+                    <AiOutlineStar
+                      fontSize="16px"
+                      color="#FFCE31"
+                      key={index}
+                    />
+                  );
+                })}
               </Flex>
               <Text fontWeight="400" fontSize="16px" color="gray.300">
-                R$150,00
+                {preco.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
               </Text>
               <Flex direction="column" align="center">
-                <Text fontWeight="300" fontSize="14px" color="gray.300">
-                  Histórico/formação acadêmica
-                </Text>
-                <Text fontWeight="300" fontSize="14px" color="gray.300">
-                  Histórico/formação acadêmica
-                </Text>
-                <Text fontWeight="300" fontSize="14px" color="gray.300">
-                  Histórico/formação acadêmica
-                </Text>
+                {formacao.map((item, index) => {
+                  return (
+                    <Text
+                      fontWeight="300"
+                      fontSize="14px"
+                      color="gray.300"
+                      key={index}
+                    >
+                      {item}
+                    </Text>
+                  );
+                })}
               </Flex>
               <Flex maxWidth="600px">
                 <Text fontWeight="300" fontSize="15px" color="gray.300">
-                  Possui mais de 15 anos de experiência atendendo pacientes em
-                  um consultório em Sorocaba-SP, especializado no atendimento de
-                  pacientes com depressão e/ou ansiedade.
+                  {descricao}
                 </Text>
               </Flex>
               <Flex>{/* Calendário/tabela aqui */}</Flex>
@@ -151,30 +174,19 @@ export const CardPsicologo = () => {
           >
             Abordagens
           </Text>
-          <Text
-            fontWeight="300"
-            fontSize="12px"
-            color="gray.300"
-            display={['block', 'block', 'none']}
-          >
-            Abordagens aqui
-          </Text>
-          <Text
-            fontWeight="300"
-            fontSize="12px"
-            color="gray.300"
-            display={['block', 'block', 'none']}
-          >
-            Abordagens aqui
-          </Text>
-          <Text
-            fontWeight="300"
-            fontSize="12px"
-            color="gray.300"
-            display={['block', 'block', 'none']}
-          >
-            Abordagens aqui
-          </Text>
+          {abordagens.map((item, index) => {
+            return (
+              <Text
+                fontWeight="300"
+                fontSize="12px"
+                color="gray.300"
+                display={['block', 'block', 'none']}
+                key={index}
+              >
+                {item}
+              </Text>
+            );
+          })}
           <Flex
             direction={['column', 'column', 'row']}
             w={['162px', '162px', '500px']}
@@ -188,19 +200,24 @@ export const CardPsicologo = () => {
               justify="space-around"
             >
               <Text fontWeight="500" fontSize="15px" color="gray.300">
-                Dr. José Ferreira
+                Dr(a).{nome}
               </Text>
-              {/* nas estrelas, fazer loop no reviews para renderizar de acordo com a nota, se indice do elemento atual for menor que a nota, 
-            renderiza o AiFillStar, se não, renderiza AiOutlineStar */}
+
               <Flex direction="row">
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiFillStar fontSize="16px" color="#FFCE31" />
-                <AiOutlineStar fontSize="16px" color="#FFCE31" />
+                {reviewCard().map((item, index) => {
+                  return item === 1 ? (
+                    <AiFillStar fontSize="16px" color="#FFCE31" key={index} />
+                  ) : (
+                    <AiOutlineStar
+                      fontSize="16px"
+                      color="#FFCE31"
+                      key={index}
+                    />
+                  );
+                })}
               </Flex>
               <Text fontWeight="300" fontSize="15px" color="gray.300">
-                ESTADO / CRP
+                {CRP}
               </Text>
               <Text
                 fontWeight="300"
@@ -208,7 +225,9 @@ export const CardPsicologo = () => {
                 color="gray.300"
                 display={['block', 'block', 'none']}
               >
-                Possui mais de 15 anos de experiência atendendo pacientes...
+                {descricao.length > 50
+                  ? descricao.slice(0, 50) + '...'
+                  : descricao}
               </Text>
             </Flex>
             <Flex display={['flex', 'flex', 'none']}>
@@ -238,7 +257,9 @@ export const CardPsicologo = () => {
           <Flex display={['none', 'none', 'flex']}>
             {/* descriçao desktop aqui */}
             <Text fontWeight="400" fontSize="20px" color="gray.300">
-              Possui mais de 15 anos de experiência atendendo pacientes...
+              {descricao.length > 50
+                ? descricao.slice(0, 50) + '...'
+                : descricao}
             </Text>
           </Flex>
         </Flex>

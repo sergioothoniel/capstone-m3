@@ -10,7 +10,6 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import { CardPsicologo } from '../../components/CardPsicologo';
 
 const DashboardPaciente = () => {
   const history = useHistory();
@@ -120,7 +119,6 @@ const DashboardPaciente = () => {
           </Flex>
         </Flex>
       </Flex>
-      <CardPsicologo />
     </>
   );
 };
