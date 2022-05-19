@@ -3,9 +3,6 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
   ModalCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -27,6 +24,7 @@ const BasicModal = ({ children }) => {
         >
           {children}
         </ModalContent>
+        <ModalCloseButton/>
       </Modal>
     </>
   );
