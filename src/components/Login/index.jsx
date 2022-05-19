@@ -57,6 +57,8 @@ const Login = () => {
             duration: 6000,
             isClosable: true,
           });
+          return history.push('/dashboardpsico');
+        } else {
           toast({
             title: 'Login realizado com sucesso!',
 
@@ -65,8 +67,6 @@ const Login = () => {
             duration: 6000,
             isClosable: true,
           });
-          return history.push('/dashboardpsico');
-        } else {
           return history.push('/dashboardpaciente');
         }
       })
