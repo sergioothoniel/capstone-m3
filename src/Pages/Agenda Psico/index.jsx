@@ -9,28 +9,36 @@ import { useDataUser } from '../../Providers/dataUser';
 import { usePsychologists } from '../../Providers/psychologists';
 import { usePatients } from '../../Providers/patients';
 import { BiArrowBack } from 'react-icons/bi';
+import { useEffect, useState } from 'react';
 // import '../../assets/imagens/Avatar.';
 function AgendaPsico() {
   const { isLoggedIn, setIsLoggedIn } = useIsLoggedIn();
   const { dataUser } = useDataUser();
   const history = useHistory();
 
-  if (!isLoggedIn || dataUser.type !== 'staff') {
-    history.push('/login');
-  }
+  const [appointments, setAppointments] = useState([]);
+
+  // if (!isLoggedIn || dataUser.type !== 'staff') {
+  //   history.push('/login');
+  // }
 
   const { psychologists } = usePsychologists();
   const { schedules } = useSchedules();
   const { patients } = usePatients();
 
-  let appointments = [];
-
-  if (dataUser.type === 'staff') {
-    appointments = schedules.filter(
-      schedule => schedule.staffId === dataUser.id
+  useEffect(() => {
+    console.log(schedules)
+    const newAppointments = schedules.filter(
+      schedule => schedule.staffId == dataUser.id
     );
-  }
-
+    setAppointments(newAppointments);
+  }, [dataUser, schedules]);
+  // if (dataUser.type === 'staff') {
+  //   setAppointments(
+  //     schedules.filter(schedule => schedule.staffId === dataUser.id)
+  //   );
+  // }
+  // console.log(appointments);
   return (
     <>
       <Flex
