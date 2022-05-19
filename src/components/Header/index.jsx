@@ -291,11 +291,7 @@ export const HeaderDashboardPaciente = () => {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent bg="white.300" width="230px" height="300px">
-            <ModalCloseButton
-              color="secondary.0"
-              outline="none"
-              borderStyle="none"
-            />
+            <ModalCloseButton color="secondary.0" _focus="" _active="" />
             <ModalBody>
               <Flex
                 height="90%"

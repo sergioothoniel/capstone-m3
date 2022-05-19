@@ -68,8 +68,9 @@ const DashboardPaciente = () => {
           >
             <Input
               height="50px"
+              minWidth="290px"
               maxWidth="700px"
-              width="90%"
+              width="90vw"
               border="1px"
               borderColor="primary.0"
               placeholder="Buscar profissionais pelo nome"
