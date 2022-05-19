@@ -33,7 +33,7 @@ const CadastroPaciente = () => {
     name: yup.string().required('Nome obrigatório!'),
     email: yup.string().required('Email obrigatorio!').email('Email inválido'),
     cpf: yup.string().required("CPF obrigatório!").min(8, "Mínimo 8 dígitos"),
-    age: yup.number().required('Idade obrigatória!').min(18, "A idade mínima é 18 anos!"),
+    age: yup.string().required('Idade obrigatória!').matches(/1[8-9]|[2-9]\d+|\d{3,}/ , "A idade mínima é 18 anos!"),
     password: yup.string().required('Senha obrigatória!').min(6, "Mínimo 6 dígitos"),
     confirmpassword: yup
       .string()
