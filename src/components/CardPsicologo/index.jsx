@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import Button from '../Button';
+import Calendar from '../Calendar';
 
 export const CardPsicologo = ({
   nome,
@@ -32,8 +33,7 @@ export const CardPsicologo = ({
         arr.push(0);
       }
     }
-    console.log(arr);
-    return arr;
+     return arr;
   };
 
   return (
@@ -132,8 +132,14 @@ export const CardPsicologo = ({
                   {descricao}
                 </Text>
               </Flex>
-              <Flex>{/* Calendário/tabela aqui */}</Flex>
-              <Button
+              <Flex>
+
+                <Calendar idPsico='7' isPatient/>
+
+
+
+              </Flex>
+              {/* <Button
                 bg="secondary.0"
                 height="35px"
                 width="252px"
@@ -145,7 +151,7 @@ export const CardPsicologo = ({
                 hoverBorder="secondary.100"
               >
                 Confirmar consulta
-              </Button>
+              </Button> */}
             </Flex>
           </ModalBody>
         </ModalContent>
@@ -229,7 +235,8 @@ export const CardPsicologo = ({
                   ? descricao.slice(0, 50) + '...'
                   : descricao}
               </Text>
-            </Flex>
+            </Flex>           
+
             <Flex display={['flex', 'flex', 'none']}>
               <Button
                 width="162px"

@@ -2,12 +2,18 @@ import { TableContainer } from "./styles"
 import { useSchedules } from "../../Providers/schedules"
 import { useEffect, useState } from "react"
 import { cookieStorageManager } from "@chakra-ui/react"
+import Button from "../Button"
+import { useRef } from "react"
 
 const Calendar = ({idPsico, isPatient = false}) =>{
     
     const {schedules} = useSchedules()
     
     const [week, setWeek] = useState([])
+
+    const [confirmSchedule, setConfirmSchedule] = useState(false)
+    const [timeSelect, setTimeSelect] = useState('')
+    const [scheduleDate, setScheduleDate] = useState('')
 
     //const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
     const schedulesDefeault= ['09:00', '10:00', '11:00','13:00','14:00', '15:00', '16:00']
@@ -27,15 +33,52 @@ const Calendar = ({idPsico, isPatient = false}) =>{
         }
         return arrWeek
     }
+
+    const classSelected = useRef('selected')
+
+
+    const onClickFunction = (event, appoint, date, time) =>{   
+        
+        
+        if(isPatient){
+
+            if(!!!appoint){
+
+                if(!confirmSchedule || event.target.className === 'selected' ){
+                    if(!!!event.target.className){
+                        event.target.className = 'selected'                    
+                        setConfirmSchedule(true)
+                        setTimeSelect(time)
+                        setScheduleDate(`${date}/2022`)   
+
+                    }
+                    else{
+                        event.target.className = ''                    
+                        setConfirmSchedule(false)
+                        setTimeSelect('')
+                        setScheduleDate('')
+                    }    
+                }                       
+            }            
+        }
+        else{
+            if(!!appoint){
+                console.log(appoint)
+            }
+        }       
+    }
+
+    
     
     useEffect(()=>{
         const newWeek = currentWeek()        
         setWeek(newWeek)
     }, [idPsico])
-           
+    
+    console.log(timeSelect, scheduleDate)
 
     return(
-       <TableContainer>
+       <TableContainer btnConfirm={confirmSchedule}>
            
            <h1>2022</h1>
            <div className="table">
@@ -61,8 +104,12 @@ const Calendar = ({idPsico, isPatient = false}) =>{
                                    </span>
                                )
                            }else{
+                               
                                return(
-                                <span key={horario}><button id={scheduleCheck ? 'confirmed' : undefined} onClick={()=>console.log(appointment)}>{horario}</button></span>
+                                <span key={horario}><button ref={classSelected}
+                                 id={scheduleCheck ? 'confirmed' : undefined} onClick={(event) => onClickFunction(event, appointment, currentDay, horario)}>
+                                    {horario}
+                                </button></span>
 
                                )
                            }                   
@@ -74,7 +121,8 @@ const Calendar = ({idPsico, isPatient = false}) =>{
                )}
                )}
            </div>
-                      
+
+          <button className="btn-confirm" disabled >Confirmar Consulta</button>           
 
        </TableContainer>
     )

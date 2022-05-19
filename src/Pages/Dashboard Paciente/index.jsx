@@ -5,6 +5,7 @@ import { HeaderDashboardPaciente, Header } from '../../components/Header';
 import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
+import { CardPsicologo } from '../../components/CardPsicologo';
 
 const DashboardPaciente = () => {
   const { psychologists } = usePsychologists();
@@ -40,6 +41,7 @@ const DashboardPaciente = () => {
 
   const price = ['R$60', 'R$100', 'R$150'];
 
+  console.log(psychologists)
   return (
     <>
       <Flex
@@ -127,9 +129,19 @@ const DashboardPaciente = () => {
                 </option>
               ))}
             </Select>
-          </Flex>
+          </Flex>          
         </Flex>
+        {psychologists.map(psychologist=>(
+        <CardPsicologo key={psychologist.id} nome={psychologist.name}
+        abordagens={psychologist.specializations} review={psychologist.average}
+        preco="R$100,00" formacao={["Harvard"]} descricao={psychologist.description}
+        CRP={psychologist.crp}/>
+      ))}
+        
       </Flex>
+
+      
+      
     </>
   );
 };
