@@ -288,14 +288,10 @@ export const HeaderDashboardPaciente = () => {
   return (
     <>
       <Flex w="100%" h="105px" align="center" justify="space-between">
-        <Modal isOpen={isOpen} onClose={onClose} >
-          <ModalOverlay  />
-          <ModalContent  bg="white.300" width="230px" height="300px">
-            <ModalCloseButton
-              color="secondary.0"
-              outline="none"
-              borderStyle="none"
-            />
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent bg="white.300" width="230px" height="300px">
+            <ModalCloseButton color="secondary.0" _focus="" _active="" />
             <ModalBody>
               <Flex
                 height="90%"
