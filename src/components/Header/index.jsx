@@ -334,6 +334,8 @@ export const HeaderDashboardPaciente = () => {
               color="secondary.0"
               outline="none"
               borderStyle="none"
+              _focus=''
+              _active=''
             />
 
             <ModalBody>

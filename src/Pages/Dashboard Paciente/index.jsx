@@ -99,6 +99,7 @@ const DashboardPaciente = () => {
             width="90%"
             justifyContent="space-between"
             alignSelf="center"
+            mt='8px'
           >
             <Select
               height="50px"
@@ -106,7 +107,6 @@ const DashboardPaciente = () => {
               maxWidth="600px"
               text="Abordagem"
               cursor='pointer'
-              fontWeigth='500'
               onChange={handleChangeApproach}
             >
               {approach.map(item => (
@@ -119,7 +119,6 @@ const DashboardPaciente = () => {
               maxWidth="600px"
               text="Valor"
               cursor='pointer'
-              fontWeigth='500'
               onChange={handleChangePrice}
             >
               {price.map(item => (
