@@ -1,25 +1,22 @@
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { Container } from './styles';
 import {
   Box,
   Flex,
-  Image,
   Text,
   Spacer,
   FormControl,
-  FormErrorMessage,
+  Button as ButtonChakra,
 } from '@chakra-ui/react';
 import Button from '../Button';
-import { BiArrowBack } from 'react-icons/bi';
-import Logo from '../../assets/Logo/logopsique.svg';
+
 import Input from '../Input';
 import api from '../../services';
 import { useIsLoggedIn } from '../../Providers/isLoggedIn/index';
-import { useDataUser } from '../../Providers/dataUser/index';
 
 const Login = () => {
   const toast = useToast();
@@ -27,7 +24,7 @@ const Login = () => {
     email: yup.string().email('Email inválido').required('Campo obrigatório'),
     password: yup
       .string()
-      .min(6, 'mínimo 6 digitos')
+      .min(6, 'Mínimo 6 digitos')
       .required('Campo obrigatório'),
   });
   const {
@@ -37,10 +34,12 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { dataUser } = useDataUser();
-  const { isLoggedIn, setIsLoggedIn, token, setToken } = useIsLoggedIn();
+
+  const { setIsLoggedIn, setToken } = useIsLoggedIn();
   const onSubmit = data => {
-    console.log(data);
+    setIsLoggedIn(false);
+    localStorage.clear();
+
     api
       .post('/login', data)
       .then(response => {
@@ -52,7 +51,7 @@ const Login = () => {
         if (user.type === 'staff') {
           toast({
             title: 'Login realizado com sucesso!',
-            // description: "Redirecionando você para a pa´gina de .",
+
             position: 'top-right',
             status: 'success',
             duration: 6000,
@@ -60,7 +59,7 @@ const Login = () => {
           });
           toast({
             title: 'Login realizado com sucesso!',
-            // description: "Redirecionando você para a pa´gina de .",
+
             position: 'top-right',
             status: 'success',
             duration: 6000,
@@ -74,7 +73,6 @@ const Login = () => {
       .catch(error => {
         toast({
           title: 'Login falhou, tente novamente!',
-          // description: "Redirecionando você para a pa´gina de .",
           position: 'top-right',
           status: 'warning',
           duration: 6000,
@@ -84,26 +82,27 @@ const Login = () => {
   };
 
   const history = useHistory();
-  // const handleHome = () => {
-  //   history.push('/');
-  // };
+
   const handleCadastro = () => {
     history.push('/cadastropaciente');
   };
-  console.log(errors);
 
   return (
     <Flex
       direction="column"
-      padding="3px"
+      padding={['3px', '3px', '3px', '40px']}
       alignItems="center"
       justifyContent="center"
     >
-      <Box alignItems="center" maxWidth={['', '90%', '550px', '380px']}>
+      <Box
+        as="form"
+        alignItems="center"
+        maxWidth={['', '100%', '800px', '580px']}
+      >
         <Container>
           <FormControl
             isInvalid={!!errors?.email?.message}
-            errortext={errors?.email?.message}
+            errortext={!!errors?.email?.message}
             p="4"
             isRequired
           >
@@ -112,21 +111,19 @@ const Login = () => {
               color="primary.0"
               placeholder="ex:name@gmail.com"
               {...register('email')}
-              error={errors?.email}
+              error={errors.email?.message}
               type="email"
               border="1px solid"
               borderColor="primary.0"
               backgroundColor="white.200"
               height="50px"
-              width={['280px', '400px', '505px', '315px']}
-              // minWidth="250px"
-              // maxWidth="505px"
+              minWidth="280px"
+              maxWidth="605px"
             />
-            <FormErrorMessage>{errors?.email?.message}</FormErrorMessage>
           </FormControl>
           <FormControl
             isInvalid={!!errors?.password?.message}
-            errortext={errors?.password?.message}
+            errortext={!!errors?.password?.message}
             px="4"
             pb="4"
             isRequired
@@ -136,31 +133,29 @@ const Login = () => {
               color="primary.0"
               isPassword
               placeholder="senha"
+              error={errors.password?.message}
               {...register('password')}
               border="1px solid"
               borderColor="primary.0"
               backgroundColor="white.200"
               height="50px"
               width={['280px', '400px', '505px', '315px']}
-              // minWidth="280px"
-              // maxWidth="505px"
+              minWidth="280px"
+              maxWidth="605px"
             />
-            <FormErrorMessage>{errors?.password?.message}</FormErrorMessage>
           </FormControl>
           <Spacer />
-          <Box marginTop="50px">
-            <Button
+          <Flex marginTop="50px">
+            <ButtonChakra
               onClick={handleSubmit(onSubmit)}
               children="Login"
               height="48px"
               width={['280px', '400px', '505px', '315px']}
-              minWidth="280px"
-              maxWidth="505px"
               borderColor="secondary.100"
               backgroundColor="secondary.100"
               color="white"
             />
-          </Box>
+          </Flex>
 
           <Box marginTop="15px">
             <Flex diyarection="row">
@@ -174,7 +169,6 @@ const Login = () => {
           </Box>
         </Container>
       </Box>
-      {/* </Box> */}
     </Flex>
   );
 };

@@ -4,12 +4,32 @@ import { useSchedules } from '../../Providers/schedules';
 import { BiArrowBack } from 'react-icons/bi';
 import Lottie from 'react-lottie';
 import animationData from '../../lotties/emptyAnimation.json';
+import { useCallback, useEffect, useState } from 'react';
 
-function AgendaPaciente() {
-  const history = useHistory();
-
+const AgendaPaciente = () => {
   const { schedules } = useSchedules();
 
+  const localStorageInfo = JSON.parse(localStorage.getItem('@psique/token'));
+
+  const id = localStorageInfo.user.id;
+
+  const history = useHistory();
+
+  const [userSchedules, setUserSchedules] = useState([]);
+
+  const getUserSchedules = useCallback(() => {
+    const getSchedules = schedules.filter(
+      ({ userId }) => userId === id.toString()
+    );
+
+    setUserSchedules(getSchedules);
+  }, [id, schedules]);
+
+  useEffect(() => {
+    getUserSchedules();
+  }, [getUserSchedules]);
+
+  console.log(userSchedules);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -21,34 +41,15 @@ function AgendaPaciente() {
 
   return (
     <Flex direction="column" alignItems="center">
-      {schedules.length === 0 ? (
-        // <BiArrowBack
-        //   onClick={() => history.push('/dashboardPaciente')}
-        // />
-        // <Flex
-        //   direction="column"
-        //   height="70px"
-        //   width="100vw"
-        //   mt="15px"
-        //   justifyContent="center"
-        //   alignItems="center"
-        //   bg="primary.100"
-        //   color="white.200"
-        //   fontSize="22px"
-        //   fontWeight="600"
-        // >
-        //   <h2>Histórico de consultas</h2>
-        // </Flex>
-        // <Flex direction="column" alignItems="center">
-        //   <span>Você ainda não possui nenhuma consulta</span>
-        //   <Lottie options={defaultOptions} height={300} width={300} />
-        // </Flex>
-
-        <Flex direction="column" height="100vh">
-          <BiArrowBack
-            size='30px'
-            onClick={() => history.push('/dashboardPaciente')}
-          />
+      {userSchedules.length === 0 ? (
+        <Flex direction="column" height="100vh" pt="15px">
+          <Flex marginLeft="15px" cursor="pointer">
+            <BiArrowBack
+              size="30px"
+              cursor="pointer"
+              onClick={() => history.push('/dashboardPaciente')}
+            />
+          </Flex>
           <Flex
             height="70px"
             width="100vw"
@@ -71,14 +72,16 @@ function AgendaPaciente() {
             alignItems="center"
             alignSelf="center"
           >
-            <span>Você ainda não possui nenhuma consulta</span>
+            <Text fontSize={['16px', '22px']}>
+              Você ainda não possui nenhuma consulta
+            </Text>
             <Lottie options={defaultOptions} height={260} width={300} />
           </Flex>
         </Flex>
       ) : (
         <Flex direction="column">
           <BiArrowBack
-            size='30px'
+            size="30px"
             onClick={() => history.push('/dashboardPaciente')}
           />
           <Flex
@@ -100,6 +103,6 @@ function AgendaPaciente() {
       )}
     </Flex>
   );
-}
+};
 
 export default AgendaPaciente;
