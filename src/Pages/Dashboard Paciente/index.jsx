@@ -51,7 +51,7 @@ const DashboardPaciente = () => {
       >
         <Header>
           <HeaderDashboardPaciente />
-        </Header>
+        </Header>      
         <Flex
           height="200px"
           direction="column"
