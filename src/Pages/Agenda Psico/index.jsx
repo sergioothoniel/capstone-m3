@@ -12,33 +12,25 @@ import { BiArrowBack } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 // import '../../assets/imagens/Avatar.';
 function AgendaPsico() {
+  
   const { isLoggedIn, setIsLoggedIn } = useIsLoggedIn();
   const { dataUser } = useDataUser();
   const history = useHistory();
 
   const [appointments, setAppointments] = useState([]);
-
-  // if (!isLoggedIn || dataUser.type !== 'staff') {
-  //   history.push('/login');
-  // }
-
-  const { psychologists } = usePsychologists();
+  
   const { schedules } = useSchedules();
   const { patients } = usePatients();
 
   useEffect(() => {
-    console.log(schedules)
-    const newAppointments = schedules.filter(
-      schedule => schedule.staffId == dataUser.id
+        const newAppointments = schedules.filter(
+      schedule => Number(schedule.staffId) === dataUser.id
     );
     setAppointments(newAppointments);
   }, [dataUser, schedules]);
-  // if (dataUser.type === 'staff') {
-  //   setAppointments(
-  //     schedules.filter(schedule => schedule.staffId === dataUser.id)
-  //   );
-  // }
-  // console.log(appointments);
+  
+  console.log(patients)
+  console.log(appointments)
   return (
     <>
       <Flex
@@ -59,13 +51,15 @@ function AgendaPsico() {
           <Cards>
             {appointments.map(schedule => {
               const patient = patients.find(
-                patient => schedule.userId === patient.userId
-              );
+                patient => Number(schedule.userId) === patient.userId
+              );                            
               return (
                 <CardPatient
                   key={schedule.id}
                   // img={schedule.img}
                   name={patient.name}
+                  date={schedule.date}
+                  time={schedule.time}
                 />
               );
             })}
