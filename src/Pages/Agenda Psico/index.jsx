@@ -28,9 +28,7 @@ function AgendaPsico() {
     );
     setAppointments(newAppointments);
   }, [dataUser, schedules]);
-  
-  console.log(patients)
-  console.log(appointments)
+   
   return (
     <>
       <Flex
@@ -52,14 +50,16 @@ function AgendaPsico() {
             {appointments.map(schedule => {
               const patient = patients.find(
                 patient => Number(schedule.userId) === patient.userId
-              );                            
+              );
+                                         
               return (
+                
                 <CardPatient
                   key={schedule.id}
-                  // img={schedule.img}
-                  name={patient.name}
-                  date={schedule.date}
-                  time={schedule.time}
+                  //  img={schedule.img}
+                  name={patient?.name}
+                   date={schedule.date}
+                   time={schedule.time}
                 />
               );
             })}
