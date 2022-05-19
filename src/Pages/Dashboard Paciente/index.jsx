@@ -119,7 +119,7 @@ const DashboardPaciente = () => {
             >
               {price.map(item => (
                 <option value={item} key={item}>
-                  {item.username}
+                  {item}
                 </option>
               ))}
             </Select>
