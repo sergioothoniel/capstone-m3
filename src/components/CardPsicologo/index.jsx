@@ -20,6 +20,7 @@ export const CardPsicologo = ({
   formacao,
   descricao,
   CRP,
+  idPsico
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -134,7 +135,7 @@ export const CardPsicologo = ({
               </Flex>
               <Flex>
 
-                <Calendar idPsico='7' isPatient/>
+                <Calendar idPsico={idPsico} isPatient/>
 
 
 
