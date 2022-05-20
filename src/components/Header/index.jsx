@@ -1,4 +1,4 @@
-import { Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import Button from '../Button';
 import { useHistory } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
@@ -6,12 +6,12 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
+
+import BasicModal from '../Modal';
 
 export const ModalSanduiche = () => {
   const history = useHistory();
@@ -26,6 +26,9 @@ export const ModalSanduiche = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const modalAboutUs = useDisclosure();
+  const modalSanduiche = useDisclosure();
+
   return (
     <>
       <Image
@@ -33,10 +36,14 @@ export const ModalSanduiche = () => {
         alt="Menu Hamburguer"
         h={['35px', '35px', '45px']}
         display={['block', 'block', 'block', 'none']}
-        onClick={onOpen}
+        onClick={modalSanduiche.onOpen}
         cursor="pointer"
       />
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal
+        isOpen={modalSanduiche.isOpen}
+        onClose={modalSanduiche.onClose}
+        isCentered
+      >
         <ModalOverlay />
         <ModalContent
           h={['310px', '448px']}
@@ -47,41 +54,56 @@ export const ModalSanduiche = () => {
           alignItems="center"
           justifyContent="center"
         >
-          <Text
-            fontSize="16px"
-            fontWeight="400"
-            lineHeight="24px"
-            color="gray.300"
-            borderBottom="2px"
-            borderColor="gray.300"
-            w="187px"
-            textAlign="center"
-            paddingBottom="8px"
-            cursor="pointer"
-          >
-            Buscar especialistas
-          </Text>
-          <Text
-            fontSize="16px"
-            fontWeight="400"
-            lineHeight="24px"
-            color="gray.300"
-            borderBottom="2px"
-            borderColor="gray.300"
-            w="187px"
-            textAlign="center"
-            paddingBottom="8px"
-            paddingTop={['30px', '50px']}
-            cursor="pointer"
+          <Button
+            border="2px"
+            borderColor="secondary.100"
+            height="48px"
+            width="187px"
+            fontSize="18px"
+            fontWeigth="400"
+            color="white.0"
+            bg="secondary.100"
+            onClick={modalAboutUs.onOpen}
           >
             Quem somos nós?
-          </Text>
+          </Button>
+          <BasicModal
+            isOpen={modalAboutUs.isOpen}
+            onClose={modalAboutUs.onClose}
+            h={['500px', '500px', '650px', '650px']}
+            w={['500px', '500px', '650px', '650px']}
+          >
+            <Box
+              color="gray.0"
+              w="450px"
+              textAlign="center"
+              fontSize={['12px', '12px', '18px']}
+            >
+              <Text marginTop="35px" marginBottom="20px">
+                O tratamento psicológico deve ser de fácil acesso e para todas
+                as pessoas.
+              </Text>
+              <Text marginBottom="20px">
+                Trazemos a variedade de abordagens que existem na psicologia,
+                trazendo revisões e informações sobre profissionais
+                especializados e com isso gerando mais opções de escolhas para o
+                seu caminho.
+              </Text>
+              <Text>
+                O atendimento online pode ser realizado em qualquer lugar do
+                Brasil e do mundo, possuindo a mesma eficácia que o atendimento
+                presencial, facilitando a vida dos pacientes pois não é
+                necessário o deslocamento a uma clínica, mantendo o sigilo das
+                informações que tanto precisamos para o conforto.
+              </Text>
+            </Box>
+          </BasicModal>
           <Flex
             justifyContent="space-between"
             direction="column"
             h="106px"
             w="max-content"
-            marginTop={['15px', '70px']}
+            marginTop="10px"
           >
             <Button
               border="2px"
@@ -131,6 +153,8 @@ export const HeaderContentHomePage = () => {
     history.push('/');
   };
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex w="100%" h="100%" align="center" justify="space-between">
       <Image
@@ -150,10 +174,37 @@ export const HeaderContentHomePage = () => {
               height="42px"
               width="165px"
               fontWeigth="600"
-              fontSize="16px"
+              fontSize={['12px', '12px', '18px']}
+              onClick={() => onOpen()}
             >
               Quem somos nós?
             </Button>
+            <BasicModal
+              isOpen={isOpen}
+              onClose={onClose}
+              h={['500px', '500px', '650px', '650px']}
+              w={['500px', '500px', '650px', '650px']}
+            >
+              <Box color="gray.0" w="450px" textAlign="center" fontSize="18px">
+                <Text marginTop="35px" marginBottom="20px">
+                  O tratamento psicológico deve ser de fácil acesso e para todas
+                  as pessoas.
+                </Text>
+                <Text marginBottom="20px">
+                  Trazemos a variedade de abordagens que existem na psicologia,
+                  trazendo revisões e informações sobre profissionais
+                  especializados e com isso gerando mais opções de escolhas para
+                  o seu caminho.
+                </Text>
+                <Text>
+                  O atendimento online pode ser realizado em qualquer lugar do
+                  Brasil e do mundo, possuindo a mesma eficácia que o
+                  atendimento presencial, facilitando a vida dos pacientes pois
+                  não é necessário o deslocamento a uma clínica, mantendo o
+                  sigilo das informações que tanto precisamos para o conforto.
+                </Text>
+              </Box>
+            </BasicModal>
           </Flex>
           <Flex w="48%" justify="space-between">
             <Button
@@ -222,14 +273,69 @@ export const HeaderDashboardPsicologo = () => {
     history.push('/agendapsicologo');
   };
 
+  const goToHome = () => {
+    history.push('/');
+  };
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex w="100%" h="100px" align="center" justify="space-between">
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent bg="white.300" width="230px" height="300px">
+          <ModalCloseButton
+            color="secondary.0"
+            outline="none"
+            borderStyle="none"
+            _focus=""
+            _active=""
+          />
+
+          <ModalBody>
+            <Flex
+              height="80%"
+              mt="20px"
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Flex
+                height="50%"
+                direction="column"
+                justifyContent="space-around"
+                alignItems="center"
+              >
+                <Button
+                  height="48px"
+                  width="170px"
+                  bg="secondary.100"
+                  color="white.100"
+                  onClick={vaiParaAtendimentos}
+                >
+                  Atendimentos
+                </Button>
+              </Flex>
+              <Button
+                height="48px"
+                width="170px"
+                bg="secondary.0"
+                color="white.100"
+                onClick={goToHome}
+              >
+                Sair
+              </Button>
+            </Flex>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
       <Flex justify="flex-start">
         <Image
           src={require('../../assets/imagens/LogoPsique.svg').default}
           alt="Logo escrito psiqué"
           w={['105px', '105px', '160px']}
           cursor="pointer"
+          onClick={goToHome}
         />
       </Flex>
       <Flex
@@ -266,6 +372,7 @@ export const HeaderDashboardPsicologo = () => {
           h="64px"
           cursor="pointer"
           borderRadius="50px"
+          onClick={() => onOpen()}
         />
       </Flex>
     </Flex>
@@ -329,13 +436,12 @@ export const HeaderDashboardPaciente = () => {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent bg="white.300" width="230px" height="300px">
-
             <ModalCloseButton
               color="secondary.0"
               outline="none"
               borderStyle="none"
-              _focus=''
-              _active=''
+              _focus=""
+              _active=""
             />
 
             <ModalBody>

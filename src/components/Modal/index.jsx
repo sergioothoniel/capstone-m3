@@ -1,33 +1,31 @@
-import { Flex, Text } from '@chakra-ui/react';
 import {
   Modal,
   ModalOverlay,
   ModalContent,
   ModalCloseButton,
-  useDisclosure,
 } from '@chakra-ui/react';
 
-const BasicModal = ({ children }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const BasicModal = ({ children, isOpen, onOpen, onClose, h, w }) => {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
-        <ModalOverlay />
+        <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="2px" />
+        <ModalCloseButton />
         <ModalContent
-          h={['310px', '448px']}
-          w={['310px', '448px']}
           bg="secondary.100"
-          borderRadius="1000px"
+          borderRadius="50%"
           display="flex"
           alignItems="center"
           justifyContent="center"
+          h={h}
+          maxWidth="700px"
+          w={w}
         >
           {children}
         </ModalContent>
-        <ModalCloseButton/>
       </Modal>
     </>
   );
 };
 
-export default BasicModal
+export default BasicModal;

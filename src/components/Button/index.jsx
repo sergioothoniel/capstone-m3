@@ -15,14 +15,14 @@ const Button = ({
   minWidth,
   maxWidth,
   onClick = false,
-  type
+  type,
 }) => {
   return (
     <ButtonChakra
-    type={type}
+      type={type}
       bg={`${bg}`}
       height={`${height}`}
-      width={`${width}`}
+      width={width}
       border={`${border}`}
       borderRadius="8px"
       fontSize={`${fontSize}`}
@@ -46,13 +46,3 @@ const Button = ({
   );
 };
 export default Button;
-
-
-
-
-
-
-
-
-
-
