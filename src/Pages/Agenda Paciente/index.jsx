@@ -8,10 +8,14 @@ import animationData from '../../lotties/emptyAnimation.json';
 import { useCallback, useEffect, useState } from 'react';
 import { CardPsicologo } from '../../components/CardPsicologo';
 import Avatar from '../../assets/imagens/Avatar.svg'
+import {useDataUser} from "../../Providers/dataUser"
+
+
 const AgendaPaciente = () => {
 
   const { schedules } = useSchedules();
   const { psychologists } = usePsychologists();
+  
   //staff id = psychologist user id
   console.log(psychologists)
   const localStorageInfo = JSON.parse(localStorage.getItem('@psique/token'));

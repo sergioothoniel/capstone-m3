@@ -5,7 +5,7 @@ export const TableContainer = styled.div`
 .table{
     display: flex;
     justify-content: center;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
  
     margin: 0 auto;
     min-width: 300px;
@@ -90,6 +90,9 @@ button{
 
 .btn-confirm{
     display: ${props => props.btnConfirm ? 'block' : 'none'};
+    margin: 30px auto;
+    background-color: orange;
+    padding: 5px;
 }
 
 .selected{
