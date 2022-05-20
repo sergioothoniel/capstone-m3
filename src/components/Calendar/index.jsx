@@ -68,14 +68,15 @@ const Calendar = ({idPsico, isPatient = false}) =>{
         }       
     }
 
-    
+    const confirmAppointment = () =>{
+        console.log(timeSelect, scheduleDate)
+    }   
     
     useEffect(()=>{
         const newWeek = currentWeek()        
         setWeek(newWeek)
     }, [idPsico])
     
-    console.log(timeSelect, scheduleDate)
 
     return(
        <TableContainer btnConfirm={confirmSchedule}>
@@ -122,7 +123,7 @@ const Calendar = ({idPsico, isPatient = false}) =>{
                )}
            </div>
 
-          <button className="btn-confirm" disabled >Confirmar Consulta</button>           
+          <button className="btn-confirm" onClick={confirmAppointment}>Confirmar Consulta</button>           
 
        </TableContainer>
     )

@@ -40,8 +40,7 @@ const DashboardPaciente = () => {
   ];
 
   const price = ['R$60', 'R$100', 'R$150'];
-
-  console.log(psychologists)
+  
   return (
     <>
       <Flex
