@@ -14,29 +14,29 @@ import {useDataUser} from "../../Providers/dataUser"
 const AgendaPaciente = () => {
 
   const { schedules } = useSchedules();
-  const { psychologists } = usePsychologists();
-  
-  //staff id = psychologist user id
-  console.log(psychologists)
+  const { psychologists } = usePsychologists();   
+      
   const localStorageInfo = JSON.parse(localStorage.getItem('@psique/token'));
 
   const id = localStorageInfo.user.id;
 
+  console.log(id)
+  console.log(schedules)
+
   const history = useHistory();
 
-  const [userSchedules, setUserSchedules] = useState([]);
-
-  const getUserSchedules = useCallback(() => {
-    const getSchedules = schedules.filter(
-      ({ userId }) => userId === id.toString()
-    );
-
-    setUserSchedules(getSchedules);
-  }, [id, schedules]);
+  const [userSchedules, setUserSchedules] = useState([]);  
+  
 
   useEffect(() => {
-    getUserSchedules();
-  }, [getUserSchedules]);
+    const getSchedules = schedules.filter(
+      ({ userId }) => userId === id.toString())
+
+      setUserSchedules(getSchedules)
+
+  }, [schedules]);
+
+  console.log(userSchedules)
 
   const defaultOptions = {
     loop: true,
@@ -70,7 +70,7 @@ const AgendaPaciente = () => {
             fontWeight="600"
           >
             <Text fontSize="22px" fontWeight="500">
-              Histórico de consultas
+              Minhas consultas
             </Text>
           </Flex>
           <Flex
@@ -110,7 +110,7 @@ const AgendaPaciente = () => {
           <Flex width="100%" flexDir="column" paddingTop="15px" paddingX="20px" align="center">
 
 
-            {schedules.map(apointment=>(
+            {userSchedules.map(apointment=>(
              
         <Flex maxW="1000px" alignSelf="center" key={apointment.id} width="100%" border="1px solid" borderColor="primary.0" height="80px" paddingBottom="20px" marginBottom="10px" borderRadius="10px">
          
