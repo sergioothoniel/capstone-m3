@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { useEffect } from 'react';
+import {useIsLoggedIn} from '../isLoggedIn'
 import api from '../../services';
 
 export const PatientsContext = createContext();
@@ -7,11 +8,13 @@ export const PatientsContext = createContext();
 export const PatientsProvider = ({ children }) => {
   
   const [patients, setPatients] = useState([]);
- 
+  
+  const {isLoggedIn} = useIsLoggedIn()
   
   useEffect(()=>{
-   
-    const token = JSON.parse(localStorage.getItem('@psique/token')).accessToken 
+
+    if(isLoggedIn){
+      const token = JSON.parse(localStorage.getItem('@psique/token')).accessToken 
        
     api.get('/patients',{
       headers: {
@@ -19,7 +22,9 @@ export const PatientsProvider = ({ children }) => {
       },
     }).then(response=>setPatients(response.data))
     .catch(err=>console.log(err)) 
-  }, [])
+    }   
+    
+  }, [isLoggedIn])
 
   return (
     <PatientsContext.Provider value={{ patients }}>
