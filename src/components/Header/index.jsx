@@ -1,4 +1,4 @@
-import { Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, Text } from '@chakra-ui/react';
 import Button from '../Button';
 import { useHistory } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
@@ -6,12 +6,12 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
+
+import BasicModal from '../Modal';
 
 export const ModalSanduiche = () => {
   const history = useHistory();
@@ -131,6 +131,8 @@ export const HeaderContentHomePage = () => {
     history.push('/');
   };
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Flex w="100%" h="100%" align="center" justify="space-between">
       <Image
@@ -151,9 +153,36 @@ export const HeaderContentHomePage = () => {
               width="165px"
               fontWeigth="600"
               fontSize="16px"
+              onClick={() => onOpen()}
             >
               Quem somos nós?
             </Button>
+            <BasicModal
+              isOpen={isOpen}
+              onClose={onClose}
+              h={['500px', '500px', '650px', '650px']}
+              w={['500px', '500px', '650px', '650px']}
+            >
+              <Box color="gray.0" w="450px" textAlign="center" fontSize="18px">
+                <Text marginTop="35px" marginBottom="20px">
+                  O tratamento psicológico deve ser de fácil acesso e para todas
+                  as pessoas.
+                </Text>
+                <Text marginBottom="20px">
+                  Trazemos a variedade de abordagens que existem na psicologia,
+                  trazendo revisões e informações sobre profissionais
+                  especializados e com isso gerando mais opções de escolhas para
+                  o seu caminho.
+                </Text>
+                <Text>
+                  O atendimento online pode ser realizado em qualquer lugar do
+                  Brasil e do mundo, possuindo a mesma eficácia que o
+                  atendimento presencial, facilitando a vida dos pacientes pois
+                  não é necessário o deslocamento a uma clínica, mantendo o
+                  sigilo das informações que tanto precisamos para o conforto.
+                </Text>
+              </Box>
+            </BasicModal>
           </Flex>
           <Flex w="48%" justify="space-between">
             <Button
@@ -329,13 +358,12 @@ export const HeaderDashboardPaciente = () => {
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent bg="white.300" width="230px" height="300px">
-
             <ModalCloseButton
               color="secondary.0"
               outline="none"
               borderStyle="none"
-              _focus=''
-              _active=''
+              _focus=""
+              _active=""
             />
 
             <ModalBody>
