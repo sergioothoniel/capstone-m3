@@ -49,8 +49,7 @@ const CadastroPaciente = () => {
     resolver: yupResolver(formSchema),
   });
 
-  console.log(errors)
-
+  
   const onSubmitFunction = ({name, email, password, age, cpf}) => {
 
     const user = {
@@ -59,8 +58,7 @@ const CadastroPaciente = () => {
       password,
       type: "patients"
     }
-    console.log(user)
-
+    
     const patient = {
       name,
       email,
@@ -70,7 +68,6 @@ const CadastroPaciente = () => {
     
 
     api.post("/users", user).then((response)=>{
-      console.log(response.data.user.id);
       const userId = response.data.user.id
       const token = response.data.accessToken
       const config = {
@@ -80,7 +77,6 @@ const CadastroPaciente = () => {
       api.post("/patients",{...patient, userId},config)
       .then((response)=>{
 
-        console.log(response.data)
         toast({
           title: 'Conta criada com sucesso!',
           position:  'top-right',
