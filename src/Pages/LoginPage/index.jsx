@@ -67,7 +67,7 @@ const LoginPage = () => {
           >
             <Text
               marginTop="55px"
-              fontSize={['20px', '20px', '35px', '30px', '30px', '40px']}
+              fontSize={['20px', '20px', '30px', '30px', '30px', '30px']}
               fontWeight="600"
             >
               Somos seres de reflexão
@@ -77,7 +77,7 @@ const LoginPage = () => {
             </Box>
             <Text
               marginTop={['', '', '', '80px', '90px', '140px']}
-              fontSize={['20px', '20px', '35px', '30px', '30px', '40px']}
+              fontSize={['20px', '20px', '30px', '30px', '30px', '30px']}
               fontWeight="600"
             >
               e reflexo.

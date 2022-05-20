@@ -20,6 +20,7 @@ export const CardPsicologo = ({
   formacao,
   descricao,
   CRP,
+  idPsico
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -33,17 +34,18 @@ export const CardPsicologo = ({
         arr.push(0);
       }
     }
-     return arr;
+    return arr;
   };
 
   return (
     <Flex
       w={['318px', '318px', '740px']}
-      h={['212px', '212px', '320px']}
+      h={['230px', '230px', '320px']}
       borderRadius="10px"
       border="1px"
       borderColor="primary.0"
       px={['15px', '15px', '35px']}
+      my="20px"
     >
       <Modal onClose={onClose} size="full" isOpen={isOpen}>
         <ModalOverlay />
@@ -63,7 +65,7 @@ export const CardPsicologo = ({
               direction="column"
               align="center"
               justify="space-between"
-              h="600px"
+              h="max-content"
             >
               <Image
                 src={require('../../Img/Avatar.svg').default}
@@ -128,30 +130,21 @@ export const CardPsicologo = ({
                 })}
               </Flex>
               <Flex maxWidth="600px">
-                <Text fontWeight="300" fontSize="15px" color="gray.300">
+                <Text
+                  fontWeight="300"
+                  fontSize="15px"
+                  color="gray.300"
+                  pb="20px"
+                >
                   {descricao}
                 </Text>
               </Flex>
               <Flex>
 
-                <Calendar idPsico='7' isPatient/>
-
+                <Calendar idPsico={idPsico} isPatient/>
 
 
               </Flex>
-              {/* <Button
-                bg="secondary.0"
-                height="35px"
-                width="252px"
-                border="2px"
-                borderColor="secondary.0"
-                fontSize="14px"
-                color="white.0"
-                fontWeigth="500"
-                hoverBorder="secondary.100"
-              >
-                Confirmar consulta
-              </Button> */}
             </Flex>
           </ModalBody>
         </ModalContent>
@@ -188,6 +181,7 @@ export const CardPsicologo = ({
                 color="gray.300"
                 display={['block', 'block', 'none']}
                 key={index}
+                maxWidth="100px"
               >
                 {item}
               </Text>
@@ -235,7 +229,7 @@ export const CardPsicologo = ({
                   ? descricao.slice(0, 50) + '...'
                   : descricao}
               </Text>
-            </Flex>           
+            </Flex>
 
             <Flex display={['flex', 'flex', 'none']}>
               <Button
@@ -247,7 +241,7 @@ export const CardPsicologo = ({
                 hoverBorder="secondary.100"
                 color="white.0"
                 fontSize="13px"
-                onClickFunction={() => onOpen()}
+                onClick={() => onOpen()}
               >
                 Marcar consulta
               </Button>
