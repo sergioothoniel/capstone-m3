@@ -112,7 +112,7 @@ const CadastroPsicologo = () => {
           duration: 6000,
           isClosable: true,
         })
-        return history.push("/login")
+   
         })        
 
     
