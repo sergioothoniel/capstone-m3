@@ -3,13 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center;
+  width: 100%; */
 
   .faixaTitulo {
     display: flex;
     background-color: #3d5a80;
     height: 70px;
-    width: 100vw;
+    width: 100%;
     align-items: center;
     justify-content: center;
     color: white;

@@ -65,7 +65,11 @@ const LoginPage = () => {
             borderRadius="50%"
             marginRight={['', '', '', '55px', '150px']}
           >
-            <Text marginTop="50px" fontSize="20px" fontWeight="600">
+            <Text
+              marginTop="55px"
+              fontSize={['20px', '20px', '35px', '30px', '30px', '40px']}
+              fontWeight="600"
+            >
               Somos seres de reflexão
             </Text>
             <Box marginTop={['', '', '', '70px', '110px', '160px']}>
@@ -73,7 +77,7 @@ const LoginPage = () => {
             </Box>
             <Text
               marginTop={['', '', '', '80px', '90px', '140px']}
-              fontSize="20px"
+              fontSize={['20px', '20px', '35px', '30px', '30px', '40px']}
               fontWeight="600"
             >
               e reflexo.

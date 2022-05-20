@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Input from '../../components/Input';
 import { CardPsicologo } from '../../components/CardPsicologo';
+import { useEffect } from 'react';
 
 const DashboardPaciente = () => {
   const { psychologists } = usePsychologists();
@@ -16,13 +17,9 @@ const DashboardPaciente = () => {
 
   const [approachValue, setApproachValue] = useState('');
 
-  const [priceValue, setPriceValue] = useState('');
-
   const handleChangeInput = event => setInputValue(event.target.value);
 
   const handleChangeApproach = event => setApproachValue(event.target.value);
-
-  const handleChangePrice = event => setPriceValue(event.target.value);
 
   const findPsychologist = () => {
     const filterInput = psychologists.filter(({ name }) =>
@@ -30,6 +27,21 @@ const DashboardPaciente = () => {
     );
     setFilteredPsychologist(filterInput);
   };
+
+  const findSpecialization = () => {
+    const filterInput = psychologists.filter(psico =>
+      psico.specializations.includes(approachValue)
+    );
+    setFilteredPsychologist(filterInput);
+  };
+
+  useEffect(() => {
+    setFilteredPsychologist(psychologists);
+  }, [psychologists]);
+
+  useEffect(() => {
+    findSpecialization();
+  }, [approachValue]);
 
   const approach = [
     'Psicanálise',
@@ -39,12 +51,11 @@ const DashboardPaciente = () => {
     'Evolucionista',
   ];
 
-  const price = ['R$60', 'R$100', 'R$150'];
-  
+
   return (
     <>
       <Flex
-        height="100vh"
+        height="max-content"
         width="100vw"
         direction="column"
         bg="white.300"
@@ -52,7 +63,7 @@ const DashboardPaciente = () => {
       >
         <Header>
           <HeaderDashboardPaciente />
-        </Header>      
+        </Header>
         <Flex
           height="200px"
           direction="column"
@@ -100,36 +111,55 @@ const DashboardPaciente = () => {
             width="90%"
             justifyContent="space-between"
             alignSelf="center"
-            mt='8px'
+            mt="8px"
           >
             <Select
               height="50px"
               width={['140px', '400px', '300px']}
               maxWidth="600px"
               text="Abordagem"
-              cursor='pointer'
+              cursor="pointer"
               onChange={handleChangeApproach}
             >
               {approach.map(item => (
                 <option key={item}>{item}</option>
               ))}
             </Select>
-            <Select
-              height="50px"
-              width={['140px', '400px', '300px']}
-              maxWidth="600px"
-              text="Valor"
-              cursor='pointer'
-              onChange={handleChangePrice}
-            >
-              {price.map(item => (
-                <option value={item} key={item}>
-                  {item}
-                </option>
-              ))}
-            </Select>
-          </Flex>          
+          </Flex>
         </Flex>
+        <Flex justify="center" my="20px">
+          <Flex
+            direction="column"
+            height="max-content"
+            align="center"
+            justify={['center', 'space-between', 'center']}
+            w="90%"
+            flexWrap="wrap"
+          >
+            {filteredPsychologist &&
+              filteredPsychologist.map(psychologist => (
+                <CardPsicologo
+                  key={psychologist.id}
+                  nome={psychologist.name}
+                  abordagens={
+                    typeof psychologist.specializations === 'string'
+                      ? [psychologist.specializations]
+                      : psychologist.specializations
+                  }
+                  review={!!psychologist.average ? psychologist.average : '5'}
+                  preco="R$50,00"
+                  formacao={['Harvard']}
+                  descricao={
+                    !!psychologist.description
+                      ? psychologist.description
+                      : 'Psicólogo iniciante'
+                  }
+                  CRP={psychologist.crp}
+                />
+              ))}
+          </Flex>
+        </Flex>
+
         {psychologists && psychologists.map(psychologist=>(
         <CardPsicologo key={psychologist.id} nome={psychologist.name}
         abordagens={typeof psychologist.specializations === 'string' ? [psychologist.specializations] : psychologist.specializations}
@@ -139,9 +169,6 @@ const DashboardPaciente = () => {
       ))}
         
       </Flex>
-
-      
-      
     </>
   );
 };
