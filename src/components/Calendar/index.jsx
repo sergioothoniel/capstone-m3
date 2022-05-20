@@ -79,7 +79,6 @@ const Calendar = ({idPsico, isPatient = false}) =>{
     return(
        <TableContainer btnConfirm={confirmSchedule}>
            
-           <h1>2022</h1>
            <div className="table">
                {week.map(date=>{
                    const dateFormated = date.toLocaleDateString('pt-BR')
@@ -90,7 +89,7 @@ const Calendar = ({idPsico, isPatient = false}) =>{
 
                    return(
                    <div key={currentDay} className="table-column">
-                       <span>{currentDay}</span>
+                       <span className='currentDay'>{currentDay}</span>
                        <span>{dayOfWeek}</span>
                        {schedulesDefeault.map(horario=>{
                            const appointment =  appointmentsToday.length > 0 ? appointmentsToday.find(appointment => appointment.time === horario) : false
