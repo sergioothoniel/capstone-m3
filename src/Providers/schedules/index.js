@@ -5,16 +5,17 @@ export const SchedulesContext = createContext([]);
 
 export const SchedulesProvider = ({ children }) => {
   const [schedules, setSchedules] = useState([]);
+  const [upDate, setUpDate] = useState(false)
 
   useEffect(()=>{
     api.get('/appointments')
     .then(response=>setSchedules(response.data))
     .catch(err=>console.log(err))
 
-  }, [])
+  }, [upDate])
 
   return (
-    <SchedulesContext.Provider value={{ schedules }}>
+    <SchedulesContext.Provider value={{ schedules, setUpDate, upDate }}>
       {children}
     </SchedulesContext.Provider>
   );

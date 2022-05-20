@@ -6,7 +6,6 @@ export const Container = styled.div`
   justify-content: center;
   margin-top: 20px;
 
-
   .card {
     display: flex;
     align-items: center;
@@ -15,8 +14,11 @@ export const Container = styled.div`
     border-radius: 10px;
     width: 300px;
     height: 153px;
-    background-color: #f8f8ff;  
+    background-color: #f8f8ff;
 
+    @media (min-width: 801px) {
+      width: 600px;
+    }
     img {
       height: 96px;
       width: 96px;

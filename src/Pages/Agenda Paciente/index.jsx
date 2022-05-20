@@ -34,7 +34,6 @@ const AgendaPaciente = () => {
     getUserSchedules();
   }, [getUserSchedules]);
 
-  console.log(userSchedules);
   const defaultOptions = {
     loop: true,
     autoplay: true,

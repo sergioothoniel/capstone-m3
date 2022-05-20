@@ -4,11 +4,22 @@ import { useEffect, useState } from "react"
 import { cookieStorageManager } from "@chakra-ui/react"
 import Button from "../Button"
 import { useRef } from "react"
+import {useDataUser} from "../../Providers/dataUser"
+import { useIsLoggedIn } from "../../Providers/isLoggedIn" 
+import api from "../../services"
+import { useToast } from '@chakra-ui/react';
+import { useHistory } from "react-router-dom"
 
 const Calendar = ({idPsico, isPatient = false}) =>{
     
-    const {schedules} = useSchedules()
+    const {schedules, setUpDate, upDate} = useSchedules()
+    const {dataUser} = useDataUser()
+    const {token} = useIsLoggedIn()
+
+    const history = useHistory()
     
+    const toast = useToast()
+
     const [week, setWeek] = useState([])
 
     const [confirmSchedule, setConfirmSchedule] = useState(false)
@@ -63,23 +74,49 @@ const Calendar = ({idPsico, isPatient = false}) =>{
         }
         else{
             if(!!appoint){
-                console.log(appoint)
+                history.push('/agendapsicologo')
             }
         }       
     }
 
-    
+    const confirmAppointment = () =>{
+        const staffId = idPsico        
+        const userId = dataUser.id.toString()
+        const date = scheduleDate
+        const time = timeSelect
+
+        const bodyAppointment = {staffId, userId, date, time}
+
+        api.post('/appointments', bodyAppointment, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+              }
+        }).then(response => {
+
+            setUpDate(!upDate)
+            setConfirmSchedule(false)
+            setTimeSelect('')
+            setScheduleDate('')
+
+            toast({
+            title: 'Agendamento realizado com sucesso!',
+            position: 'top-right',
+            status: 'success',
+            duration: 6000,
+            isClosable: true,
+          })})
+        .catch(err=>console.log(err))     
+
+    }   
     
     useEffect(()=>{
         const newWeek = currentWeek()        
         setWeek(newWeek)
     }, [idPsico])
-        
 
     return(
        <TableContainer btnConfirm={confirmSchedule}>
            
-           <h1>2022</h1>
            <div className="table">
                {week.map(date=>{
                    const dateFormated = date.toLocaleDateString('pt-BR')
@@ -90,7 +127,7 @@ const Calendar = ({idPsico, isPatient = false}) =>{
 
                    return(
                    <div key={currentDay} className="table-column">
-                       <span>{currentDay}</span>
+                       <span className='currentDay'>{currentDay}</span>
                        <span>{dayOfWeek}</span>
                        {schedulesDefeault.map(horario=>{
                            const appointment =  appointmentsToday.length > 0 ? appointmentsToday.find(appointment => appointment.time === horario) : false
@@ -121,7 +158,7 @@ const Calendar = ({idPsico, isPatient = false}) =>{
                )}
            </div>
 
-          <button className="btn-confirm" disabled >Confirmar Consulta</button>           
+          <button className="btn-confirm" onClick={confirmAppointment}>Confirmar Consulta</button>           
 
        </TableContainer>
     )
