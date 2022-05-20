@@ -27,4 +27,12 @@ button{
 #confirmed{
     background-color: gray;
 }
+
+.btn-confirm{
+    display: ${props=>props.btnConfirm ? 'block' : 'none'};
+}
+
+.selected{
+    background-color: white;
+}
 `
