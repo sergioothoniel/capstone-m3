@@ -231,8 +231,8 @@ const HomePage = () => {
           />
         </Flex>
         <Flex
-          bg="secondary.300"
-          h={['', '', '', '100%']}
+          bg={['', '', '', 'secondary.300']}
+          h={['450px', '', '', '100%']}
           direction="column"
           justify="space-around"
           align="center"
