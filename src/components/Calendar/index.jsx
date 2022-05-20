@@ -74,8 +74,7 @@ const Calendar = ({idPsico, isPatient = false}) =>{
         const newWeek = currentWeek()        
         setWeek(newWeek)
     }, [idPsico])
-    
-    console.log(timeSelect, scheduleDate)
+        
 
     return(
        <TableContainer btnConfirm={confirmSchedule}>
