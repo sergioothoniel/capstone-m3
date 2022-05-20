@@ -11,12 +11,11 @@ import { useEffect } from 'react';
 const DashboardPaciente = () => {
   const { psychologists } = usePsychologists();
 
-  const [filteredPsychologist, setFilteredPsychologist] = useState([]);  
+  const [filteredPsychologist, setFilteredPsychologist] = useState([]);
 
   const [inputValue, setInputValue] = useState('');
 
   const [approachValue, setApproachValue] = useState('');
-  
 
   const handleChangeInput = event => setInputValue(event.target.value);
 
@@ -30,19 +29,19 @@ const DashboardPaciente = () => {
   };
 
   const findSpecialization = () => {
-    const filterInput = psychologists.filter((psico) =>
+    const filterInput = psychologists.filter(psico =>
       psico.specializations.includes(approachValue)
     );
     setFilteredPsychologist(filterInput);
-  }
+  };
 
-  useEffect(()=>{
-    setFilteredPsychologist(psychologists)
-  }, [psychologists])
+  useEffect(() => {
+    setFilteredPsychologist(psychologists);
+  }, [psychologists]);
 
-  useEffect(()=>{
-    findSpecialization()
-  }, [approachValue])
+  useEffect(() => {
+    findSpecialization();
+  }, [approachValue]);
 
   const approach = [
     'Psicanálise',
@@ -51,12 +50,11 @@ const DashboardPaciente = () => {
     'Junguiana',
     'Evolucionista',
   ];
- 
-  
+
   return (
     <>
       <Flex
-        height="100vh"
+        height="max-content"
         width="100vw"
         direction="column"
         bg="white.300"
@@ -64,7 +62,7 @@ const DashboardPaciente = () => {
       >
         <Header>
           <HeaderDashboardPaciente />
-        </Header>      
+        </Header>
         <Flex
           height="200px"
           direction="column"
@@ -112,34 +110,55 @@ const DashboardPaciente = () => {
             width="90%"
             justifyContent="space-between"
             alignSelf="center"
-            mt='8px'
+            mt="8px"
           >
             <Select
               height="50px"
               width={['140px', '400px', '300px']}
               maxWidth="600px"
               text="Abordagem"
-              cursor='pointer'
+              cursor="pointer"
               onChange={handleChangeApproach}
             >
               {approach.map(item => (
                 <option key={item}>{item}</option>
               ))}
-            </Select>            
-          </Flex>          
+            </Select>
+          </Flex>
         </Flex>
-        {filteredPsychologist && filteredPsychologist.map(psychologist=>(
-        <CardPsicologo key={psychologist.id} nome={psychologist.name}
-        abordagens={typeof psychologist.specializations === 'string' ? [psychologist.specializations] : psychologist.specializations}
-        review={!!psychologist.average ? psychologist.average : '5'}
-        preco="R$50,00" formacao={["Harvard"]} descricao={!!psychologist.description ? psychologist.description : 'Psicólogo iniciante'}
-        CRP={psychologist.crp}/>
-      ))}
-        
+        <Flex justify="center" my="20px">
+          <Flex
+            direction="column"
+            height="max-content"
+            align="center"
+            justify={['center', 'space-between', 'center']}
+            w="90%"
+            flexWrap="wrap"
+          >
+            {filteredPsychologist &&
+              filteredPsychologist.map(psychologist => (
+                <CardPsicologo
+                  key={psychologist.id}
+                  nome={psychologist.name}
+                  abordagens={
+                    typeof psychologist.specializations === 'string'
+                      ? [psychologist.specializations]
+                      : psychologist.specializations
+                  }
+                  review={!!psychologist.average ? psychologist.average : '5'}
+                  preco="R$50,00"
+                  formacao={['Harvard']}
+                  descricao={
+                    !!psychologist.description
+                      ? psychologist.description
+                      : 'Psicólogo iniciante'
+                  }
+                  CRP={psychologist.crp}
+                />
+              ))}
+          </Flex>
+        </Flex>
       </Flex>
-
-      
-      
     </>
   );
 };
