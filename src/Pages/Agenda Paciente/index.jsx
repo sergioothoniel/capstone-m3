@@ -19,10 +19,7 @@ const AgendaPaciente = () => {
   const localStorageInfo = JSON.parse(localStorage.getItem('@psique/token'));
 
   const id = localStorageInfo.user.id;
-
-  console.log(id)
-  console.log(schedules)
-
+  
   const history = useHistory();
 
   const [userSchedules, setUserSchedules] = useState([]);  
@@ -35,8 +32,6 @@ const AgendaPaciente = () => {
       setUserSchedules(getSchedules)
 
   }, [schedules]);
-
-  console.log(userSchedules)
 
   const defaultOptions = {
     loop: true,

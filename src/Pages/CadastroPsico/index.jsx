@@ -49,8 +49,7 @@ const CadastroPsicologo = () => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-
-  console.log(errors);
+  
   const onSubmitFunction = ({
     name,
     email,
@@ -79,7 +78,7 @@ const CadastroPsicologo = () => {
     api
       .post('/users', user)
       .then(response => {
-        console.log(response.data.user.id);
+        
         const userId = response.data.user.id;
         const token = response.data.accessToken;
         const config = {
