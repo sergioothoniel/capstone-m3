@@ -131,10 +131,11 @@ const DashboardPaciente = () => {
             </Select>
           </Flex>          
         </Flex>
-        {psychologists.map(psychologist=>(
+        {psychologists && psychologists.map(psychologist=>(
         <CardPsicologo key={psychologist.id} nome={psychologist.name}
-        abordagens={psychologist.specializations} review={psychologist.average}
-        preco="R$100,00" formacao={["Harvard"]} descricao={psychologist.description}
+        abordagens={typeof psychologist.specializations === 'string' ? [psychologist.specializations] : psychologist.specializations}
+        review={!!psychologist.average ? psychologist.average : '5'}
+        preco="R$100,00" formacao={["Harvard"]} descricao={!!psychologist.description ? psychologist.description : 'Psicólogo iniciante'}
         CRP={psychologist.crp}/>
       ))}
         
