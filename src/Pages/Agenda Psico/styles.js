@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  @media (min-width: 801px) {
+    .disable {
+      display: none;
+    }
+  }
+`;
 export const Content = styled.div`
-display: flex;
-flex-direction: column;
-`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const FaixaTitulo = styled.div`
   display: flex;
@@ -22,8 +29,6 @@ export const FaixaTitulo = styled.div`
   text-align: left;
 `;
 
-export const BtnVoltar = styled.div`
-`;
+export const BtnVoltar = styled.div``;
 
-export const Cards = styled.div`
-`
+export const Cards = styled.div``;
